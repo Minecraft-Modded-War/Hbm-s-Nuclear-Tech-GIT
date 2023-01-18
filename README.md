@@ -1,6 +1,7 @@
 # <u>**HBM MCW Nuclear Tech Mod - 1.12.2**</u>
 
 This is our mod dedicated to making HBM have less bullsh*t and be more optimized!
+This version **WILL REMOVE** a lot of the core features from HBM as well as changing how some things work. Do not use this if you want the full (and proper) HBMs NTM experience. For that, we recommend Alcater's version.
 
 This is a fork of 1.12.2 custom version of the mod HBM
 which is forked from the fork made by [Alcater](https://github.com/Alcatergit/Hbm-s-Nuclear-Tech-GIT)
