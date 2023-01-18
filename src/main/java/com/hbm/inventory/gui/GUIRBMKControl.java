@@ -1,15 +1,10 @@
 package com.hbm.inventory.gui;
 
-import java.io.IOException;
-
-import org.lwjgl.opengl.GL11;
-
 import com.hbm.inventory.container.ContainerRBMKControl;
-import com.hbm.lib.RefStrings;
+import com.hbm.main.MainRegistry;
 import com.hbm.packet.NBTControlPacket;
 import com.hbm.packet.PacketDispatcher;
 import com.hbm.tileentity.machine.rbmk.TileEntityRBMKControlManual;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.client.resources.I18n;
@@ -17,10 +12,13 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ResourceLocation;
+import org.lwjgl.opengl.GL11;
+
+import java.io.IOException;
 
 public class GUIRBMKControl extends GuiInfoContainer {
 	
-	private static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/reactors/gui_rbmk_control.png");
+	private static ResourceLocation texture = new ResourceLocation(MainRegistry.MODID + ":textures/gui/reactors/gui_rbmk_control.png");
 	private TileEntityRBMKControlManual rod;
 
 	public GUIRBMKControl(InventoryPlayer invPlayer, TileEntityRBMKControlManual tedf) {

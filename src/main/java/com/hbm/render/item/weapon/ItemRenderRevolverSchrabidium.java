@@ -1,8 +1,8 @@
 package com.hbm.render.item.weapon;
 
+import com.hbm.main.MainRegistry;
 import org.lwjgl.opengl.GL11;
 
-import com.hbm.lib.RefStrings;
 import com.hbm.render.item.TEISRBase;
 import com.hbm.render.model.ModelRevolver;
 
@@ -14,7 +14,7 @@ import net.minecraft.util.ResourceLocation;
 public class ItemRenderRevolverSchrabidium extends TEISRBase {
 
 	protected ModelRevolver swordModel;
-	protected ResourceLocation revolverLoc = new ResourceLocation(RefStrings.MODID +":textures/models/ModelRevolverSchrabidium.png");
+	protected ResourceLocation revolverLoc = new ResourceLocation(MainRegistry.MODID +":textures/models/ModelRevolverSchrabidium.png");
 	
 	public ItemRenderRevolverSchrabidium() {
 		swordModel = new ModelRevolver();

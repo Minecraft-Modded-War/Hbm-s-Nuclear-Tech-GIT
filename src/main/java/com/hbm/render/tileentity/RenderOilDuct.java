@@ -1,20 +1,18 @@
 package com.hbm.render.tileentity;
 
-import org.lwjgl.opengl.GL11;
-
-import com.hbm.lib.RefStrings;
+import com.hbm.main.MainRegistry;
 import com.hbm.render.RenderHelper;
 import com.hbm.tileentity.conductor.TileEntityFFOilDuct;
-
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
+import org.lwjgl.opengl.GL11;
 
 public class RenderOilDuct extends TileEntitySpecialRenderer<TileEntityFFOilDuct> {
 
-	public ResourceLocation texture = new ResourceLocation(RefStrings.MODID, "textures/blocks/oil_duct_alt.png");
+	public ResourceLocation texture = new ResourceLocation(MainRegistry.MODID, "textures/blocks/oil_duct_alt.png");
 	float pixel = 1F/16F;
 	float textureP = 1F / 32F;
 	

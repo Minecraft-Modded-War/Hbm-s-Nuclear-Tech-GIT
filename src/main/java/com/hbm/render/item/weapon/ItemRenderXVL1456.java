@@ -3,7 +3,6 @@ package com.hbm.render.item.weapon;
 import org.lwjgl.opengl.GL11;
 
 import com.hbm.items.weapon.ItemGunGauss;
-import com.hbm.lib.RefStrings;
 import com.hbm.main.ClientProxy;
 import com.hbm.main.MainRegistry;
 import com.hbm.main.ModEventHandlerClient;
@@ -26,7 +25,7 @@ import net.minecraft.util.ResourceLocation;
 public class ItemRenderXVL1456 extends TEISRBase {
 
 	protected ModelXVL1456 swordModel;
-	protected static ResourceLocation tau_rl = new ResourceLocation(RefStrings.MODID +":textures/models/ModelXVL1456.png");
+	protected static ResourceLocation tau_rl = new ResourceLocation(MainRegistry.MODID +":textures/models/ModelXVL1456.png");
 	
 	public ItemRenderXVL1456() {
 		swordModel = new ModelXVL1456();

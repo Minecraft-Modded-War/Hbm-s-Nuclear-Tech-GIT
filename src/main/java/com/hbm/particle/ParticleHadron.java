@@ -1,9 +1,6 @@
 package com.hbm.particle;
 
-import org.lwjgl.opengl.GL11;
-
-import com.hbm.lib.RefStrings;
-
+import com.hbm.main.MainRegistry;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.renderer.BufferBuilder;
@@ -20,11 +17,12 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.lwjgl.opengl.GL11;
 
 @SideOnly(Side.CLIENT)
 public class ParticleHadron extends Particle {
 
-	private static final ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/particle/hadron.png");
+	private static final ResourceLocation texture = new ResourceLocation(MainRegistry.MODID + ":textures/particle/hadron.png");
 	
 	public ParticleHadron(World worldIn, double posXIn, double posYIn, double posZIn) {
 		super(worldIn, posXIn, posYIn, posZIn);

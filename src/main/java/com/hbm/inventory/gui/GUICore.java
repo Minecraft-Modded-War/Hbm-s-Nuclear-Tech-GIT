@@ -2,7 +2,7 @@ package com.hbm.inventory.gui;
 
 import com.hbm.forgefluid.FFUtils;
 import com.hbm.inventory.container.ContainerCore;
-import com.hbm.lib.RefStrings;
+import com.hbm.main.MainRegistry;
 import com.hbm.tileentity.machine.TileEntityCore;
 
 import net.minecraft.client.Minecraft;
@@ -13,7 +13,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class GUICore extends GuiInfoContainer {
 
-	private static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/dfc/gui_core.png");
+	private static ResourceLocation texture = new ResourceLocation(MainRegistry.MODID + ":textures/gui/dfc/gui_core.png");
 	private TileEntityCore core;
 	
 	public GUICore(InventoryPlayer invPlayer, TileEntityCore tedf) {

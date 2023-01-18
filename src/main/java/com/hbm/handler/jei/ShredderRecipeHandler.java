@@ -1,15 +1,10 @@
 package com.hbm.handler.jei;
 
 import com.hbm.inventory.ShredderRecipes.ShredderRecipe;
-import com.hbm.lib.RefStrings;
-
+import com.hbm.main.MainRegistry;
 import mezz.jei.api.IGuiHelper;
-import mezz.jei.api.gui.IDrawable;
-import mezz.jei.api.gui.IDrawableAnimated;
+import mezz.jei.api.gui.*;
 import mezz.jei.api.gui.IDrawableAnimated.StartDirection;
-import mezz.jei.api.gui.IDrawableStatic;
-import mezz.jei.api.gui.IGuiItemStackGroup;
-import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.recipe.IRecipeCategory;
 import net.minecraft.client.Minecraft;
@@ -17,7 +12,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class ShredderRecipeHandler implements IRecipeCategory<ShredderRecipe> {
 
-	public static final ResourceLocation gui_rl = new ResourceLocation(RefStrings.MODID, "textures/gui/gui_nei_shredder.png");
+	public static final ResourceLocation gui_rl = new ResourceLocation(MainRegistry.MODID, "textures/gui/gui_nei_shredder.png");
 	
 	protected final IDrawable background;
 	protected final IDrawableStatic progressStatic;
@@ -47,7 +42,7 @@ public class ShredderRecipeHandler implements IRecipeCategory<ShredderRecipe> {
 
 	@Override
 	public String getModName() {
-		return RefStrings.MODID;
+		return MainRegistry.MODID;
 	}
 
 	@Override

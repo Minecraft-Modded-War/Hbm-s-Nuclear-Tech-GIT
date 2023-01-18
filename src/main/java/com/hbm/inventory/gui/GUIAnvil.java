@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.hbm.main.MainRegistry;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
 
@@ -14,7 +15,6 @@ import com.hbm.inventory.RecipesCommon.AStack;
 import com.hbm.inventory.RecipesCommon.ComparableStack;
 import com.hbm.inventory.RecipesCommon.OreDictStack;
 import com.hbm.inventory.container.ContainerAnvil;
-import com.hbm.lib.RefStrings;
 import com.hbm.packet.AnvilCraftPacket;
 import com.hbm.packet.PacketDispatcher;
 
@@ -36,7 +36,7 @@ import net.minecraftforge.oredict.OreDictionary;
 
 public class GUIAnvil extends GuiContainer {
 
-	public static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/processing/gui_anvil.png");
+	public static ResourceLocation texture = new ResourceLocation(MainRegistry.MODID + ":textures/gui/processing/gui_anvil.png");
 	
 	private int tier;
 	private List<AnvilConstructionRecipe> originList = new ArrayList<>();

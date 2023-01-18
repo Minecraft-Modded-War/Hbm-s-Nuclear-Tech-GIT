@@ -1,9 +1,9 @@
 package com.hbm.render.entity;
 
+import com.hbm.main.MainRegistry;
 import org.lwjgl.opengl.GL11;
 
 import com.hbm.entity.projectile.EntityExplosiveBeam;
-import com.hbm.lib.RefStrings;
 
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
@@ -88,7 +88,7 @@ public class RenderBeam5 extends Render<EntityExplosiveBeam> {
 
 	@Override
 	protected ResourceLocation getEntityTexture(EntityExplosiveBeam entity) {
-		return new ResourceLocation(RefStrings.MODID + ":textures/models/PlasmaBeam.png");
+		return new ResourceLocation(MainRegistry.MODID + ":textures/models/PlasmaBeam.png");
 	}
 
 }

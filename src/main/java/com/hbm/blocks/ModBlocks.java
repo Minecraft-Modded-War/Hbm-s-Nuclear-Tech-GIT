@@ -175,7 +175,6 @@ import com.hbm.forgefluid.ModForgeFluids;
 import com.hbm.interfaces.Spaghetti;
 import com.hbm.items.special.ItemHazard;
 import com.hbm.lib.HBMSoundHandler;
-import com.hbm.lib.RefStrings;
 import com.hbm.main.MainRegistry;
 import com.hbm.tileentity.DoorDecl;
 

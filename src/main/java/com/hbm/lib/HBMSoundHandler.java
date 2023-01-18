@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.hbm.handler.GunConfiguration;
 
+import com.hbm.main.MainRegistry;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
@@ -473,14 +474,14 @@ public final class HBMSoundHandler {
 	}
 	
 	public static SoundEvent register(String name) {
-		SoundEvent e = new SoundEvent(new ResourceLocation(RefStrings.MODID, name));
+		SoundEvent e = new SoundEvent(new ResourceLocation(MainRegistry.MODID, name));
 		e.setRegistryName(name);
 		ALL_SOUNDS.add(e);
 		return e;
 	}
 	
 	public static SoundEvent registerBypass(String name){
-		SoundEvent e = new SoundEvent(new ResourceLocation(RefStrings.MODID, name));
+		SoundEvent e = new SoundEvent(new ResourceLocation(MainRegistry.MODID, name));
 		e.setRegistryName(name);
 		ForgeRegistries.SOUND_EVENTS.register(e);
 		return e;

@@ -1,20 +1,18 @@
 package com.hbm.inventory.gui;
 
-import org.lwjgl.opengl.GL11;
-
 import com.hbm.forgefluid.FFUtils;
 import com.hbm.inventory.container.ContainerWatzCore;
-import com.hbm.lib.RefStrings;
+import com.hbm.main.MainRegistry;
 import com.hbm.tileentity.machine.TileEntityWatzCore;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
+import org.lwjgl.opengl.GL11;
 
 public class GUIWatzCore extends GuiInfoContainer {
 	
-	private static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/gui_watz_multiblock.png");
+	private static ResourceLocation texture = new ResourceLocation(MainRegistry.MODID + ":textures/gui/gui_watz_multiblock.png");
 	private TileEntityWatzCore diFurnace;
 
 	public GUIWatzCore(EntityPlayer invPlayer, TileEntityWatzCore tedf) {

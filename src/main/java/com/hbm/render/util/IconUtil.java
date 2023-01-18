@@ -20,7 +20,7 @@ public class IconUtil {
 		RenderBlocks rb = RenderBlocks.getInstance();
 
         IIcon icon = rb.getBlockIconFromSide(b, side);
-		ResourceLocation loc = new ResourceLocation(RefStrings.MODID + ":textures/blocks/" + icon.getIconName().substring(4, icon.getIconName().length()) + ".png");
+		ResourceLocation loc = new ResourceLocation(MainRegistry.MODID + ":textures/blocks/" + icon.getIconName().substring(4, icon.getIconName().length()) + ".png");
 
 		return loc;
 	}*/

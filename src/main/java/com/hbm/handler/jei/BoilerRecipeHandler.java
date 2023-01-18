@@ -1,8 +1,8 @@
 package com.hbm.handler.jei;
 
 import com.hbm.handler.jei.JeiRecipes.BoilerRecipe;
-import com.hbm.lib.RefStrings;
 
+import com.hbm.main.MainRegistry;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.IDrawable;
 import mezz.jei.api.gui.IDrawableAnimated;
@@ -17,7 +17,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class BoilerRecipeHandler implements IRecipeCategory<BoilerRecipe> {
 
-	public static final ResourceLocation gui_rl = new ResourceLocation(RefStrings.MODID, "textures/gui/gui_nei_boiler.png");
+	public static final ResourceLocation gui_rl = new ResourceLocation(MainRegistry.MODID, "textures/gui/gui_nei_boiler.png");
 	
 	protected final IDrawable background;
 	protected final IDrawableStatic tempStatic;
@@ -41,7 +41,7 @@ public class BoilerRecipeHandler implements IRecipeCategory<BoilerRecipe> {
 
 	@Override
 	public String getModName() {
-		return RefStrings.MODID;
+		return MainRegistry.MODID;
 	}
 
 	@Override

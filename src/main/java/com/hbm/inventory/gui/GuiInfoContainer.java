@@ -3,8 +3,8 @@ package com.hbm.inventory.gui;
 import java.util.Arrays;
 
 import com.hbm.lib.Library;
-import com.hbm.lib.RefStrings;
 
+import com.hbm.main.MainRegistry;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.inventory.Container;
@@ -13,7 +13,7 @@ import net.minecraft.util.ResourceLocation;
 
 public abstract class GuiInfoContainer extends GuiContainer {
 	
-	ResourceLocation guiUtil =  new ResourceLocation(RefStrings.MODID + ":textures/gui/gui_utility.png");
+	ResourceLocation guiUtil =  new ResourceLocation(MainRegistry.MODID + ":textures/gui/gui_utility.png");
 
 	public GuiInfoContainer(Container p_i1072_1_) {
 		super(p_i1072_1_);

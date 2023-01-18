@@ -1,16 +1,9 @@
 package com.hbm.inventory.gui;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.apache.commons.lang3.math.NumberUtils;
-import org.lwjgl.opengl.GL11;
-
 import com.hbm.items.tool.ItemGuideBook.BookType;
 import com.hbm.items.tool.ItemGuideBook.GuidePage;
-import com.hbm.lib.RefStrings;
+import com.hbm.main.MainRegistry;
 import com.hbm.util.I18nUtil;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.client.gui.GuiScreen;
@@ -23,11 +16,16 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
+import org.apache.commons.lang3.math.NumberUtils;
+import org.lwjgl.opengl.GL11;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class GUIScreenGuide extends GuiScreen {
 
-	private static final ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/book/book.png");
-	private static final ResourceLocation texture_cover = new ResourceLocation(RefStrings.MODID + ":textures/gui/book/book_cover.png");
+	private static final ResourceLocation texture = new ResourceLocation(MainRegistry.MODID + ":textures/gui/book/book.png");
+	private static final ResourceLocation texture_cover = new ResourceLocation(MainRegistry.MODID + ":textures/gui/book/book_cover.png");
 
 	protected int xSize;
 	protected int ySize;

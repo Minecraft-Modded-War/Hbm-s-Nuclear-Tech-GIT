@@ -2,12 +2,12 @@ package com.hbm.render.entity.effect;
 
 import java.util.Random;
 
+import com.hbm.main.MainRegistry;
 import org.lwjgl.opengl.GL11;
 
 import com.hbm.entity.effect.EntityNukeCloudSmall;
 import com.hbm.entity.effect.EntityNukeCloudSmall.Cloudlet;
 import com.hbm.hfr.render.loader.HFRWavefrontObject;
-import com.hbm.lib.RefStrings;
 import com.hbm.main.ResourceManager;
 import com.hbm.render.amlfrom1710.IModelCustom;
 
@@ -30,10 +30,10 @@ public class RenderSmallNukeMK4 extends Render<EntityNukeCloudSmall> {
 
 	public static final IRenderFactory<EntityNukeCloudSmall> FACTORY = man -> new RenderSmallNukeMK4(man);
 	
-	public static final IModelCustom mush = new HFRWavefrontObject(new ResourceLocation(RefStrings.MODID, "models/effect/mush.obj"));
-	public static final IModelCustom shockwave = new HFRWavefrontObject(new ResourceLocation(RefStrings.MODID, "models/effect/ring_roller.obj"));
-	public static final IModelCustom thinring = new HFRWavefrontObject(new ResourceLocation(RefStrings.MODID, "models/effect/ring_thin.obj"));
-	private static final ResourceLocation cloudlet = new ResourceLocation(RefStrings.MODID + ":textures/particle/particle_base.png");
+	public static final IModelCustom mush = new HFRWavefrontObject(new ResourceLocation(MainRegistry.MODID, "models/effect/mush.obj"));
+	public static final IModelCustom shockwave = new HFRWavefrontObject(new ResourceLocation(MainRegistry.MODID, "models/effect/ring_roller.obj"));
+	public static final IModelCustom thinring = new HFRWavefrontObject(new ResourceLocation(MainRegistry.MODID, "models/effect/ring_thin.obj"));
+	private static final ResourceLocation cloudlet = new ResourceLocation(MainRegistry.MODID + ":textures/particle/particle_base.png");
 
 	private static final double lightmapSizeMult = 0.01D;
 	

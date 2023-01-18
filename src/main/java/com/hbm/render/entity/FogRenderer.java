@@ -2,11 +2,11 @@ package com.hbm.render.entity;
 
 import java.util.Random;
 
+import com.hbm.main.MainRegistry;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
 import com.hbm.entity.particle.EntityFogFX;
-import com.hbm.lib.RefStrings;
 
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.OpenGlHelper;
@@ -106,7 +106,7 @@ public class FogRenderer extends Render<EntityFogFX> {
 
 	@Override
 	protected ResourceLocation getEntityTexture(EntityFogFX entity) {
-		return new ResourceLocation(RefStrings.MODID + ":" + "textures/particle/fog.png");
+		return new ResourceLocation(MainRegistry.MODID + ":" + "textures/particle/fog.png");
 	}
 
 }

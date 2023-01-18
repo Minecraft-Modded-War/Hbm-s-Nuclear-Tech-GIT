@@ -3,7 +3,6 @@ package com.hbm.render.misc;
 import java.util.Map;
 
 import com.hbm.lib.Library;
-import com.hbm.lib.RefStrings;
 import com.hbm.main.MainRegistry;
 import com.mojang.authlib.minecraft.MinecraftProfileTexture.Type;
 
@@ -14,28 +13,28 @@ import net.minecraftforge.fml.relauncher.ReflectionHelper;
 
 public class RenderAccessoryUtility {
 
-	private static ResourceLocation hbm = new ResourceLocation(RefStrings.MODID + ":textures/models/CapeHbm.png");
-	private static ResourceLocation hbm2 = new ResourceLocation(RefStrings.MODID + ":textures/models/CapeHbm2.png");
-	private static ResourceLocation drillgon = new ResourceLocation(RefStrings.MODID + ":textures/models/capes/CapeDrillgon.png");
-	private static ResourceLocation dafnik = new ResourceLocation(RefStrings.MODID + ":textures/models/CapeDafnik.png");
-	private static ResourceLocation lpkukin = new ResourceLocation(RefStrings.MODID + ":textures/models/CapeShield.png");
-	private static ResourceLocation vertice = new ResourceLocation(RefStrings.MODID + ":textures/models/CapeVertice_2.png");
-	private static ResourceLocation red = new ResourceLocation(RefStrings.MODID + ":textures/models/CapeRed.png");
-	private static ResourceLocation ayy = new ResourceLocation(RefStrings.MODID + ":textures/models/CapeAyy.png");
-	private static ResourceLocation nostalgia = new ResourceLocation(RefStrings.MODID + ":textures/models/CapeNostalgia.png");
-	private static ResourceLocation sam = new ResourceLocation(RefStrings.MODID + ":textures/models/CapeSam.png");
-	private static ResourceLocation hoboy = new ResourceLocation(RefStrings.MODID + ":textures/models/CapeHoboy.png");
-	private static ResourceLocation master = new ResourceLocation(RefStrings.MODID + ":textures/models/CapeMaster.png");
-	private static ResourceLocation mek = new ResourceLocation(RefStrings.MODID + ":textures/models/CapeMek.png");
-	private static ResourceLocation test = new ResourceLocation(RefStrings.MODID + ":textures/models/CapeTest.png");
-	private static ResourceLocation swiggs = new ResourceLocation(RefStrings.MODID + ":textures/models/capes/CapeSweatySwiggs.png");
-	private static ResourceLocation doctor17 = new ResourceLocation(RefStrings.MODID + ":textures/models/capes/CapeDoctor17.png");
-	private static ResourceLocation shimmeringblaze = new ResourceLocation(RefStrings.MODID + ":textures/models/capes/CapeBlaze.png");
-	private static ResourceLocation wiki = new ResourceLocation(RefStrings.MODID + ":textures/models/capes/CapeWiki.png");
-	private static ResourceLocation leftnugget = new ResourceLocation(RefStrings.MODID + ":textures/models/capes/CapeLeftNugget.png");
-	private static ResourceLocation rightnugget = new ResourceLocation(RefStrings.MODID + ":textures/models/capes/CapeRightNugget.png");
-	private static ResourceLocation malpon = new ResourceLocation(RefStrings.MODID + ":textures/models/capes/capemalpon.png");
-	private static ResourceLocation golem = new ResourceLocation(RefStrings.MODID + ":textures/models/capes/capegolem.png");
+	private static ResourceLocation hbm = new ResourceLocation(MainRegistry.MODID + ":textures/models/CapeHbm.png");
+	private static ResourceLocation hbm2 = new ResourceLocation(MainRegistry.MODID + ":textures/models/CapeHbm2.png");
+	private static ResourceLocation drillgon = new ResourceLocation(MainRegistry.MODID + ":textures/models/capes/CapeDrillgon.png");
+	private static ResourceLocation dafnik = new ResourceLocation(MainRegistry.MODID + ":textures/models/CapeDafnik.png");
+	private static ResourceLocation lpkukin = new ResourceLocation(MainRegistry.MODID + ":textures/models/CapeShield.png");
+	private static ResourceLocation vertice = new ResourceLocation(MainRegistry.MODID + ":textures/models/CapeVertice_2.png");
+	private static ResourceLocation red = new ResourceLocation(MainRegistry.MODID + ":textures/models/CapeRed.png");
+	private static ResourceLocation ayy = new ResourceLocation(MainRegistry.MODID + ":textures/models/CapeAyy.png");
+	private static ResourceLocation nostalgia = new ResourceLocation(MainRegistry.MODID + ":textures/models/CapeNostalgia.png");
+	private static ResourceLocation sam = new ResourceLocation(MainRegistry.MODID + ":textures/models/CapeSam.png");
+	private static ResourceLocation hoboy = new ResourceLocation(MainRegistry.MODID + ":textures/models/CapeHoboy.png");
+	private static ResourceLocation master = new ResourceLocation(MainRegistry.MODID + ":textures/models/CapeMaster.png");
+	private static ResourceLocation mek = new ResourceLocation(MainRegistry.MODID + ":textures/models/CapeMek.png");
+	private static ResourceLocation test = new ResourceLocation(MainRegistry.MODID + ":textures/models/CapeTest.png");
+	private static ResourceLocation swiggs = new ResourceLocation(MainRegistry.MODID + ":textures/models/capes/CapeSweatySwiggs.png");
+	private static ResourceLocation doctor17 = new ResourceLocation(MainRegistry.MODID + ":textures/models/capes/CapeDoctor17.png");
+	private static ResourceLocation shimmeringblaze = new ResourceLocation(MainRegistry.MODID + ":textures/models/capes/CapeBlaze.png");
+	private static ResourceLocation wiki = new ResourceLocation(MainRegistry.MODID + ":textures/models/capes/CapeWiki.png");
+	private static ResourceLocation leftnugget = new ResourceLocation(MainRegistry.MODID + ":textures/models/capes/CapeLeftNugget.png");
+	private static ResourceLocation rightnugget = new ResourceLocation(MainRegistry.MODID + ":textures/models/capes/CapeRightNugget.png");
+	private static ResourceLocation malpon = new ResourceLocation(MainRegistry.MODID + ":textures/models/capes/capemalpon.png");
+	private static ResourceLocation golem = new ResourceLocation(MainRegistry.MODID + ":textures/models/capes/capegolem.png");
 	
 	public static ResourceLocation getCloakFromPlayer(EntityPlayer player) {
 		String uuid = player.getUniqueID().toString();

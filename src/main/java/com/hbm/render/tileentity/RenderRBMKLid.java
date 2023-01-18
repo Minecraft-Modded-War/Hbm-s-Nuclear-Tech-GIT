@@ -1,19 +1,15 @@
 package com.hbm.render.tileentity;
 
-import org.lwjgl.opengl.GL11;
-
 import com.hbm.blocks.BlockDummyable;
 import com.hbm.blocks.ModBlocks;
 import com.hbm.blocks.machine.rbmk.RBMKBase;
 import com.hbm.blocks.machine.rbmk.RBMKRod;
-import com.hbm.lib.RefStrings;
+import com.hbm.main.MainRegistry;
 import com.hbm.main.ResourceManager;
 import com.hbm.render.amlfrom1710.IModelCustom;
-import com.hbm.tileentity.machine.rbmk.RBMKDials;
 import com.hbm.tileentity.machine.rbmk.TileEntityRBMKBase;
 import com.hbm.tileentity.machine.rbmk.TileEntityRBMKBoiler;
 import com.hbm.tileentity.machine.rbmk.TileEntityRBMKRod;
-
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.GlStateManager.DestFactor;
@@ -23,12 +19,13 @@ import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
+import org.lwjgl.opengl.GL11;
 
 public class RenderRBMKLid extends TileEntitySpecialRenderer<TileEntityRBMKBase> {
 
-	private ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/blocks/rbmk/rbmk_blank.png");
-	private ResourceLocation texture_glass = new ResourceLocation(RefStrings.MODID + ":textures/blocks/rbmk/rbmk_blank_glass.png");
-	private static final ResourceLocation texture_rods = new ResourceLocation(RefStrings.MODID + ":textures/blocks/rbmk/rbmk_element.png");
+	private ResourceLocation texture = new ResourceLocation(MainRegistry.MODID + ":textures/blocks/rbmk/rbmk_blank.png");
+	private ResourceLocation texture_glass = new ResourceLocation(MainRegistry.MODID + ":textures/blocks/rbmk/rbmk_blank_glass.png");
+	private static final ResourceLocation texture_rods = new ResourceLocation(MainRegistry.MODID + ":textures/blocks/rbmk/rbmk_element.png");
 	
 	@Override
 	public boolean isGlobalRenderer(TileEntityRBMKBase te){

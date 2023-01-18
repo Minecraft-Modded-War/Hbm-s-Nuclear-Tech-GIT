@@ -1,9 +1,9 @@
 package com.hbm.render.entity;
 
+import com.hbm.main.MainRegistry;
 import org.lwjgl.opengl.GL11;
 
 import com.hbm.entity.effect.EntityCloudSolinium;
-import com.hbm.lib.RefStrings;
 import com.hbm.render.amlfrom1710.AdvancedModelLoader;
 import com.hbm.render.amlfrom1710.IModelCustom;
 
@@ -17,7 +17,7 @@ public class RenderCloudSolinium extends Render<EntityCloudSolinium> {
 
 	public static final IRenderFactory<EntityCloudSolinium> FACTORY = (RenderManager man) -> {return new RenderCloudSolinium(man);};
 	
-	private static final ResourceLocation objTesterModelRL = new ResourceLocation(/*"/assets/" + */RefStrings.MODID, "models/Sphere.obj");
+	private static final ResourceLocation objTesterModelRL = new ResourceLocation(/*"/assets/" + */MainRegistry.MODID, "models/Sphere.obj");
 	private IModelCustom blastModel;
     private ResourceLocation blastTexture;
     public float scale = 0;
@@ -26,7 +26,7 @@ public class RenderCloudSolinium extends Render<EntityCloudSolinium> {
 	protected RenderCloudSolinium(RenderManager renderManager) {
 		super(renderManager);
 		blastModel = AdvancedModelLoader.loadModel(objTesterModelRL);
-    	blastTexture = new ResourceLocation(RefStrings.MODID, "textures/models/BlastSolinium.png");
+    	blastTexture = new ResourceLocation(MainRegistry.MODID, "textures/models/BlastSolinium.png");
     	scale = 0;
 	}
 	

@@ -1,9 +1,9 @@
 package com.hbm.render.entity;
 
+import com.hbm.main.MainRegistry;
 import org.lwjgl.opengl.GL11;
 
 import com.hbm.entity.projectile.EntityBombletZeta;
-import com.hbm.lib.RefStrings;
 import com.hbm.render.amlfrom1710.AdvancedModelLoader;
 import com.hbm.render.amlfrom1710.IModelCustom;
 
@@ -16,14 +16,14 @@ public class RenderBombletZeta extends Render<EntityBombletZeta> {
 
 	public static final IRenderFactory<EntityBombletZeta> FACTORY = (RenderManager man) -> {return new RenderBombletZeta(man);};
 	
-	private static final ResourceLocation objTesterModelRL = new ResourceLocation(/*"/assets/" + */RefStrings.MODID, "models/bombletTheta.obj");
+	private static final ResourceLocation objTesterModelRL = new ResourceLocation(/*"/assets/" + */MainRegistry.MODID, "models/bombletTheta.obj");
 	private IModelCustom boyModel;
     private ResourceLocation boyTexture;
 	
 	protected RenderBombletZeta(RenderManager renderManager) {
 		super(renderManager);
 		boyModel = AdvancedModelLoader.loadModel(objTesterModelRL);
-		boyTexture = new ResourceLocation(RefStrings.MODID, "textures/models/bombletZetaTexture.png");
+		boyTexture = new ResourceLocation(MainRegistry.MODID, "textures/models/bombletZetaTexture.png");
 	}
 	
 	@Override
@@ -34,7 +34,7 @@ public class RenderBombletZeta extends Render<EntityBombletZeta> {
         GL11.glRotatef(entity.prevRotationPitch + (entity.rotationPitch - entity.prevRotationPitch) * partialTicks, 0.0F, 0.0F, 1.0F);
         
         GL11.glScaled(0.5D, 0.5D, 0.5D);
-        bindTexture(new ResourceLocation(RefStrings.MODID, "textures/models/bombletZetaTexture.png"));
+        bindTexture(new ResourceLocation(MainRegistry.MODID, "textures/models/bombletZetaTexture.png"));
         
         boyModel.renderAll();
 		GL11.glPopMatrix();

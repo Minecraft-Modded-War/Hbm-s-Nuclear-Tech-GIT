@@ -5,7 +5,6 @@ import java.util.List;
 import com.hbm.interfaces.IHasCustomModel;
 import com.hbm.inventory.MachineRecipes;
 import com.hbm.items.ModItems;
-import com.hbm.lib.RefStrings;
 import com.hbm.main.MainRegistry;
 import com.hbm.util.I18nUtil;
 
@@ -24,7 +23,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ItemChemistryTemplate extends Item implements IHasCustomModel {
 
-	public static final ModelResourceLocation chemModel = new ModelResourceLocation(RefStrings.MODID + ":chemistry_template", "inventory");
+	public static final ModelResourceLocation chemModel = new ModelResourceLocation(MainRegistry.MODID + ":chemistry_template", "inventory");
 	
 	public enum EnumChemistryTemplate {
 		

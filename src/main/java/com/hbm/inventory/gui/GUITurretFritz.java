@@ -1,17 +1,16 @@
 package com.hbm.inventory.gui;
 
 import com.hbm.forgefluid.FFUtils;
-import com.hbm.lib.RefStrings;
+import com.hbm.main.MainRegistry;
 import com.hbm.tileentity.turret.TileEntityTurretBaseNT;
 import com.hbm.tileentity.turret.TileEntityTurretFritz;
-
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.FluidTank;
 
 public class GUITurretFritz extends GUITurretBase {
 	
-	private static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/weapon/gui_turret_fritz.png");
+	private static ResourceLocation texture = new ResourceLocation(MainRegistry.MODID + ":textures/gui/weapon/gui_turret_fritz.png");
 
 	public GUITurretFritz(InventoryPlayer invPlayer, TileEntityTurretBaseNT tedf) {
 		super(invPlayer, tedf);

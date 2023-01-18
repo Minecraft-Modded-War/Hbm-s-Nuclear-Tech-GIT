@@ -1,9 +1,9 @@
 package com.hbm.render.entity;
 
+import com.hbm.main.MainRegistry;
 import org.lwjgl.opengl.GL11;
 
 import com.hbm.entity.missile.EntityBombletTheta;
-import com.hbm.lib.RefStrings;
 import com.hbm.render.amlfrom1710.AdvancedModelLoader;
 import com.hbm.render.amlfrom1710.IModelCustom;
 
@@ -16,14 +16,14 @@ public class RenderBombletTheta extends Render<EntityBombletTheta> {
 
 public static final IRenderFactory<EntityBombletTheta> FACTORY = (RenderManager man) -> {return new RenderBombletTheta(man);};
 	
-	private static final ResourceLocation objTesterModelRL = new ResourceLocation(/*"/assets/" + */RefStrings.MODID, "models/bombletTheta.obj");
+	private static final ResourceLocation objTesterModelRL = new ResourceLocation(/*"/assets/" + */MainRegistry.MODID, "models/bombletTheta.obj");
 	private IModelCustom boyModel;
     private ResourceLocation boyTexture;
 	
 	protected RenderBombletTheta(RenderManager renderManager) {
 		super(renderManager);
 		boyModel = AdvancedModelLoader.loadModel(objTesterModelRL);
-		boyTexture = new ResourceLocation(RefStrings.MODID, "textures/models/bombletThetaTexture.png");
+		boyTexture = new ResourceLocation(MainRegistry.MODID, "textures/models/bombletThetaTexture.png");
 	}
 	
 	@Override

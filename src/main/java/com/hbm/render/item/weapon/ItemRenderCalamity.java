@@ -1,9 +1,9 @@
 package com.hbm.render.item.weapon;
 
+import com.hbm.main.MainRegistry;
 import org.lwjgl.opengl.GL11;
 
 import com.hbm.items.ModItems;
-import com.hbm.lib.RefStrings;
 import com.hbm.render.item.TEISRBase;
 import com.hbm.render.model.ModelCalBarrel;
 import com.hbm.render.model.ModelCalDualStock;
@@ -20,9 +20,9 @@ public class ItemRenderCalamity extends TEISRBase {
 	protected ModelCalStock stock;
 	protected ModelCalDualStock saddle;
 	
-	protected ResourceLocation dualStock_rl = new ResourceLocation(RefStrings.MODID +":textures/models/ModelCalDualStock.png");
-	protected ResourceLocation barrel_rl = new ResourceLocation(RefStrings.MODID +":textures/models/ModelCalBarrel.png");
-	protected ResourceLocation stock_rl = new ResourceLocation(RefStrings.MODID +":textures/models/ModelCalStock.png");
+	protected ResourceLocation dualStock_rl = new ResourceLocation(MainRegistry.MODID +":textures/models/ModelCalDualStock.png");
+	protected ResourceLocation barrel_rl = new ResourceLocation(MainRegistry.MODID +":textures/models/ModelCalBarrel.png");
+	protected ResourceLocation stock_rl = new ResourceLocation(MainRegistry.MODID +":textures/models/ModelCalStock.png");
 	
 	public ItemRenderCalamity() {
 		barrel = new ModelCalBarrel();

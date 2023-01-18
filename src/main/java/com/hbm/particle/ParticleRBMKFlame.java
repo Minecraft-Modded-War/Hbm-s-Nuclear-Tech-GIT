@@ -1,27 +1,20 @@
 package com.hbm.particle;
 
-import org.lwjgl.opengl.GL11;
-
-import com.hbm.lib.RefStrings;
-
+import com.hbm.main.MainRegistry;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.Particle;
-import net.minecraft.client.renderer.BufferBuilder;
-import net.minecraft.client.renderer.GlStateManager;
-import net.minecraft.client.renderer.OpenGlHelper;
-import net.minecraft.client.renderer.RenderHelper;
-import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.GlStateManager.DestFactor;
 import net.minecraft.client.renderer.GlStateManager.SourceFactor;
-import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
+import org.lwjgl.opengl.GL11;
 
 public class ParticleRBMKFlame extends Particle {
 
-	private static final ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/particle/rbmk_fire.png");
+	private static final ResourceLocation texture = new ResourceLocation(MainRegistry.MODID + ":textures/particle/rbmk_fire.png");
 	
 	public ParticleRBMKFlame(World worldIn, double posXIn, double posYIn, double posZIn, int maxAge){
 		super(worldIn, posXIn, posYIn, posZIn);

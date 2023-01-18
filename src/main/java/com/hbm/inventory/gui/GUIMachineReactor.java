@@ -1,19 +1,18 @@
 package com.hbm.inventory.gui;
 
-import org.lwjgl.opengl.GL11;
 import com.hbm.inventory.BreederRecipes;
 import com.hbm.inventory.container.ContainerReactor;
-import com.hbm.lib.RefStrings;
+import com.hbm.main.MainRegistry;
 import com.hbm.tileentity.machine.TileEntityMachineReactor;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
+import org.lwjgl.opengl.GL11;
 
 public class GUIMachineReactor extends GuiInfoContainer {
 
-	public static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/processing/gui_breeder.png");
+	public static ResourceLocation texture = new ResourceLocation(MainRegistry.MODID + ":textures/gui/processing/gui_breeder.png");
 	private TileEntityMachineReactor breeder;
 
 	public GUIMachineReactor(InventoryPlayer invPlayer, TileEntityMachineReactor tedf) {

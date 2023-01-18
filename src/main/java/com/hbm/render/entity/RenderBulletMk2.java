@@ -2,11 +2,11 @@ package com.hbm.render.entity;
 
 import java.util.Random;
 
+import com.hbm.main.MainRegistry;
 import org.lwjgl.opengl.GL11;
 
 import com.hbm.entity.projectile.EntityBulletBase;
 import com.hbm.handler.BulletConfiguration;
-import com.hbm.lib.RefStrings;
 import com.hbm.main.ResourceManager;
 import com.hbm.render.RenderSparks;
 import com.hbm.render.model.ModelBaleflare;
@@ -47,26 +47,26 @@ public class RenderBulletMk2 extends Render<EntityBulletBase> {
 	private ModelMIRV mirv;
 	private ModelBaleflare bf;
 
-	private ResourceLocation bullet_rl = new ResourceLocation(RefStrings.MODID + ":textures/models/bullet.png");
-	private ResourceLocation emplacer = new ResourceLocation(RefStrings.MODID + ":textures/models/emplacer.png");
-	private ResourceLocation tau = new ResourceLocation(RefStrings.MODID + ":textures/models/tau.png");
-	private ResourceLocation buckshot_rl = new ResourceLocation(RefStrings.MODID + ":textures/entity/buckshot.png");
-	private ResourceLocation rocket_rl = new ResourceLocation(RefStrings.MODID + ":textures/entity/ModelRocket.png");
-	private ResourceLocation rocket_he = new ResourceLocation(RefStrings.MODID + ":textures/entity/ModelRocketHE.png");
-	private ResourceLocation rocket_in = new ResourceLocation(RefStrings.MODID + ":textures/entity/ModelRocketIncendiary.png");
-	private ResourceLocation rocket_sh = new ResourceLocation(RefStrings.MODID + ":textures/entity/ModelRocketShrapnel.png");
-	private ResourceLocation rocket_emp = new ResourceLocation(RefStrings.MODID + ":textures/entity/ModelRocketEMP.png");
-	private ResourceLocation rocket_gl = new ResourceLocation(RefStrings.MODID + ":textures/entity/ModelRocketGlare.png");
-	private ResourceLocation rocket_sl = new ResourceLocation(RefStrings.MODID + ":textures/entity/ModelRocketSleek.png");
-	private ResourceLocation rocket_nu = new ResourceLocation(RefStrings.MODID + ":textures/entity/ModelRocketNuclear.png");
-	private ResourceLocation rocket_phos = new ResourceLocation(RefStrings.MODID + ":textures/entity/ModelRocketPhosphorus.png");
-	private ResourceLocation rocket_can = new ResourceLocation(RefStrings.MODID + ":textures/entity/ModelRocketCanister.png");
-	private ResourceLocation grenade_rl = new ResourceLocation(RefStrings.MODID + ":textures/entity/ModelGrenade.png");
-	private ResourceLocation grenade_he = new ResourceLocation(RefStrings.MODID + ":textures/entity/ModelGrenadeHE.png");
-	private ResourceLocation grenade_in = new ResourceLocation(RefStrings.MODID + ":textures/entity/ModelGrenadeIncendiary.png");
-	private ResourceLocation grenade_to = new ResourceLocation(RefStrings.MODID + ":textures/entity/ModelGrenadeToxic.png");
-	private ResourceLocation grenade_sl = new ResourceLocation(RefStrings.MODID + ":textures/entity/ModelGrenadeSleek.png");
-	private ResourceLocation grenade_tr = new ResourceLocation(RefStrings.MODID + ":textures/entity/ModelGrenadeTraining.png");
+	private ResourceLocation bullet_rl = new ResourceLocation(MainRegistry.MODID + ":textures/models/bullet.png");
+	private ResourceLocation emplacer = new ResourceLocation(MainRegistry.MODID + ":textures/models/emplacer.png");
+	private ResourceLocation tau = new ResourceLocation(MainRegistry.MODID + ":textures/models/tau.png");
+	private ResourceLocation buckshot_rl = new ResourceLocation(MainRegistry.MODID + ":textures/entity/buckshot.png");
+	private ResourceLocation rocket_rl = new ResourceLocation(MainRegistry.MODID + ":textures/entity/ModelRocket.png");
+	private ResourceLocation rocket_he = new ResourceLocation(MainRegistry.MODID + ":textures/entity/ModelRocketHE.png");
+	private ResourceLocation rocket_in = new ResourceLocation(MainRegistry.MODID + ":textures/entity/ModelRocketIncendiary.png");
+	private ResourceLocation rocket_sh = new ResourceLocation(MainRegistry.MODID + ":textures/entity/ModelRocketShrapnel.png");
+	private ResourceLocation rocket_emp = new ResourceLocation(MainRegistry.MODID + ":textures/entity/ModelRocketEMP.png");
+	private ResourceLocation rocket_gl = new ResourceLocation(MainRegistry.MODID + ":textures/entity/ModelRocketGlare.png");
+	private ResourceLocation rocket_sl = new ResourceLocation(MainRegistry.MODID + ":textures/entity/ModelRocketSleek.png");
+	private ResourceLocation rocket_nu = new ResourceLocation(MainRegistry.MODID + ":textures/entity/ModelRocketNuclear.png");
+	private ResourceLocation rocket_phos = new ResourceLocation(MainRegistry.MODID + ":textures/entity/ModelRocketPhosphorus.png");
+	private ResourceLocation rocket_can = new ResourceLocation(MainRegistry.MODID + ":textures/entity/ModelRocketCanister.png");
+	private ResourceLocation grenade_rl = new ResourceLocation(MainRegistry.MODID + ":textures/entity/ModelGrenade.png");
+	private ResourceLocation grenade_he = new ResourceLocation(MainRegistry.MODID + ":textures/entity/ModelGrenadeHE.png");
+	private ResourceLocation grenade_in = new ResourceLocation(MainRegistry.MODID + ":textures/entity/ModelGrenadeIncendiary.png");
+	private ResourceLocation grenade_to = new ResourceLocation(MainRegistry.MODID + ":textures/entity/ModelGrenadeToxic.png");
+	private ResourceLocation grenade_sl = new ResourceLocation(MainRegistry.MODID + ":textures/entity/ModelGrenadeSleek.png");
+	private ResourceLocation grenade_tr = new ResourceLocation(MainRegistry.MODID + ":textures/entity/ModelGrenadeTraining.png");
 	
 
 	protected RenderBulletMk2(RenderManager renderManager) {
@@ -249,13 +249,13 @@ public class RenderBulletMk2 extends Render<EntityBulletBase> {
 		
 		switch(type) {
 		case 0:
-			bindTexture(new ResourceLocation(RefStrings.MODID + ":textures/models/MiniNuke.png"));
+			bindTexture(new ResourceLocation(MainRegistry.MODID + ":textures/models/MiniNuke.png"));
 			nuke.renderAll(0.0625F); break;
 		case 1:
-			bindTexture(new ResourceLocation(RefStrings.MODID + ":textures/models/Mirv.png"));
+			bindTexture(new ResourceLocation(MainRegistry.MODID + ":textures/models/Mirv.png"));
 			mirv.renderAll(0.0625F); break;
 		case 2:
-			bindTexture(new ResourceLocation(RefStrings.MODID + ":textures/models/BaleFlare.png"));
+			bindTexture(new ResourceLocation(MainRegistry.MODID + ":textures/models/BaleFlare.png"));
 			bf.renderAll(0.0625F); break;
 		}
 
@@ -487,7 +487,7 @@ public class RenderBulletMk2 extends Render<EntityBulletBase> {
 
 		switch(type) {
 		case 0:
-			bindTexture(new ResourceLocation(RefStrings.MODID + ":textures/blocks/block_meteor_molten.png")); break;
+			bindTexture(new ResourceLocation(MainRegistry.MODID + ":textures/blocks/block_meteor_molten.png")); break;
 		case 1:
 			bindTexture(new ResourceLocation("textures/blocks/obsidian.png")); break;
 		}

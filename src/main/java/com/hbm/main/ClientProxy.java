@@ -201,7 +201,6 @@ import com.hbm.handler.JetpackHandler;
 import com.hbm.items.ModItems;
 import com.hbm.lib.HBMSoundHandler;
 import com.hbm.lib.RecoilHandler;
-import com.hbm.lib.RefStrings;
 import com.hbm.particle.ParticleBatchRenderer;
 import com.hbm.particle.ParticleCoolingTower;
 import com.hbm.particle.ParticleDigammaSmoke;
@@ -2237,7 +2236,7 @@ public class ClientProxy extends ServerProxy {
 		if(SoundSystemConfig.getNumberNormalChannels() < 128){
 			SoundSystemConfig.setNumberNormalChannels(128);
 		}
-		OBJLoader.INSTANCE.addDomain(RefStrings.MODID);
+		OBJLoader.INSTANCE.addDomain(MainRegistry.MODID);
 		
 		ItemRenderLibrary.init();
 		

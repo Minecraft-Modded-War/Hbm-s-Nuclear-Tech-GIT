@@ -1,12 +1,6 @@
 package com.hbm.main;
 
-import java.io.File;
-import java.io.IOException;
 import java.lang.reflect.Field;
-import java.nio.file.DirectoryStream;
-import java.nio.file.FileSystems;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
@@ -41,7 +35,6 @@ import com.hbm.handler.ArmorModHandler;
 import com.hbm.handler.ArmorUtil;
 import com.hbm.handler.BossSpawnHandler;
 import com.hbm.handler.EntityEffectHandler;
-import com.hbm.handler.HTTPHandler;
 import com.hbm.handler.JetpackHandler;
 import com.hbm.handler.MissileStruct;
 import com.hbm.handler.RadiationWorldHandler;
@@ -61,7 +54,6 @@ import com.hbm.lib.ForgeDirection;
 import com.hbm.lib.HBMSoundHandler;
 import com.hbm.lib.Library;
 import com.hbm.lib.ModDamageSource;
-import com.hbm.lib.RefStrings;
 import com.hbm.packet.AssemblerRecipeSyncPacket;
 import com.hbm.packet.AuxParticlePacketNT;
 import com.hbm.packet.KeybindPacket;
@@ -118,8 +110,6 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
-import net.minecraft.util.text.TextComponentTranslation;
-import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraft.world.storage.loot.LootContext;
 import net.minecraft.world.storage.loot.LootEntry;
@@ -164,8 +154,8 @@ import net.minecraftforge.registries.DataSerializerEntry;
 
 public class ModEventHandler {
 
-	public static final ResourceLocation ENT_HBM_PROP_ID = new ResourceLocation(RefStrings.MODID, "HBMLIVINGPROPS");
-	public static final ResourceLocation DATA_LOC = new ResourceLocation(RefStrings.MODID, "HBMDATA");
+	public static final ResourceLocation ENT_HBM_PROP_ID = new ResourceLocation(MainRegistry.MODID, "HBMLIVINGPROPS");
+	public static final ResourceLocation DATA_LOC = new ResourceLocation(MainRegistry.MODID, "HBMDATA");
 
 	public static boolean showMessage = true;
 	public static int meteorShower = 0;
@@ -1265,25 +1255,7 @@ public class ModEventHandler {
 			PacketDispatcher.sendTo(new KeybindPacket(EnumKeybind.TOGGLE_HEAD, props.getEnableHUD()), playerMP);
 			PacketDispatcher.sendTo(new KeybindPacket(EnumKeybind.TOGGLE_JETPACK, props.getEnableBackpack()), playerMP);
 
-			if (GeneralConfig.enableWelcomeMessage) {
-				e.player.sendMessage(new TextComponentTranslation("§3Welcome back§r"));
-			}
 
-			if(HTTPHandler.newVersion) {
-				e.player.sendMessage(new TextComponentString("§eNICE - §aNew§e version §3" + HTTPHandler.versionNumber + "§e is available§r"));
-				e.player.sendMessage(new TextComponentString("§ePlaying on version §7" + RefStrings.VERSION + "§e right now§r"));
-				if(HTTPHandler.changes != ""){
-					String[] lines = HTTPHandler.changes.split("\\$");
-					e.player.sendMessage(new TextComponentString("§e[New Features]§r"));//RefStrings.CHANGELOG
-					for(String w: lines){
-						e.player.sendMessage(new TextComponentString(w));//RefStrings.CHANGELOG
-					}
-				}
-			}
-			
-			if(HTTPHandler.optifine){
-				e.player.sendMessage(new TextComponentString("Optifine detected, may cause compatibility issues. Check log for details."));
-			}
 			
 			if(e.player instanceof EntityPlayerMP && !e.player.getEntityData().getCompoundTag(EntityPlayer.PERSISTED_NBT_TAG).getBoolean("hasDucked"))
         		PacketDispatcher.sendTo(new PlayerInformPacket("Press O to Duck!"), (EntityPlayerMP)e.player);
@@ -1297,7 +1269,7 @@ public class ModEventHandler {
 
 	@SubscribeEvent
 	public void onDataSerializerRegister(RegistryEvent.Register<DataSerializerEntry> evt) {
-		evt.getRegistry().register(new DataSerializerEntry(MissileStruct.SERIALIZER).setRegistryName(new ResourceLocation(RefStrings.MODID, "missile_struct")));
+		evt.getRegistry().register(new DataSerializerEntry(MissileStruct.SERIALIZER).setRegistryName(new ResourceLocation(MainRegistry.MODID, "missile_struct")));
 	}
 	
 	@SubscribeEvent

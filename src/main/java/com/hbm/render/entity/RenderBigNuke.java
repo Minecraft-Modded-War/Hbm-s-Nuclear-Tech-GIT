@@ -2,10 +2,10 @@ package com.hbm.render.entity;
 
 import java.util.Random;
 
+import com.hbm.main.MainRegistry;
 import org.lwjgl.opengl.GL11;
 
 import com.hbm.entity.effect.EntityNukeCloudBig;
-import com.hbm.lib.RefStrings;
 import com.hbm.render.amlfrom1710.AdvancedModelLoader;
 import com.hbm.render.amlfrom1710.IModelCustom;
 
@@ -23,13 +23,13 @@ public class RenderBigNuke extends Render<EntityNukeCloudBig> {
 
 	public static final IRenderFactory<EntityNukeCloudBig> FACTORY = (RenderManager man) -> {return new RenderBigNuke(man);};
 	
-	private static final ResourceLocation objTesterModelRL = new ResourceLocation(/*"/assets/" + */RefStrings.MODID, "models/NukeCloudHuge.obj");
+	private static final ResourceLocation objTesterModelRL = new ResourceLocation(/*"/assets/" + */MainRegistry.MODID, "models/NukeCloudHuge.obj");
 	private IModelCustom blastModel;
     private ResourceLocation blastTexture;
-	private static final ResourceLocation ringModelRL = new ResourceLocation(/*"/assets/" + */RefStrings.MODID, "models/Ring.obj");
+	private static final ResourceLocation ringModelRL = new ResourceLocation(/*"/assets/" + */MainRegistry.MODID, "models/Ring.obj");
 	private IModelCustom ringModel;
     private ResourceLocation ringTexture;
-	private static final ResourceLocation ringBigModelRL = new ResourceLocation(/*"/assets/" + */RefStrings.MODID, "models/RingBig.obj");
+	private static final ResourceLocation ringBigModelRL = new ResourceLocation(/*"/assets/" + */MainRegistry.MODID, "models/RingBig.obj");
 	private IModelCustom ringBigModel;
     private ResourceLocation ringBigTexture;
     public float scale = 0;
@@ -38,11 +38,11 @@ public class RenderBigNuke extends Render<EntityNukeCloudBig> {
 	protected RenderBigNuke(RenderManager renderManager) {
 		super(renderManager);
 		blastModel = AdvancedModelLoader.loadModel(objTesterModelRL);
-    	blastTexture = new ResourceLocation(RefStrings.MODID, "textures/models/NukeCloudFire.png");
+    	blastTexture = new ResourceLocation(MainRegistry.MODID, "textures/models/NukeCloudFire.png");
     	ringModel = AdvancedModelLoader.loadModel(ringModelRL);
-    	ringTexture = new ResourceLocation(RefStrings.MODID, "textures/models/Ring2.png");
+    	ringTexture = new ResourceLocation(MainRegistry.MODID, "textures/models/Ring2.png");
     	ringBigModel = AdvancedModelLoader.loadModel(ringBigModelRL);
-    	ringBigTexture = new ResourceLocation(RefStrings.MODID, "textures/models/Ring2.png");
+    	ringBigTexture = new ResourceLocation(MainRegistry.MODID, "textures/models/Ring2.png");
     	scale = 0;
     	ring = 0;
 	}

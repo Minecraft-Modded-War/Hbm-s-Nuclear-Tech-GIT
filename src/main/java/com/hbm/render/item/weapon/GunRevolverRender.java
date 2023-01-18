@@ -1,9 +1,9 @@
 package com.hbm.render.item.weapon;
 
+import com.hbm.main.MainRegistry;
 import org.lwjgl.opengl.GL11;
 
 import com.hbm.items.ModItems;
-import com.hbm.lib.RefStrings;
 import com.hbm.render.model.ModelRevolver;
 
 import net.minecraft.client.Minecraft;
@@ -33,10 +33,10 @@ public class GunRevolverRender extends TileEntityItemStackRenderer {
 		case FIRST_PERSON_RIGHT_HAND:
 
 			if (item.getItem() == ModItems.gun_revolver)
-				Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation(RefStrings.MODID + ":textures/models/ModelRevolver.png"));
+				Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation(MainRegistry.MODID + ":textures/models/ModelRevolver.png"));
 			// if(item.getItem() == ModItems.gun_revolver_saturnite)
 			// Minecraft.getMinecraft().renderEngine.bindTexture(new
-			// ResourceLocation(RefStrings.MODID
+			// ResourceLocation(MainRegistry.MODID
 			// +":textures/models/ModelRevolverSaturnite.png"));
 			// GL11.glRotatef(-135.0F, 0.0F, 0.0F, 1.0F);
 			// GL11.glTranslatef(-0.5F, 0.0F, -0.2F);
@@ -63,10 +63,10 @@ public class GunRevolverRender extends TileEntityItemStackRenderer {
 		case THIRD_PERSON_RIGHT_HAND:
 		case GROUND:
 			if (item.getItem() == ModItems.gun_revolver)
-				Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation(RefStrings.MODID + ":textures/models/ModelRevolver.png"));
+				Minecraft.getMinecraft().renderEngine.bindTexture(new ResourceLocation(MainRegistry.MODID + ":textures/models/ModelRevolver.png"));
 			// if(item.getItem() == ModItems.gun_revolver_saturnite)
 			// Minecraft.getMinecraft().renderEngine.bindTexture(new
-			// ResourceLocation(RefStrings.MODID
+			// ResourceLocation(MainRegistry.MODID
 			// +":textures/models/ModelRevolverSaturnite.png"));
 			//GL11.glRotated(180, 1, 0, 0);
 			GL11.glTranslated(0.45, 0.25, 0.5);

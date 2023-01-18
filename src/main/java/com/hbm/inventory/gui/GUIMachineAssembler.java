@@ -1,21 +1,19 @@
 package com.hbm.inventory.gui;
 
-import org.lwjgl.opengl.GL11;
-
 import com.hbm.inventory.container.ContainerMachineAssembler;
 import com.hbm.items.ModItems;
-import com.hbm.lib.RefStrings;
+import com.hbm.main.MainRegistry;
 import com.hbm.tileentity.machine.TileEntityMachineAssembler;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.util.ResourceLocation;
+import org.lwjgl.opengl.GL11;
 
 public class GUIMachineAssembler extends GuiInfoContainer {
 
-	private static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/gui_assembler.png");
+	private static ResourceLocation texture = new ResourceLocation(MainRegistry.MODID + ":textures/gui/gui_assembler.png");
 	private TileEntityMachineAssembler assembler;
 	
 	public GUIMachineAssembler(InventoryPlayer invPlayer, TileEntityMachineAssembler tedf) {

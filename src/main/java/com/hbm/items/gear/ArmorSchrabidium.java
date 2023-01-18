@@ -1,8 +1,8 @@
 package com.hbm.items.gear;
 
 import com.hbm.items.ModItems;
-import com.hbm.lib.RefStrings;
 
+import com.hbm.main.MainRegistry;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -31,10 +31,10 @@ public class ArmorSchrabidium extends ItemArmor implements ISpecialArmor {
 	@Override
 	public String getArmorTexture(ItemStack stack, Entity entity, EntityEquipmentSlot slot, String type) {
 		if(stack.getItem().equals(ModItems.schrabidium_helmet) || stack.getItem().equals(ModItems.schrabidium_plate) || stack.getItem().equals(ModItems.schrabidium_boots)) {
-			return (RefStrings.MODID + ":textures/armor/schrabidium_1.png");
+			return (MainRegistry.MODID + ":textures/armor/schrabidium_1.png");
 		}
 		if(stack.getItem().equals(ModItems.schrabidium_legs)) {
-			return (RefStrings.MODID + ":textures/armor/schrabidium_2.png");
+			return (MainRegistry.MODID + ":textures/armor/schrabidium_2.png");
 		}
 		return null;
 	}

@@ -17,8 +17,6 @@ import net.minecraft.item.Item;
 
 public class HbmChestContents {
 
-	static Random rand = new Random();
-
 	private static WeightedRandomChestContentFrom1710[] modGeneric = new WeightedRandomChestContentFrom1710[] {
 			new WeightedRandomChestContentFrom1710(Items.BREAD, 0, 1, 5, 8),
 			new WeightedRandomChestContentFrom1710(ModItems.twinkie, 0, 1, 3, 6),

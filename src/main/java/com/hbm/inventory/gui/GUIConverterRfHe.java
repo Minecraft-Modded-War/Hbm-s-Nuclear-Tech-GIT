@@ -1,20 +1,18 @@
 package com.hbm.inventory.gui;
 
-import org.lwjgl.opengl.GL11;
-
 import com.hbm.inventory.container.ContainerConverterRfHe;
-import com.hbm.lib.RefStrings;
+import com.hbm.main.MainRegistry;
 import com.hbm.tileentity.machine.TileEntityConverterRfHe;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
+import org.lwjgl.opengl.GL11;
 
 public class GUIConverterRfHe extends GuiContainer {
 
 
-	private static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/gui_rf_he_converter.png");
+	private static ResourceLocation texture = new ResourceLocation(MainRegistry.MODID + ":textures/gui/gui_rf_he_converter.png");
 	private TileEntityConverterRfHe diFurnace;
 
 	public GUIConverterRfHe(EntityPlayer invPlayer, TileEntityConverterRfHe tedf) {

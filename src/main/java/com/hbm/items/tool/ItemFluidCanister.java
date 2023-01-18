@@ -8,7 +8,6 @@ import com.hbm.forgefluid.ModForgeFluids;
 import com.hbm.forgefluid.SpecialContainerFillLists.EnumCanister;
 import com.hbm.interfaces.IHasCustomModel;
 import com.hbm.items.ModItems;
-import com.hbm.lib.RefStrings;
 import com.hbm.main.MainRegistry;
 
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -29,7 +28,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ItemFluidCanister extends Item implements IHasCustomModel {
 
-	public static final ModelResourceLocation fluidCanisterModel = new ModelResourceLocation(RefStrings.MODID + ":canister_empty", "inventory");
+	public static final ModelResourceLocation fluidCanisterModel = new ModelResourceLocation(MainRegistry.MODID + ":canister_empty", "inventory");
 	public int cap;
 	
 	

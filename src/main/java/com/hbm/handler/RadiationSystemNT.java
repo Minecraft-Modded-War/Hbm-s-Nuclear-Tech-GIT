@@ -16,7 +16,7 @@ import java.util.Set;
 import com.hbm.config.GeneralConfig;
 import com.hbm.config.RadiationConfig;
 import com.hbm.interfaces.IRadResistantBlock;
-import com.hbm.lib.RefStrings;
+import com.hbm.main.MainRegistry;
 import com.hbm.packet.AuxParticlePacket;
 import com.hbm.packet.PacketDispatcher;
 
@@ -43,7 +43,7 @@ import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
 import net.minecraftforge.fml.common.gameevent.TickEvent.ServerTickEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 
-@Mod.EventBusSubscriber(modid = RefStrings.MODID)
+@Mod.EventBusSubscriber(modid = MainRegistry.MODID)
 public class RadiationSystemNT {
 
 	/**Per world radiation storage data*/

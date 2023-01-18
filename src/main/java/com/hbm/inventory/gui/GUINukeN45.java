@@ -1,19 +1,17 @@
 package com.hbm.inventory.gui;
 
-import org.lwjgl.opengl.GL11;
-
 import com.hbm.inventory.container.ContainerNukeN45;
-import com.hbm.lib.RefStrings;
+import com.hbm.main.MainRegistry;
 import com.hbm.tileentity.bomb.TileEntityNukeN45;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
+import org.lwjgl.opengl.GL11;
 
 public class GUINukeN45 extends GuiInfoContainer {
 
-	public static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/gui_n45.png");
+	public static ResourceLocation texture = new ResourceLocation(MainRegistry.MODID + ":textures/gui/gui_n45.png");
 	private TileEntityNukeN45 diFurnace;
 	
 	public GUINukeN45(InventoryPlayer invPlayer, TileEntityNukeN45 tedf) {

@@ -1,9 +1,9 @@
 package com.hbm.render.entity;
 
+import com.hbm.main.MainRegistry;
 import org.lwjgl.opengl.GL11;
 
 import com.hbm.entity.effect.EntityEMPBlast;
-import com.hbm.lib.RefStrings;
 import com.hbm.render.amlfrom1710.AdvancedModelLoader;
 import com.hbm.render.amlfrom1710.IModelCustom;
 
@@ -17,14 +17,14 @@ public class RenderEMPBlast extends Render<EntityEMPBlast> {
 
 	public static final IRenderFactory<EntityEMPBlast> FACTORY = (RenderManager man) -> {return new RenderEMPBlast(man);};
 	
-	private static final ResourceLocation ringModelRL = new ResourceLocation(/*"/assets/" + */RefStrings.MODID, "models/Ring.obj");
+	private static final ResourceLocation ringModelRL = new ResourceLocation(/*"/assets/" + */MainRegistry.MODID, "models/Ring.obj");
 	private IModelCustom ringModel;
     private ResourceLocation ringTexture;
 	
 	protected RenderEMPBlast(RenderManager renderManager) {
 		super(renderManager);
 		ringModel = AdvancedModelLoader.loadModel(ringModelRL);
-    	ringTexture = new ResourceLocation(RefStrings.MODID, "textures/models/EMPBlast.png");
+    	ringTexture = new ResourceLocation(MainRegistry.MODID, "textures/models/EMPBlast.png");
 	}
 	
 	@Override

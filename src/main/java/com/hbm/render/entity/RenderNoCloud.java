@@ -2,10 +2,10 @@ package com.hbm.render.entity;
 
 import java.util.Random;
 
+import com.hbm.main.MainRegistry;
 import org.lwjgl.opengl.GL11;
 
 import com.hbm.entity.effect.EntityNukeCloudNoShroom;
-import com.hbm.lib.RefStrings;
 import com.hbm.render.amlfrom1710.AdvancedModelLoader;
 import com.hbm.render.amlfrom1710.IModelCustom;
 
@@ -23,7 +23,7 @@ public class RenderNoCloud extends Render<EntityNukeCloudNoShroom> {
 
 	public static final IRenderFactory<EntityNukeCloudNoShroom> FACTORY = (RenderManager man) -> {return new RenderNoCloud(man);};
 	
-	private static final ResourceLocation ringModelRL = new ResourceLocation(/*"/assets/" + */RefStrings.MODID, "models/Ring.obj");
+	private static final ResourceLocation ringModelRL = new ResourceLocation(/*"/assets/" + */MainRegistry.MODID, "models/Ring.obj");
 	private IModelCustom ringModel;
     private ResourceLocation ringTexture;
     public float scale = 0;
@@ -32,7 +32,7 @@ public class RenderNoCloud extends Render<EntityNukeCloudNoShroom> {
 	protected RenderNoCloud(RenderManager renderManager) {
 		super(renderManager);
     	ringModel = AdvancedModelLoader.loadModel(ringModelRL);
-    	ringTexture = new ResourceLocation(RefStrings.MODID, "textures/models/Ring2.png");
+    	ringTexture = new ResourceLocation(MainRegistry.MODID, "textures/models/Ring2.png");
     	scale = 0;
     	ring = 0;
 	}

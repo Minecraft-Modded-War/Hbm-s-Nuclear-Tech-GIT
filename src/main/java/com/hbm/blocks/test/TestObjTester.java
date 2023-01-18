@@ -61,7 +61,7 @@ public class TestObjTester extends BlockContainer implements IBomb {
     		ex.doExplosionB(false);*/
     	} else {
     		/*Minecraft.getMinecraft().getTextureManager().deleteTexture(ResourceManager.gluon_beam_tex);
-    		ResourceManager.gluon_beam = HbmShaderManager2.loadShader(new ResourceLocation(RefStrings.MODID, "shaders/gluon_beam"))
+    		ResourceManager.gluon_beam = HbmShaderManager2.loadShader(new ResourceLocation(MainRegistry.MODID, "shaders/gluon_beam"))
     				.withUniforms(shader -> {
     					GL13.glActiveTexture(GL13.GL_TEXTURE3);
     					Minecraft.getMinecraft().getTextureManager().bindTexture(ResourceManager.noise_1);
@@ -74,7 +74,7 @@ public class TestObjTester extends BlockContainer implements IBomb {
     					float time = (System.currentTimeMillis()%10000000)/1000F;
     					GL20.glUniform1f(GL20.glGetUniformLocation(shader, "time"), time);
     				});
-    		ResourceManager.gluon_spiral = HbmShaderManager2.loadShader(new ResourceLocation(RefStrings.MODID, "shaders/gluon_spiral"))
+    		ResourceManager.gluon_spiral = HbmShaderManager2.loadShader(new ResourceLocation(MainRegistry.MODID, "shaders/gluon_spiral"))
     				.withUniforms(shader -> {
     					GL13.glActiveTexture(GL13.GL_TEXTURE3);
     					Minecraft.getMinecraft().getTextureManager().bindTexture(ResourceManager.noise_1);

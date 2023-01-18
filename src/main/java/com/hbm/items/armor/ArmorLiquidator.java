@@ -1,12 +1,12 @@
 package com.hbm.items.armor;
 
+import com.hbm.main.MainRegistry;
 import org.lwjgl.opengl.GL11;
 
 import com.google.common.collect.Multimap;
 import com.hbm.handler.ArmorModHandler;
 import com.hbm.items.ModItems;
 import com.hbm.items.gear.ArmorFSB;
-import com.hbm.lib.RefStrings;
 import com.hbm.render.model.ModelM65;
 
 import net.minecraft.client.Minecraft;
@@ -32,7 +32,7 @@ public class ArmorLiquidator extends ArmorFSB {
 
 	@SideOnly(Side.CLIENT)
 	private ModelM65 model;
-	private ResourceLocation hazmatBlur = new ResourceLocation(RefStrings.MODID + ":textures/misc/overlay_dark.png");
+	private ResourceLocation hazmatBlur = new ResourceLocation(MainRegistry.MODID + ":textures/misc/overlay_dark.png");
 	
 	public ArmorLiquidator(ArmorMaterial materialIn, int renderIndexIn, EntityEquipmentSlot equipmentSlotIn, String texture, String name) {
 		super(materialIn, renderIndexIn, equipmentSlotIn, texture, name);

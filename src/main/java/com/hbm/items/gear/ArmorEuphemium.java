@@ -2,8 +2,8 @@ package com.hbm.items.gear;
 
 import com.hbm.handler.ArmorUtil;
 import com.hbm.items.ModItems;
-import com.hbm.lib.RefStrings;
 
+import com.hbm.main.MainRegistry;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -32,10 +32,10 @@ public class ArmorEuphemium extends ItemArmor implements ISpecialArmor {
 	@Override
 	public String getArmorTexture(ItemStack stack, Entity entity, EntityEquipmentSlot slot, String type) {
 		if(stack.getItem().equals(ModItems.euphemium_helmet) || stack.getItem().equals(ModItems.euphemium_plate) || stack.getItem().equals(ModItems.euphemium_boots)) {
-			return (RefStrings.MODID + ":textures/armor/euphemium_1.png");
+			return (MainRegistry.MODID + ":textures/armor/euphemium_1.png");
 		}
 		if(stack.getItem().equals(ModItems.euphemium_legs)) {
-			return (RefStrings.MODID + ":textures/armor/euphemium_2.png");
+			return (MainRegistry.MODID + ":textures/armor/euphemium_2.png");
 		}
 		return null;
 	}

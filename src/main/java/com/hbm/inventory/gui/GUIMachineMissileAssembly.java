@@ -1,28 +1,26 @@
 package com.hbm.inventory.gui;
 
-import java.io.IOException;
-
-import org.lwjgl.opengl.GL11;
-
 import com.hbm.inventory.container.ContainerMachineMissileAssembly;
-import com.hbm.lib.RefStrings;
+import com.hbm.main.MainRegistry;
 import com.hbm.packet.AuxButtonPacket;
 import com.hbm.packet.PacketDispatcher;
 import com.hbm.render.misc.MissileMultipart;
 import com.hbm.render.misc.MissilePart;
 import com.hbm.render.misc.MissilePronter;
 import com.hbm.tileentity.machine.TileEntityMachineMissileAssembly;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.util.ResourceLocation;
+import org.lwjgl.opengl.GL11;
+
+import java.io.IOException;
 
 public class GUIMachineMissileAssembly extends GuiInfoContainer {
 
-	private static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/gui_missile_assembly.png");
+	private static ResourceLocation texture = new ResourceLocation(MainRegistry.MODID + ":textures/gui/gui_missile_assembly.png");
 	private TileEntityMachineMissileAssembly assembler;
 	
 	public GUIMachineMissileAssembly(InventoryPlayer invPlayer, TileEntityMachineMissileAssembly tedf) {

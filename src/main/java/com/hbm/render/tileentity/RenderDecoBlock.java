@@ -1,26 +1,24 @@
 package com.hbm.render.tileentity;
 
-import org.lwjgl.opengl.GL11;
-
 import com.hbm.blocks.ModBlocks;
-import com.hbm.lib.RefStrings;
 import com.hbm.main.ClientProxy;
+import com.hbm.main.MainRegistry;
 import com.hbm.main.ResourceManager;
 import com.hbm.render.model.ModelSteelCorner;
 import com.hbm.render.model.ModelSteelRoof;
 import com.hbm.render.model.ModelSteelWall;
 import com.hbm.tileentity.deco.TileEntityDecoBlock;
-
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.util.ResourceLocation;
+import org.lwjgl.opengl.GL11;
 
 public class RenderDecoBlock extends TileEntitySpecialRenderer<TileEntityDecoBlock> {
 
-	private static final ResourceLocation texture1 = new ResourceLocation(RefStrings.MODID + ":" + "textures/models/SteelWall.png");
-	private static final ResourceLocation texture2 = new ResourceLocation(RefStrings.MODID + ":" + "textures/models/SteelCorner.png");
-	private static final ResourceLocation texture3 = new ResourceLocation(RefStrings.MODID + ":" + "textures/models/SteelRoof.png");
+	private static final ResourceLocation texture1 = new ResourceLocation(MainRegistry.MODID + ":" + "textures/models/SteelWall.png");
+	private static final ResourceLocation texture2 = new ResourceLocation(MainRegistry.MODID + ":" + "textures/models/SteelCorner.png");
+	private static final ResourceLocation texture3 = new ResourceLocation(MainRegistry.MODID + ":" + "textures/models/SteelRoof.png");
 
 	private ModelSteelWall model1;
 	private ModelSteelCorner model2;

@@ -1,21 +1,19 @@
 package com.hbm.inventory.gui;
 
-import org.lwjgl.opengl.GL11;
-
 import com.hbm.forgefluid.FFUtils;
 import com.hbm.inventory.container.ContainerMachineBoiler;
-import com.hbm.lib.RefStrings;
+import com.hbm.main.MainRegistry;
 import com.hbm.tileentity.machine.TileEntityMachineBoiler;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
+import org.lwjgl.opengl.GL11;
 
 public class GUIMachineBoiler extends GuiInfoContainer {
 
-	public static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/gui_boiler.png");
+	public static ResourceLocation texture = new ResourceLocation(MainRegistry.MODID + ":textures/gui/gui_boiler.png");
 	private TileEntityMachineBoiler diFurnace;
 
 	public GUIMachineBoiler(InventoryPlayer invPlayer, TileEntityMachineBoiler tedf) {

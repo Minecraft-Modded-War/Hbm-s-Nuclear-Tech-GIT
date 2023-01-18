@@ -25,7 +25,6 @@ import com.hbm.items.tool.ItemBombCaller.EnumCallerType;
 import com.hbm.items.tool.ItemFluidCanister;
 import com.hbm.items.weapon.GunB92Cell;
 import com.hbm.lib.Library;
-import com.hbm.lib.RefStrings;
 import com.hbm.util.EnchantmentUtil;
 
 import net.minecraft.block.Block;
@@ -65,8 +64,8 @@ public class CraftingManager {
 		addCrafting();
 		addSmelting();
 
-		hack.getRegistry().register(new RBMKFuelCraftingHandler().setRegistryName(new ResourceLocation(RefStrings.MODID, "rbmk_fuel_crafting_handler")));
-		hack.getRegistry().register(new MKUCraftingHandler().setRegistryName(new ResourceLocation(RefStrings.MODID, "mku_crafting_handler")));
+		hack.getRegistry().register(new RBMKFuelCraftingHandler().setRegistryName(new ResourceLocation(MainRegistry.MODID, "rbmk_fuel_crafting_handler")));
+		hack.getRegistry().register(new MKUCraftingHandler().setRegistryName(new ResourceLocation(MainRegistry.MODID, "mku_crafting_handler")));
 	}
 
 	public static void addCrafting(){
@@ -3018,12 +3017,12 @@ public class CraftingManager {
 	}
 
 	public static ResourceLocation getRecipeName(ItemStack output){
-		ResourceLocation loc = new ResourceLocation(RefStrings.MODID, output.getItem().getRegistryName().getResourcePath());
+		ResourceLocation loc = new ResourceLocation(MainRegistry.MODID, output.getItem().getRegistryName().getResourcePath());
 		int i = 0;
 		ResourceLocation r_loc = loc;
 		while(net.minecraft.item.crafting.CraftingManager.REGISTRY.containsKey(r_loc)) {
 			i++;
-			r_loc = new ResourceLocation(RefStrings.MODID, loc.getResourcePath() + "_" + i);
+			r_loc = new ResourceLocation(MainRegistry.MODID, loc.getResourcePath() + "_" + i);
 		}
 		return r_loc;
 	}

@@ -1,9 +1,9 @@
 package com.hbm.render.entity;
 
+import com.hbm.main.MainRegistry;
 import org.lwjgl.opengl.GL11;
 
 import com.hbm.entity.effect.EntityNukeCloudSmall;
-import com.hbm.lib.RefStrings;
 import com.hbm.main.ResourceManager;
 import com.hbm.render.amlfrom1710.AdvancedModelLoader;
 import com.hbm.render.amlfrom1710.IModelCustom;
@@ -16,11 +16,11 @@ import net.minecraft.util.ResourceLocation;
 public class RenderSmallNukeMK3 extends Render<EntityNukeCloudSmall> {
 		//what the fuck is all this, i thought you made the resource manager
 		//Drillgon200: ^^ To whom is he talking, I wonder.
-		private static final ResourceLocation objTesterModelRL = new ResourceLocation(/*"/assets/" + */RefStrings.MODID, "models/mush.hmf");
+		private static final ResourceLocation objTesterModelRL = new ResourceLocation(/*"/assets/" + */MainRegistry.MODID, "models/mush.hmf");
 		private IModelCustom blastModel;
-		private static final ResourceLocation ringModelRL = new ResourceLocation(/*"/assets/" + */RefStrings.MODID, "models/Ring.obj");
+		private static final ResourceLocation ringModelRL = new ResourceLocation(/*"/assets/" + */MainRegistry.MODID, "models/Ring.obj");
 		private IModelCustom ringModel;
-		private static final ResourceLocation ringBigModelRL = new ResourceLocation(/*"/assets/" + */RefStrings.MODID, "models/RingBig.obj");
+		private static final ResourceLocation ringBigModelRL = new ResourceLocation(/*"/assets/" + */MainRegistry.MODID, "models/RingBig.obj");
 		private IModelCustom ringBigModel;
 	    public float scale = 0;
 	    public float ring = 0;

@@ -1,20 +1,18 @@
 package com.hbm.inventory.gui;
 
-import org.lwjgl.opengl.GL11;
-
 import com.hbm.forgefluid.FFUtils;
 import com.hbm.inventory.container.ContainerMachineCoal;
-import com.hbm.lib.RefStrings;
+import com.hbm.main.MainRegistry;
 import com.hbm.tileentity.machine.TileEntityMachineCoal;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
+import org.lwjgl.opengl.GL11;
 
 public class GUIMachineCoal extends GuiInfoContainer {
 
-	private static final ResourceLocation TEXTURE = new ResourceLocation(RefStrings.MODID + ":textures/gui/GUICoal.png");
+	private static final ResourceLocation TEXTURE = new ResourceLocation(MainRegistry.MODID + ":textures/gui/GUICoal.png");
 	private TileEntityMachineCoal diFurnace;
 	
 	public GUIMachineCoal(InventoryPlayer invPlayer, TileEntityMachineCoal tedf) {

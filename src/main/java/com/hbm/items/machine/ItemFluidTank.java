@@ -6,7 +6,6 @@ import java.util.Map.Entry;
 import com.hbm.forgefluid.HbmFluidHandlerItemStack;
 import com.hbm.interfaces.IHasCustomModel;
 import com.hbm.items.ModItems;
-import com.hbm.lib.RefStrings;
 import com.hbm.main.MainRegistry;
 
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -29,10 +28,10 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class ItemFluidTank extends Item implements IHasCustomModel {
 
 	public static final ModelResourceLocation fluidTankModel = new ModelResourceLocation(
-			RefStrings.MODID + ":fluid_tank_full", "inventory");
+			MainRegistry.MODID + ":fluid_tank_full", "inventory");
 	
 	public static final ModelResourceLocation fluidBarrelModel = new ModelResourceLocation(
-			RefStrings.MODID + ":fluid_barrel_full", "inventory");
+			MainRegistry.MODID + ":fluid_barrel_full", "inventory");
 
 	private int cap;
 

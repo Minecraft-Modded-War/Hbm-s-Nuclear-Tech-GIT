@@ -53,7 +53,7 @@ public class RenderAMSBase extends TileEntitySpecialRenderer<TileEntityAMSBase> 
 		scale += ((((double)base.tanks[2].getFluidAmount()) / ((double)base.tanks[2].getCapacity())) + (((double)base.tanks[3].getFluidAmount()) / ((double)base.tanks[3].getCapacity()))) * ((maxSize - minSize) / 2);
 		GL11.glScaled(scale, scale, scale);
 
-		//bindTexture(new ResourceLocation(RefStrings.MODID, "textures/models/EMPBlast.png"));
+		//bindTexture(new ResourceLocation(MainRegistry.MODID, "textures/models/EMPBlast.png"));
 		GlStateManager.disableTexture2D();
 		
 		GL11.glRotatef(rot, 0F, 1F, 0F);

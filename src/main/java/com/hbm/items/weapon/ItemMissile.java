@@ -138,7 +138,7 @@ public class ItemMissile extends Item {
 		this.top = PartSize.NONE;
 		this.bottom = size;
 		this.attributes = new Object[] { type, punch, weight };
-		//setTextureName(RefStrings.MODID + ":mp_warhead");
+		//setTextureName(MainRegistry.MODID + ":mp_warhead");
 		
 		parts.put(this.hashCode(), this);
 		
@@ -151,7 +151,7 @@ public class ItemMissile extends Item {
 		this.top = top;
 		this.bottom = bottom;
 		attributes = new Object[] { type, fuel };
-		//setTextureName(RefStrings.MODID + ":mp_fuselage");
+		//setTextureName(MainRegistry.MODID + ":mp_fuselage");
 		
 		parts.put(this.hashCode(), this);
 		
@@ -164,7 +164,7 @@ public class ItemMissile extends Item {
 		this.top = size;
 		this.bottom = size;
 		this.attributes = new Object[] { inaccuracy };
-		//setTextureName(RefStrings.MODID + ":mp_stability");
+		//setTextureName(MainRegistry.MODID + ":mp_stability");
 		
 		parts.put(this.hashCode(), this);
 		
@@ -177,7 +177,7 @@ public class ItemMissile extends Item {
 		this.top = size;
 		this.bottom = PartSize.NONE;
 		this.attributes = new Object[] { type, consumption, lift };
-		//setTextureName(RefStrings.MODID + ":mp_thruster");
+		//setTextureName(MainRegistry.MODID + ":mp_thruster");
 		
 		parts.put(this.hashCode(), this);
 		

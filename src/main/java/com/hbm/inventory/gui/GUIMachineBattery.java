@@ -1,27 +1,25 @@
 package com.hbm.inventory.gui;
 
-import java.io.IOException;
-import java.lang.Math;
-
 import com.hbm.inventory.container.ContainerMachineBattery;
-import com.hbm.lib.RefStrings;
 import com.hbm.lib.Library;
+import com.hbm.main.MainRegistry;
 import com.hbm.packet.AuxButtonPacket;
 import com.hbm.packet.PacketDispatcher;
 import com.hbm.tileentity.machine.TileEntityMachineBattery;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.util.text.TextFormatting;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.TextFormatting;
+
+import java.io.IOException;
 
 public class GUIMachineBattery extends GuiInfoContainer {
 
-	private static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/storage/gui_battery.png");
+	private static ResourceLocation texture = new ResourceLocation(MainRegistry.MODID + ":textures/gui/storage/gui_battery.png");
 	private TileEntityMachineBattery battery;
 	private long prevDelta;
 	private long powerDelta;

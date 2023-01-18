@@ -1,10 +1,10 @@
 package com.hbm.inventory.gui;
 
+import com.hbm.main.MainRegistry;
 import org.lwjgl.opengl.GL11;
 
 import com.hbm.forgefluid.FFUtils;
 import com.hbm.inventory.container.ContainerMachineSelenium;
-import com.hbm.lib.RefStrings;
 import com.hbm.tileentity.machine.TileEntityMachineSeleniumEngine;
 
 import net.minecraft.client.Minecraft;
@@ -14,7 +14,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class GUIMachineSelenium extends GuiInfoContainer {
 	
-	private static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/gui_selenium.png");
+	private static ResourceLocation texture = new ResourceLocation(MainRegistry.MODID + ":textures/gui/gui_selenium.png");
 	private TileEntityMachineSeleniumEngine diFurnace;
 
 	public GUIMachineSelenium(InventoryPlayer invPlayer, TileEntityMachineSeleniumEngine tedf) {

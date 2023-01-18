@@ -3,7 +3,7 @@ package com.hbm.items.gear;
 import java.util.List;
 
 import com.hbm.items.ModItems;
-import com.hbm.lib.RefStrings;
+import com.hbm.main.MainRegistry;
 import com.hbm.render.RenderHelper;
 import com.hbm.render.model.ModelCloak;
 import com.hbm.render.model.ModelGasMask;
@@ -43,18 +43,18 @@ public class ArmorModel extends ItemArmor {
 	@SideOnly(Side.CLIENT)
 	private ModelHat modelHat;
 	
-	private ResourceLocation goggleBlur0 = new ResourceLocation(RefStrings.MODID + ":textures/misc/overlay_goggles_0.png");
-	private ResourceLocation goggleBlur1 = new ResourceLocation(RefStrings.MODID + ":textures/misc/overlay_goggles_1.png");
-	private ResourceLocation goggleBlur2 = new ResourceLocation(RefStrings.MODID + ":textures/misc/overlay_goggles_2.png");
-	private ResourceLocation goggleBlur3 = new ResourceLocation(RefStrings.MODID + ":textures/misc/overlay_goggles_3.png");
-	private ResourceLocation goggleBlur4 = new ResourceLocation(RefStrings.MODID + ":textures/misc/overlay_goggles_4.png");
-	private ResourceLocation goggleBlur5 = new ResourceLocation(RefStrings.MODID + ":textures/misc/overlay_goggles_5.png");
-	private ResourceLocation gasmaskBlur0 = new ResourceLocation(RefStrings.MODID + ":textures/misc/overlay_gasmask_0.png");
-	private ResourceLocation gasmaskBlur1 = new ResourceLocation(RefStrings.MODID + ":textures/misc/overlay_gasmask_1.png");
-	private ResourceLocation gasmaskBlur2 = new ResourceLocation(RefStrings.MODID + ":textures/misc/overlay_gasmask_2.png");
-	private ResourceLocation gasmaskBlur3 = new ResourceLocation(RefStrings.MODID + ":textures/misc/overlay_gasmask_3.png");
-	private ResourceLocation gasmaskBlur4 = new ResourceLocation(RefStrings.MODID + ":textures/misc/overlay_gasmask_4.png");
-	private ResourceLocation gasmaskBlur5 = new ResourceLocation(RefStrings.MODID + ":textures/misc/overlay_gasmask_5.png");
+	private ResourceLocation goggleBlur0 = new ResourceLocation(MainRegistry.MODID + ":textures/misc/overlay_goggles_0.png");
+	private ResourceLocation goggleBlur1 = new ResourceLocation(MainRegistry.MODID + ":textures/misc/overlay_goggles_1.png");
+	private ResourceLocation goggleBlur2 = new ResourceLocation(MainRegistry.MODID + ":textures/misc/overlay_goggles_2.png");
+	private ResourceLocation goggleBlur3 = new ResourceLocation(MainRegistry.MODID + ":textures/misc/overlay_goggles_3.png");
+	private ResourceLocation goggleBlur4 = new ResourceLocation(MainRegistry.MODID + ":textures/misc/overlay_goggles_4.png");
+	private ResourceLocation goggleBlur5 = new ResourceLocation(MainRegistry.MODID + ":textures/misc/overlay_goggles_5.png");
+	private ResourceLocation gasmaskBlur0 = new ResourceLocation(MainRegistry.MODID + ":textures/misc/overlay_gasmask_0.png");
+	private ResourceLocation gasmaskBlur1 = new ResourceLocation(MainRegistry.MODID + ":textures/misc/overlay_gasmask_1.png");
+	private ResourceLocation gasmaskBlur2 = new ResourceLocation(MainRegistry.MODID + ":textures/misc/overlay_gasmask_2.png");
+	private ResourceLocation gasmaskBlur3 = new ResourceLocation(MainRegistry.MODID + ":textures/misc/overlay_gasmask_3.png");
+	private ResourceLocation gasmaskBlur4 = new ResourceLocation(MainRegistry.MODID + ":textures/misc/overlay_gasmask_4.png");
+	private ResourceLocation gasmaskBlur5 = new ResourceLocation(MainRegistry.MODID + ":textures/misc/overlay_gasmask_5.png");
 	
 	public ArmorModel(ArmorMaterial materialIn, int renderIndexIn, EntityEquipmentSlot equipmentSlotIn, String s) {
 		super(materialIn, renderIndexIn, equipmentSlotIn);

@@ -1,15 +1,14 @@
 package com.hbm.blocks.fluid;
 
-import java.awt.Color;
-
-import com.hbm.lib.RefStrings;
-
+import com.hbm.main.MainRegistry;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.Fluid;
+
+import java.awt.*;
 
 public class VolcanicFluid extends Fluid {
 
 	public VolcanicFluid() {
-		super("volcanic_lava_fluid", new ResourceLocation(RefStrings.MODID, "blocks/forgefluid/volcanic_lava_still"), new ResourceLocation(RefStrings.MODID, "blocks/forgefluid/volcanic_lava_flowing"), Color.white);
+		super("volcanic_lava_fluid", new ResourceLocation(MainRegistry.MODID, "blocks/forgefluid/volcanic_lava_still"), new ResourceLocation(MainRegistry.MODID, "blocks/forgefluid/volcanic_lava_flowing"), Color.white);
 	}
 }

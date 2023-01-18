@@ -6,7 +6,6 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.vector.Matrix4f;
 import org.lwjgl.util.vector.Vector4f;
 
-import com.hbm.lib.RefStrings;
 import com.hbm.main.MainRegistry;
 import com.hbm.main.ResourceManager;
 import com.hbm.packet.KeypadServerPacket;
@@ -129,7 +128,7 @@ public class KeypadClient extends Keypad {
 	}
 	
 	public static void load(){
-		WavefrontObjDisplayList model = new WavefrontObjDisplayList(new WavefrontObject(new ResourceLocation(RefStrings.MODID, "models/keypad.obj")));
+		WavefrontObjDisplayList model = new WavefrontObjDisplayList(new WavefrontObject(new ResourceLocation(MainRegistry.MODID, "models/keypad.obj")));
 		mainModel = model.getListForName("Keypad");
 		displayModel = model.getListForName("Display");
 		for(int i = 0; i < 9; i++){

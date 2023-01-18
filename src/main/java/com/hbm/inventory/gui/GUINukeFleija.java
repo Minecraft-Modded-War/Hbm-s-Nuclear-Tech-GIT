@@ -1,21 +1,19 @@
 package com.hbm.inventory.gui;
 
-import org.lwjgl.opengl.GL11;
-
 import com.hbm.inventory.container.ContainerNukeFleija;
 import com.hbm.items.ModItems;
-import com.hbm.lib.RefStrings;
+import com.hbm.main.MainRegistry;
 import com.hbm.tileentity.bomb.TileEntityNukeFleija;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
+import org.lwjgl.opengl.GL11;
 
 public class GUINukeFleija extends GuiContainer {
 
-	private static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/fleijaSchematic.png");
+	private static ResourceLocation texture = new ResourceLocation(MainRegistry.MODID + ":textures/gui/fleijaSchematic.png");
 	private TileEntityNukeFleija testNuke;
 	
 	public GUINukeFleija(InventoryPlayer invPlayer, TileEntityNukeFleija tedf) {

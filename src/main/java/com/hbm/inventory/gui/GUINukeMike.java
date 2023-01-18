@@ -1,22 +1,20 @@
 package com.hbm.inventory.gui;
 
-import org.lwjgl.opengl.GL11;
-
 import com.hbm.config.BombConfig;
 import com.hbm.inventory.container.ContainerNukeMike;
-import com.hbm.lib.RefStrings;
-import com.hbm.tileentity.bomb.TileEntityNukeMike;
 import com.hbm.items.ModItems;
-
+import com.hbm.main.MainRegistry;
+import com.hbm.tileentity.bomb.TileEntityNukeMike;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
+import org.lwjgl.opengl.GL11;
 
 
 public class GUINukeMike extends GuiInfoContainer {
 	
-	private static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/ivyMikeSchematic.png");
+	private static ResourceLocation texture = new ResourceLocation(MainRegistry.MODID + ":textures/gui/ivyMikeSchematic.png");
 	private TileEntityNukeMike testNuke;
 	
 	public GUINukeMike(InventoryPlayer invPlayer, TileEntityNukeMike tedf) {

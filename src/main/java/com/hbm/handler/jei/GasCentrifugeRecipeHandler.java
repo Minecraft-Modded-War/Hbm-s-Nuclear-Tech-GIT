@@ -1,8 +1,8 @@
 package com.hbm.handler.jei;
 
 import com.hbm.handler.jei.JeiRecipes.GasCentRecipe;
-import com.hbm.lib.RefStrings;
 
+import com.hbm.main.MainRegistry;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.IDrawable;
 import mezz.jei.api.gui.IDrawableAnimated;
@@ -17,7 +17,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class GasCentrifugeRecipeHandler implements IRecipeCategory<GasCentRecipe> {
 
-	public static final ResourceLocation gui_rl = new ResourceLocation(RefStrings.MODID, "textures/gui/centrifuge_gas.png");
+	public static final ResourceLocation gui_rl = new ResourceLocation(MainRegistry.MODID, "textures/gui/centrifuge_gas.png");
 	
 	protected final IDrawable background;
 	protected final IDrawableStatic powerStatic;
@@ -47,7 +47,7 @@ public class GasCentrifugeRecipeHandler implements IRecipeCategory<GasCentRecipe
 
 	@Override
 	public String getModName() {
-		return RefStrings.MODID;
+		return MainRegistry.MODID;
 	}
 
 	@Override

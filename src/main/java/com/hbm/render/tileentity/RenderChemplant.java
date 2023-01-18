@@ -1,17 +1,15 @@
 package com.hbm.render.tileentity;
 
-import org.lwjgl.opengl.GL11;
-
-import com.hbm.lib.RefStrings;
+import com.hbm.main.MainRegistry;
 import com.hbm.main.ResourceManager;
 import com.hbm.render.util.HmfController;
 import com.hbm.tileentity.machine.TileEntityMachineChemplant;
-
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.FluidRegistry;
+import org.lwjgl.opengl.GL11;
 
 public class RenderChemplant extends TileEntitySpecialRenderer<TileEntityMachineChemplant> {
 
@@ -114,7 +112,7 @@ public class RenderChemplant extends TileEntitySpecialRenderer<TileEntityMachine
         if(chem.tanks[0].getFluid() != null) {
         	ResourceLocation test;
         	if(chem.tanks[0].getFluid().getFluid() == FluidRegistry.LAVA || chem.tanks[0].getFluid().getFluid() == FluidRegistry.WATER){
-        		test = new ResourceLocation(RefStrings.MODID, "textures/blocks/forgefluid/" + chem.tanks[0].getFluid().getFluid().getUnlocalizedName().substring(11) + "_chemplant.png");
+        		test = new ResourceLocation(MainRegistry.MODID, "textures/blocks/forgefluid/" + chem.tanks[0].getFluid().getFluid().getUnlocalizedName().substring(11) + "_chemplant.png");
         	} else {
         	String s = chem.tanks[0].getFluid().getFluid().getStill().toString();
         	String textureBase = "textures/";
@@ -149,7 +147,7 @@ public class RenderChemplant extends TileEntitySpecialRenderer<TileEntityMachine
         if(chem.tanks[1].getFluid() != null) {
            	ResourceLocation test;
         	if(chem.tanks[1].getFluid().getFluid() == FluidRegistry.LAVA || chem.tanks[1].getFluid().getFluid() == FluidRegistry.WATER){
-        		test = new ResourceLocation(RefStrings.MODID, "textures/blocks/forgefluid/" + chem.tanks[1].getFluid().getFluid().getUnlocalizedName().substring(11) + "_chemplant.png");
+        		test = new ResourceLocation(MainRegistry.MODID, "textures/blocks/forgefluid/" + chem.tanks[1].getFluid().getFluid().getUnlocalizedName().substring(11) + "_chemplant.png");
         	} else {
         	String s = chem.tanks[1].getFluid().getFluid().getStill().toString();
         	String textureBase = "textures/";

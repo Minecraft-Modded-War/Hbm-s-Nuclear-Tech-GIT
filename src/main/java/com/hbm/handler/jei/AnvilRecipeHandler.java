@@ -1,9 +1,9 @@
 package com.hbm.handler.jei;
 
+import com.hbm.main.MainRegistry;
 import org.lwjgl.opengl.GL11;
 
 import com.hbm.handler.jei.JeiRecipes.AnvilRecipe;
-import com.hbm.lib.RefStrings;
 
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.IDrawable;
@@ -17,7 +17,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class AnvilRecipeHandler implements IRecipeCategory<AnvilRecipe> {
 
-	public static final ResourceLocation gui_rl = new ResourceLocation(RefStrings.MODID, "textures/gui/jei/gui_nei_anvil.png");
+	public static final ResourceLocation gui_rl = new ResourceLocation(MainRegistry.MODID, "textures/gui/jei/gui_nei_anvil.png");
 
 	protected final IDrawable background;
 	
@@ -39,7 +39,7 @@ public class AnvilRecipeHandler implements IRecipeCategory<AnvilRecipe> {
 
 	@Override
 	public String getModName(){
-		return RefStrings.MODID;
+		return MainRegistry.MODID;
 	}
 
 	@Override

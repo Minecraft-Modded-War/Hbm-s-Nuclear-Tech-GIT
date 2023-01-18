@@ -1,19 +1,13 @@
 package com.hbm.inventory.gui;
 
-import java.util.Arrays;
-import java.util.List;
-
-import org.lwjgl.opengl.GL11;
-
 import com.hbm.inventory.MachineRecipes;
 import com.hbm.items.tool.ItemSatInterface;
 import com.hbm.lib.HBMSoundHandler;
-import com.hbm.lib.RefStrings;
+import com.hbm.main.MainRegistry;
 import com.hbm.packet.PacketDispatcher;
 import com.hbm.packet.SatLaserPacket;
 import com.hbm.saveddata.satellites.Satellite.InterfaceActions;
 import com.hbm.saveddata.satellites.Satellite.Interfaces;
-
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.PositionedSoundRecord;
@@ -28,10 +22,14 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.oredict.OreDictionary;
+import org.lwjgl.opengl.GL11;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class GUIScreenSatInterface extends GuiScreen {
 	
-    protected static final ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/satellites/gui_sat_interface.png");
+    protected static final ResourceLocation texture = new ResourceLocation(MainRegistry.MODID + ":textures/gui/satellites/gui_sat_interface.png");
     protected int xSize = 216;
     protected int ySize = 216;
     protected int guiLeft;

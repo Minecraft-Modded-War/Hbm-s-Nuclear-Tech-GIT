@@ -1,9 +1,9 @@
 package com.hbm.render.item.weapon;
 
+import com.hbm.main.MainRegistry;
 import org.lwjgl.opengl.GL11;
 
 import com.hbm.items.ModItems;
-import com.hbm.lib.RefStrings;
 import com.hbm.render.item.TEISRBase;
 import com.hbm.render.model.ModelPip;
 import com.hbm.render.model.ModelSpark;
@@ -17,18 +17,18 @@ public class ItemRenderOverkill extends TEISRBase {
 
 	/*protected ModelJack powerJack;
 	*/protected ModelSpark sparkPlug;
-	public static ResourceLocation sparkLoc = new ResourceLocation(RefStrings.MODID +":textures/models/ModelSpark.png");
+	public static ResourceLocation sparkLoc = new ResourceLocation(MainRegistry.MODID +":textures/models/ModelSpark.png");
 	/*protected ModelHP hppLaserjet;
 	protected ModelEuthanasia euthanasia;
 	protected ModelDefabricator defab;
 	protected ModelDash dasher;
 	protected ModelTwiGun rgottp;*/
 	protected ModelPip pip;
-	protected ResourceLocation pipLoc = new ResourceLocation(RefStrings.MODID + ":textures/models/ModelPip.png");
-	protected ResourceLocation noPipLoc = new ResourceLocation(RefStrings.MODID + ":textures/models/ModelPipNoScope.png");
-	protected ResourceLocation blackjackLoc = new ResourceLocation(RefStrings.MODID +":textures/models/ModelPipGrey.png");
-	protected ResourceLocation redLoc = new ResourceLocation(RefStrings.MODID +":textures/models/ModelPipRed.png");
-	protected ResourceLocation silverLoc = new ResourceLocation(RefStrings.MODID +":textures/models/ModelPipSilver.png");
+	protected ResourceLocation pipLoc = new ResourceLocation(MainRegistry.MODID + ":textures/models/ModelPip.png");
+	protected ResourceLocation noPipLoc = new ResourceLocation(MainRegistry.MODID + ":textures/models/ModelPipNoScope.png");
+	protected ResourceLocation blackjackLoc = new ResourceLocation(MainRegistry.MODID +":textures/models/ModelPipGrey.png");
+	protected ResourceLocation redLoc = new ResourceLocation(MainRegistry.MODID +":textures/models/ModelPipRed.png");
+	protected ResourceLocation silverLoc = new ResourceLocation(MainRegistry.MODID +":textures/models/ModelPipSilver.png");
 	/*protected ModelLacunae lacunae;
 	protected ModelFolly folly;
 	

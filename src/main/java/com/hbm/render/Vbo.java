@@ -1,10 +1,7 @@
 package com.hbm.render;
 
-import java.nio.ByteBuffer;
-
-import org.lwjgl.opengl.GL11;
-
 import net.minecraft.client.renderer.GLAllocation;
+import org.lwjgl.opengl.GL11;
 
 public class Vbo {
 
@@ -53,8 +50,6 @@ public class Vbo {
 		Vertex topLeft = new Vertex(-0.5F, 0.5F, 0F, 0F, 1F, 0F, 0F, 1F, 1F, 1F, 1F, 1F);
 		Vertex topRight = new Vertex(0.5F, 0.5F, 0F, 1F, 1F, 0F, 0F, 1F, 1F, 1F, 1F, 1F);
 		Vertex[] vertices = new Vertex[]{bottomLeft, bottomRight, topRight, topLeft};
-		
-		
 		int vboId = GLCompat.genBuffers();
 		ByteBuffer data = GLAllocation.createDirectByteBuffer(vertices.length*BYTES_PER_VERTEX);
 		for(Vertex v : vertices){
@@ -77,7 +72,6 @@ public class Vbo {
 		GLCompat.bindBuffer(GLCompat.GL_ARRAY_BUFFER, vboId);
 		GLCompat.bufferData(GLCompat.GL_ARRAY_BUFFER, data, GLCompat.GL_STATIC_DRAW);
 		GLCompat.bindBuffer(GLCompat.GL_ARRAY_BUFFER, 0);
-		
 		Vbo vbo = new Vbo(vboId, GL11.GL_QUADS, vertices.length);
 		return vbo;
 	}

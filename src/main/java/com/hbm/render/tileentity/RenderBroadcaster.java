@@ -1,18 +1,16 @@
 package com.hbm.render.tileentity;
 
-import org.lwjgl.opengl.GL11;
-
-import com.hbm.lib.RefStrings;
+import com.hbm.main.MainRegistry;
 import com.hbm.render.model.ModelBroadcaster;
 import com.hbm.tileentity.machine.TileEntityBroadcaster;
-
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.util.ResourceLocation;
+import org.lwjgl.opengl.GL11;
 
 public class RenderBroadcaster extends TileEntitySpecialRenderer<TileEntityBroadcaster> {
 
-	private static final ResourceLocation texture6 = new ResourceLocation(RefStrings.MODID + ":" + "textures/models/ModelBroadcaster.png");
+	private static final ResourceLocation texture6 = new ResourceLocation(MainRegistry.MODID + ":" + "textures/models/ModelBroadcaster.png");
 	private ModelBroadcaster model6;
 	
 	public RenderBroadcaster() {

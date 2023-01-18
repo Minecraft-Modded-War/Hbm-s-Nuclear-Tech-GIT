@@ -1,19 +1,17 @@
 package com.hbm.render.tileentity;
 
-import java.io.IOException;
-
-import org.lwjgl.opengl.GL11;
-
-import com.hbm.lib.RefStrings;
+import com.hbm.main.MainRegistry;
 import com.hbm.main.ResourceManager;
 import com.hbm.tileentity.machine.TileEntityMachineFluidTank;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fluids.FluidRegistry;
+import org.lwjgl.opengl.GL11;
+
+import java.io.IOException;
 
 public class RenderFluidTank extends TileEntitySpecialRenderer<TileEntityMachineFluidTank> {
 	
@@ -81,13 +79,13 @@ public class RenderFluidTank extends TileEntitySpecialRenderer<TileEntityMachine
 			}
 		}
 		
-		ResourceLocation rotTexture = new ResourceLocation(RefStrings.MODID, "textures/models/tank_" + s + ".png");
+		ResourceLocation rotTexture = new ResourceLocation(MainRegistry.MODID, "textures/models/tank_" + s + ".png");
 		
 		try {
 			Minecraft.getMinecraft().getResourceManager().getResource(rotTexture);
 		} catch (IOException e) {
 			//Drillgon200: Set to my really ugly unknown texture
-			rotTexture = new ResourceLocation(RefStrings.MODID, "textures/models/tank_UNKNOWN.png");
+			rotTexture = new ResourceLocation(MainRegistry.MODID, "textures/models/tank_UNKNOWN.png");
 		}
 
         bindTexture(rotTexture);

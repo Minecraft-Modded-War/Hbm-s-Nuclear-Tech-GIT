@@ -1,8 +1,8 @@
 package com.hbm.render.item.weapon;
 
+import com.hbm.main.MainRegistry;
 import org.lwjgl.opengl.GL11;
 
-import com.hbm.lib.RefStrings;
 import com.hbm.render.item.TEISRBase;
 import com.hbm.render.model.ModelEMPRay;
 
@@ -17,7 +17,7 @@ import net.minecraft.util.ResourceLocation;
 public class ItemRenderEMPRay extends TEISRBase {
 
 	protected ModelEMPRay emp;
-	protected ResourceLocation emp_rl = new ResourceLocation(RefStrings.MODID +":textures/models/ModelEMPRay.png");
+	protected ResourceLocation emp_rl = new ResourceLocation(MainRegistry.MODID +":textures/models/ModelEMPRay.png");
 	
 	public ItemRenderEMPRay() {
 		emp = new ModelEMPRay();

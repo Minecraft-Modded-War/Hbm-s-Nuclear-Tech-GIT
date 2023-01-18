@@ -1,8 +1,8 @@
 package com.hbm.handler.jei;
 
 import com.hbm.handler.jei.JeiRecipes.AssemblerRecipeWrapper;
-import com.hbm.lib.RefStrings;
 
+import com.hbm.main.MainRegistry;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.IDrawable;
 import mezz.jei.api.gui.IDrawableAnimated;
@@ -17,7 +17,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class AssemblerRecipeHandler implements IRecipeCategory<AssemblerRecipeWrapper> {
 
-	public static final ResourceLocation gui_rl = new ResourceLocation(RefStrings.MODID, "textures/gui/gui_nei_assembler.png");
+	public static final ResourceLocation gui_rl = new ResourceLocation(MainRegistry.MODID, "textures/gui/gui_nei_assembler.png");
 	
 	public static final int[] inputSlots = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11};
 	public static final int outputSlot = 13;
@@ -49,7 +49,7 @@ public class AssemblerRecipeHandler implements IRecipeCategory<AssemblerRecipeWr
 
 	@Override
 	public String getModName() {
-		return RefStrings.MODID;
+		return MainRegistry.MODID;
 	}
 
 	@Override

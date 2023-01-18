@@ -1,20 +1,15 @@
 package com.hbm.inventory.gui;
 
-import java.io.IOException;
-
-import org.lwjgl.opengl.GL11;
-
 import com.hbm.forgefluid.FFUtils;
 import com.hbm.inventory.container.ContainerLaunchTable;
 import com.hbm.items.weapon.ItemCustomMissile;
 import com.hbm.items.weapon.ItemMissile.PartSize;
-import com.hbm.lib.RefStrings;
+import com.hbm.main.MainRegistry;
 import com.hbm.packet.AuxButtonPacket;
 import com.hbm.packet.PacketDispatcher;
 import com.hbm.render.misc.MissileMultipart;
 import com.hbm.render.misc.MissilePronter;
 import com.hbm.tileentity.bomb.TileEntityLaunchTable;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.client.resources.I18n;
@@ -22,10 +17,13 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import org.lwjgl.opengl.GL11;
+
+import java.io.IOException;
 
 public class GUIMachineLaunchTable extends GuiInfoContainer {
 
-	private static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/gui_launch_table.png");
+	private static ResourceLocation texture = new ResourceLocation(MainRegistry.MODID + ":textures/gui/gui_launch_table.png");
 	private TileEntityLaunchTable launcher;
 	
 	public GUIMachineLaunchTable(InventoryPlayer invPlayer, TileEntityLaunchTable tedf) {

@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.hbm.main.MainRegistry;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
@@ -17,7 +18,6 @@ import com.hbm.inventory.control_panel.nodes.NodeGetVar;
 import com.hbm.inventory.control_panel.nodes.NodeInput;
 import com.hbm.inventory.control_panel.nodes.NodeMath;
 import com.hbm.inventory.control_panel.nodes.NodeSetVar;
-import com.hbm.lib.RefStrings;
 import com.hbm.main.ClientProxy;
 import com.hbm.render.RenderHelper;
 
@@ -28,8 +28,8 @@ import net.minecraft.util.math.MathHelper;
 
 public class SubElementNodeEditor extends SubElement {
 
-	public static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/control_panel/gui_control_grid.png");
-	public static ResourceLocation grid = new ResourceLocation(RefStrings.MODID + ":textures/gui/control_panel/grid.png");
+	public static ResourceLocation texture = new ResourceLocation(MainRegistry.MODID + ":textures/gui/control_panel/gui_control_grid.png");
+	public static ResourceLocation grid = new ResourceLocation(MainRegistry.MODID + ":textures/gui/control_panel/grid.png");
 	
 	public GuiButton back;
 	

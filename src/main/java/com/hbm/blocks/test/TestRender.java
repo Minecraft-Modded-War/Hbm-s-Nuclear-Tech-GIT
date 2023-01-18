@@ -87,7 +87,7 @@ public class TestRender extends BlockContainer {
 	 * 
 	 * @SideOnly(Side.CLIENT) public void registerBlockIcons(IIconRegister
 	 * iconregister) { this.blockIcon =
-	 * iconregister.registerIcon(RefStrings.MODID + ":test_render"); }
+	 * iconregister.registerIcon(MainRegistry.MODID + ":test_render"); }
 	 */
 
 	// Setzt die Blockkollisionsbox (xMin, yMin, zMin, xMax, yMax, zMax)

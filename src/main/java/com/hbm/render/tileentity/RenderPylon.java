@@ -1,21 +1,19 @@
 package com.hbm.render.tileentity;
 
-import org.lwjgl.opengl.GL11;
-
-import com.hbm.lib.RefStrings;
+import com.hbm.main.MainRegistry;
 import com.hbm.render.model.ModelPylon;
 import com.hbm.tileentity.machine.TileEntityPylonRedWire;
-
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.ResourceLocation;
+import org.lwjgl.opengl.GL11;
 
 public class RenderPylon extends TileEntitySpecialRenderer<TileEntityPylonRedWire> {
 
-	private static final ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":" + "textures/models/ModelPylon.png");
+	private static final ResourceLocation texture = new ResourceLocation(MainRegistry.MODID + ":" + "textures/models/ModelPylon.png");
 
 	private ModelPylon pylon;
 

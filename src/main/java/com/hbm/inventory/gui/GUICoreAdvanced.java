@@ -3,7 +3,7 @@ package com.hbm.inventory.gui;
 import org.lwjgl.opengl.GL11;
 
 import com.hbm.inventory.container.ContainerCoreAdvanced;
-import com.hbm.lib.RefStrings;
+import com.hbm.main.MainRegistry;
 import com.hbm.tileentity.machine.TileEntityCoreAdvanced;
 
 import net.minecraft.client.Minecraft;
@@ -13,7 +13,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class GUICoreAdvanced extends GuiInfoContainer {
 	
-	private static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/factory_advanced.png");
+	private static ResourceLocation texture = new ResourceLocation(MainRegistry.MODID + ":textures/gui/factory_advanced.png");
 	private TileEntityCoreAdvanced diFurnace;
 
 	public GUICoreAdvanced(EntityPlayer invPlayer, TileEntityCoreAdvanced tedf) {

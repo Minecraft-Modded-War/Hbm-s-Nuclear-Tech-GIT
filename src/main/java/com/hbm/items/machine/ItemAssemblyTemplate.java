@@ -9,7 +9,6 @@ import com.hbm.inventory.AssemblerRecipes;
 import com.hbm.inventory.RecipesCommon.ComparableStack;
 import com.hbm.inventory.RecipesCommon.OreDictStack;
 import com.hbm.items.ModItems;
-import com.hbm.lib.RefStrings;
 import com.hbm.main.MainRegistry;
 import com.hbm.util.I18nUtil;
 
@@ -30,7 +29,7 @@ import net.minecraftforge.oredict.OreDictionary;
 public class ItemAssemblyTemplate extends Item implements IHasCustomModel {
 
 	public static final ModelResourceLocation location = new ModelResourceLocation(
-			RefStrings.MODID + ":assembly_template", "inventory");
+			MainRegistry.MODID + ":assembly_template", "inventory");
 	
 	//private static IForgeRegistry<Item> itemRegistry;
 	//private static IForgeRegistry<Block> blockRegistry;

@@ -27,7 +27,7 @@ public class FactoryAdvanced extends WorldGenerator {
 		    generate_r0(world, rand, new BlockPos.MutableBlockPos(position));
 		}
 
-       return true;
+		return true;
 	}
 	
 	public boolean generate_r0(World world, Random rand, BlockPos.MutableBlockPos pos)

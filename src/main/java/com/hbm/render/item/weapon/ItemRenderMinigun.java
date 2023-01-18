@@ -1,10 +1,10 @@
 package com.hbm.render.item.weapon;
 
+import com.hbm.main.MainRegistry;
 import org.lwjgl.opengl.GL11;
 
 import com.hbm.items.ModItems;
 import com.hbm.items.weapon.ItemGunBase;
-import com.hbm.lib.RefStrings;
 import com.hbm.render.item.TEISRBase;
 import com.hbm.render.model.ModelLacunae;
 
@@ -17,9 +17,9 @@ public class ItemRenderMinigun extends TEISRBase {
 
 	protected ModelLacunae lacunae;
 	
-	protected static ResourceLocation minigun_rl = new ResourceLocation(RefStrings.MODID +":textures/models/ModelLacunae.png");
-	protected static ResourceLocation avenger_rl = new ResourceLocation(RefStrings.MODID +":textures/models/ModelLacunaeAvenger.png");
-	protected static ResourceLocation lacunae_rl = new ResourceLocation(RefStrings.MODID +":textures/models/ModelLacunaeReal.png");
+	protected static ResourceLocation minigun_rl = new ResourceLocation(MainRegistry.MODID +":textures/models/ModelLacunae.png");
+	protected static ResourceLocation avenger_rl = new ResourceLocation(MainRegistry.MODID +":textures/models/ModelLacunaeAvenger.png");
+	protected static ResourceLocation lacunae_rl = new ResourceLocation(MainRegistry.MODID +":textures/models/ModelLacunaeReal.png");
 	
 	public ItemRenderMinigun() {
 		lacunae = new ModelLacunae();

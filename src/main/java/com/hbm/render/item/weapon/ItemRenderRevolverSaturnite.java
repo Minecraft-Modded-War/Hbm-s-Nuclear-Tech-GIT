@@ -1,8 +1,8 @@
 package com.hbm.render.item.weapon;
 
+import com.hbm.main.MainRegistry;
 import org.lwjgl.opengl.GL11;
 
-import com.hbm.lib.RefStrings;
 import com.hbm.render.item.TEISRBase;
 import com.hbm.render.model.ModelRevolver;
 
@@ -14,7 +14,7 @@ import net.minecraft.util.ResourceLocation;
 public class ItemRenderRevolverSaturnite extends TEISRBase {
 
 	protected ModelRevolver swordModel;
-	protected static ResourceLocation sat_rl = new ResourceLocation(RefStrings.MODID +":textures/models/ModelRevolverSaturnite.png");
+	protected static ResourceLocation sat_rl = new ResourceLocation(MainRegistry.MODID +":textures/models/ModelRevolverSaturnite.png");
 	
 	public ItemRenderRevolverSaturnite() {
 		swordModel = new ModelRevolver();

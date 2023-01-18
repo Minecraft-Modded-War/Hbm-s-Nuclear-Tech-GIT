@@ -1,9 +1,9 @@
 package com.hbm.inventory.gui;
 
+import com.hbm.main.MainRegistry;
 import org.lwjgl.opengl.GL11;
 
 import com.hbm.inventory.container.ContainerBook;
-import com.hbm.lib.RefStrings;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.inventory.GuiContainer;
@@ -12,7 +12,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class GUIBook extends GuiContainer {
 
-	public static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/processing/gui_book.png");
+	public static ResourceLocation texture = new ResourceLocation(MainRegistry.MODID + ":textures/gui/processing/gui_book.png");
 	
 	public GUIBook(InventoryPlayer player) {
 		super(new ContainerBook(player));

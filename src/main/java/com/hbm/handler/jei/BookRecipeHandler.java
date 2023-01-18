@@ -1,8 +1,8 @@
 package com.hbm.handler.jei;
 
 import com.hbm.handler.jei.JeiRecipes.BookRecipe;
-import com.hbm.lib.RefStrings;
 
+import com.hbm.main.MainRegistry;
 import mezz.jei.api.IGuiHelper;
 import mezz.jei.api.gui.IDrawable;
 import mezz.jei.api.gui.IGuiItemStackGroup;
@@ -13,7 +13,7 @@ import net.minecraft.util.ResourceLocation;
 
 public class BookRecipeHandler implements IRecipeCategory<BookRecipe> {
 
-	public static ResourceLocation gui_rl = new ResourceLocation(RefStrings.MODID + ":textures/gui/processing/gui_book.png");
+	public static ResourceLocation gui_rl = new ResourceLocation(MainRegistry.MODID + ":textures/gui/processing/gui_book.png");
 	
 	protected final IDrawable background;
 	
@@ -33,7 +33,7 @@ public class BookRecipeHandler implements IRecipeCategory<BookRecipe> {
 
 	@Override
 	public String getModName() {
-		return RefStrings.MODID;
+		return MainRegistry.MODID;
 	}
 
 	@Override

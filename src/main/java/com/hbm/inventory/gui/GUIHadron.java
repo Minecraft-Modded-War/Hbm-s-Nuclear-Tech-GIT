@@ -1,15 +1,12 @@
 package com.hbm.inventory.gui;
 
-import java.io.IOException;
-
 import com.hbm.inventory.container.ContainerHadron;
-import com.hbm.lib.RefStrings;
+import com.hbm.main.MainRegistry;
 import com.hbm.packet.AuxButtonPacket;
 import com.hbm.packet.PacketDispatcher;
 import com.hbm.tileentity.machine.TileEntityHadron;
 import com.hbm.tileentity.machine.TileEntityHadron.EnumHadronState;
 import com.hbm.util.I18nUtil;
-
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.PositionedSoundRecord;
 import net.minecraft.client.renderer.GlStateManager;
@@ -18,9 +15,11 @@ import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.util.ResourceLocation;
 
+import java.io.IOException;
+
 public class GUIHadron extends GuiInfoContainer {
 
-	public static ResourceLocation texture = new ResourceLocation(RefStrings.MODID + ":textures/gui/machine/gui_hadron.png");
+	public static ResourceLocation texture = new ResourceLocation(MainRegistry.MODID + ":textures/gui/machine/gui_hadron.png");
 	private TileEntityHadron hadron;
 
 	public GUIHadron(InventoryPlayer invPlayer, TileEntityHadron laser) {

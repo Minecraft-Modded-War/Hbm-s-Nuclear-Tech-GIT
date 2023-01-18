@@ -2,8 +2,6 @@ package com.hbm.main;
 
 import org.apache.logging.log4j.Level;
 
-import com.hbm.lib.RefStrings;
-
 import net.minecraft.advancements.Advancement;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -103,39 +101,39 @@ public class AdvancementManager {
 	public static void init(MinecraftServer serv){
 		net.minecraft.advancements.AdvancementManager adv = serv.getAdvancementManager();
 		
-		root = adv.getAdvancement(new ResourceLocation(RefStrings.MODID, "root"));
-		achSpace = adv.getAdvancement(new ResourceLocation(RefStrings.MODID, "space"));
-		bobMetalworks = adv.getAdvancement(new ResourceLocation(RefStrings.MODID, "bobmetalworks"));
-		bobAssembly = adv.getAdvancement(new ResourceLocation(RefStrings.MODID, "bobassembly"));
-		bobChemistry = adv.getAdvancement(new ResourceLocation(RefStrings.MODID, "bobchemistry"));
-		bobOil = adv.getAdvancement(new ResourceLocation(RefStrings.MODID, "boboil"));
-		bobNuclear = adv.getAdvancement(new ResourceLocation(RefStrings.MODID, "bobnuclear"));
-		bobHidden = adv.getAdvancement(new ResourceLocation(RefStrings.MODID, "bobhidden"));
-		achSacrifice = adv.getAdvancement(new ResourceLocation(RefStrings.MODID, "achsacrifice"));
-		achFOEQ = adv.getAdvancement(new ResourceLocation(RefStrings.MODID, "achfoeq"));
-		achFiend = adv.getAdvancement(new ResourceLocation(RefStrings.MODID, "achfiend"));
-		achFiend2 = adv.getAdvancement(new ResourceLocation(RefStrings.MODID, "achfiend2"));
-		horizonsStart = adv.getAdvancement(new ResourceLocation(RefStrings.MODID, "horizonsstart"));
-		horizonsEnd = adv.getAdvancement(new ResourceLocation(RefStrings.MODID, "horizonsend"));
-		horizonsBonus = adv.getAdvancement(new ResourceLocation(RefStrings.MODID, "horizonsbonus"));
-		soyuz = adv.getAdvancement(new ResourceLocation(RefStrings.MODID, "soyuz"));
-		achRadPoison = adv.getAdvancement(new ResourceLocation(RefStrings.MODID, "achradpoison"));
-		achRadDeath = adv.getAdvancement(new ResourceLocation(RefStrings.MODID, "achraddeath"));
-		achStratum = adv.getAdvancement(new ResourceLocation(RefStrings.MODID, "achstratum"));
-		achMeltdown = adv.getAdvancement(new ResourceLocation(RefStrings.MODID, "achmeltdown"));
-		achOmega12 = adv.getAdvancement(new ResourceLocation(RefStrings.MODID, "achomega12"));
-		digammaSee = adv.getAdvancement(new ResourceLocation(RefStrings.MODID, "digammasee"));
-		digammaFeel = adv.getAdvancement(new ResourceLocation(RefStrings.MODID, "digammafeel"));
-		digammaKnow = adv.getAdvancement(new ResourceLocation(RefStrings.MODID, "digammaknow"));
-		digammaKauaiMoho = adv.getAdvancement(new ResourceLocation(RefStrings.MODID, "digammakauaimoho"));
-		digammaUpOnTop = adv.getAdvancement(new ResourceLocation(RefStrings.MODID, "digammaupontop"));
-		achSomeWounds = adv.getAdvancement(new ResourceLocation(RefStrings.MODID, "achsomewounds"));
+		root = adv.getAdvancement(new ResourceLocation(MainRegistry.MODID, "root"));
+		achSpace = adv.getAdvancement(new ResourceLocation(MainRegistry.MODID, "space"));
+		bobMetalworks = adv.getAdvancement(new ResourceLocation(MainRegistry.MODID, "bobmetalworks"));
+		bobAssembly = adv.getAdvancement(new ResourceLocation(MainRegistry.MODID, "bobassembly"));
+		bobChemistry = adv.getAdvancement(new ResourceLocation(MainRegistry.MODID, "bobchemistry"));
+		bobOil = adv.getAdvancement(new ResourceLocation(MainRegistry.MODID, "boboil"));
+		bobNuclear = adv.getAdvancement(new ResourceLocation(MainRegistry.MODID, "bobnuclear"));
+		bobHidden = adv.getAdvancement(new ResourceLocation(MainRegistry.MODID, "bobhidden"));
+		achSacrifice = adv.getAdvancement(new ResourceLocation(MainRegistry.MODID, "achsacrifice"));
+		achFOEQ = adv.getAdvancement(new ResourceLocation(MainRegistry.MODID, "achfoeq"));
+		achFiend = adv.getAdvancement(new ResourceLocation(MainRegistry.MODID, "achfiend"));
+		achFiend2 = adv.getAdvancement(new ResourceLocation(MainRegistry.MODID, "achfiend2"));
+		horizonsStart = adv.getAdvancement(new ResourceLocation(MainRegistry.MODID, "horizonsstart"));
+		horizonsEnd = adv.getAdvancement(new ResourceLocation(MainRegistry.MODID, "horizonsend"));
+		horizonsBonus = adv.getAdvancement(new ResourceLocation(MainRegistry.MODID, "horizonsbonus"));
+		soyuz = adv.getAdvancement(new ResourceLocation(MainRegistry.MODID, "soyuz"));
+		achRadPoison = adv.getAdvancement(new ResourceLocation(MainRegistry.MODID, "achradpoison"));
+		achRadDeath = adv.getAdvancement(new ResourceLocation(MainRegistry.MODID, "achraddeath"));
+		achStratum = adv.getAdvancement(new ResourceLocation(MainRegistry.MODID, "achstratum"));
+		achMeltdown = adv.getAdvancement(new ResourceLocation(MainRegistry.MODID, "achmeltdown"));
+		achOmega12 = adv.getAdvancement(new ResourceLocation(MainRegistry.MODID, "achomega12"));
+		digammaSee = adv.getAdvancement(new ResourceLocation(MainRegistry.MODID, "digammasee"));
+		digammaFeel = adv.getAdvancement(new ResourceLocation(MainRegistry.MODID, "digammafeel"));
+		digammaKnow = adv.getAdvancement(new ResourceLocation(MainRegistry.MODID, "digammaknow"));
+		digammaKauaiMoho = adv.getAdvancement(new ResourceLocation(MainRegistry.MODID, "digammakauaimoho"));
+		digammaUpOnTop = adv.getAdvancement(new ResourceLocation(MainRegistry.MODID, "digammaupontop"));
+		achSomeWounds = adv.getAdvancement(new ResourceLocation(MainRegistry.MODID, "achsomewounds"));
 		
-		bossCreeper = adv.getAdvancement(new ResourceLocation(RefStrings.MODID, "bosscreeper"));
-		bossMeltdown = adv.getAdvancement(new ResourceLocation(RefStrings.MODID, "bossmeltdown"));
-		bossMaskman = adv.getAdvancement(new ResourceLocation(RefStrings.MODID, "bossmaskman"));
-		bossWorm = adv.getAdvancement(new ResourceLocation(RefStrings.MODID, "bossworm"));
-		bossWorm = adv.getAdvancement(new ResourceLocation(RefStrings.MODID, "bossufo"));
+		bossCreeper = adv.getAdvancement(new ResourceLocation(MainRegistry.MODID, "bosscreeper"));
+		bossMeltdown = adv.getAdvancement(new ResourceLocation(MainRegistry.MODID, "bossmeltdown"));
+		bossMaskman = adv.getAdvancement(new ResourceLocation(MainRegistry.MODID, "bossmaskman"));
+		bossWorm = adv.getAdvancement(new ResourceLocation(MainRegistry.MODID, "bossworm"));
+		bossWorm = adv.getAdvancement(new ResourceLocation(MainRegistry.MODID, "bossufo"));
 	}
 	
 	public static void grantAchievement(EntityPlayerMP player, Advancement a){

@@ -1,8 +1,8 @@
 package com.hbm.render.item.weapon;
 
+import com.hbm.main.MainRegistry;
 import org.lwjgl.opengl.GL11;
 
-import com.hbm.lib.RefStrings;
 import com.hbm.render.item.TEISRBase;
 import com.hbm.render.model.ModelEuthanasia;
 
@@ -14,7 +14,7 @@ import net.minecraft.util.ResourceLocation;
 public class ItemRenderEuthanasia extends TEISRBase {
 
 	protected ModelEuthanasia euthanasia;
-	protected static ResourceLocation euthanasia_rl = new ResourceLocation(RefStrings.MODID +":textures/models/ModelEuthanasia.png");
+	protected static ResourceLocation euthanasia_rl = new ResourceLocation(MainRegistry.MODID +":textures/models/ModelEuthanasia.png");
 	
 	public ItemRenderEuthanasia() {
 		euthanasia = new ModelEuthanasia();
