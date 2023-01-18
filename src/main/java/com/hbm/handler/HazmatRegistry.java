@@ -1,18 +1,16 @@
 package com.hbm.handler;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import com.hbm.items.ModItems;
 import com.hbm.items.armor.ItemModCladding;
-import com.hbm.lib.Library;
 import com.hbm.potion.HbmPotion;
-
-import net.minecraft.potion.PotionEffect;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.PotionEffect;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class HazmatRegistry {
 	private static Map<Item, Double> entries = new HashMap<>();
@@ -56,10 +54,6 @@ public class HazmatRegistry {
 
 	public static float getResistance(EntityLivingBase player) {
 		float res = 0.0F;
-
-		if (player.getUniqueID().toString().equals(Library.HbMinecraft) || player.getUniqueID().toString().equals(Library.Golem) || player.getUniqueID().toString().equals(Library.Drillgon) || player.getUniqueID().toString().equals(Library.Malpon)) {
-			res += 1.0F;
-		}
 
 		for(ItemStack stack : player.getArmorInventoryList()) {
 			if(!stack.isEmpty()) {

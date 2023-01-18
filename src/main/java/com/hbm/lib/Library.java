@@ -1,18 +1,7 @@
 package com.hbm.lib;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Random;
-import java.util.Set;
-
-import javax.annotation.Nullable;
-
-import org.apache.commons.lang3.tuple.Pair;
-
+import api.hbm.energy.IBatteryItem;
 import com.google.common.base.Predicates;
-import com.google.common.collect.Sets;
 import com.hbm.blocks.ModBlocks;
 import com.hbm.calc.UnionOfTileEntitiesAndBooleans;
 import com.hbm.capability.HbmLivingCapability.EntityHbmPropsProvider;
@@ -28,14 +17,8 @@ import com.hbm.items.ModItems;
 import com.hbm.render.amlfrom1710.Vec3;
 import com.hbm.tileentity.conductor.TileEntityCable;
 import com.hbm.tileentity.conductor.TileEntityCableSwitch;
-import com.hbm.tileentity.machine.TileEntityDummy;
-import com.hbm.tileentity.machine.TileEntityMachineBattery;
-import com.hbm.tileentity.machine.TileEntityMachineTransformer;
-import com.hbm.tileentity.machine.TileEntityPylonRedWire;
-import com.hbm.tileentity.machine.TileEntityWireCoated;
+import com.hbm.tileentity.machine.*;
 import com.hbm.util.BobMathUtil;
-
-import api.hbm.energy.IBatteryItem;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDoor;
 import net.minecraft.block.state.IBlockState;
@@ -52,14 +35,9 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EntitySelectors;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.WeightedRandom;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.*;
 import net.minecraft.util.math.BlockPos.MutableBlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.RayTraceResult.Type;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
@@ -67,67 +45,15 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.IItemHandlerModifiable;
 import net.minecraftforge.oredict.OreDictionary;
+import org.apache.commons.lang3.tuple.Pair;
+
+import javax.annotation.Nullable;
+import java.util.*;
 
 @Spaghetti("this whole class")
 public class Library {
 
 	static Random rand = new Random();
-	
-	//this is a list of UUIDs used for various things, primarily for accessories.
-	//for a comprehensive list, check RenderAccessoryUtility.java
-	public static String HbMinecraft = "192af5d7-ed0f-48d8-bd89-9d41af8524f8";
-	public static String TacoRedneck = "5aee1e3d-3767-4987-a222-e7ce1fbdf88e";
-	// Earl0fPudding
-	public static String LPkukin = "937c9804-e11f-4ad2-a5b1-42e62ac73077";
-	public static String Dafnik = "3af1c262-61c0-4b12-a4cb-424cc3a9c8c0";
-	// anna20
-	public static String a20 = "4729b498-a81c-42fd-8acd-20d6d9f759e0";
-	public static String rodolphito = "c3f5e449-6d8c-4fe3-acc9-47ef50e7e7ae";
-	public static String LordVertice = "a41df45e-13d8-4677-9398-090d3882b74f";
-	// twillycorn
-	public static String CodeRed_ = "912ec334-e920-4dd7-8338-4d9b2d42e0a1";
-	public static String dxmaster769 = "62c168b2-d11d-4dbf-9168-c6cea3dcb20e";
-	public static String Dr_Nostalgia = "e82684a7-30f1-44d2-ab37-41b342be1bbd";
-	public static String Samino2 = "87c3960a-4332-46a0-a929-ef2a488d1cda";
-	public static String Hoboy03new = "d7f29d9c-5103-4f6f-88e1-2632ff95973f";
-	public static String Dragon59MC = "dc23a304-0f84-4e2d-b47d-84c8d3bfbcdb";
-	public static String SteelCourage = "ac49720b-4a9a-4459-a26f-bee92160287a";
-	public static String Ducxkskiziko = "122fe98f-be19-49ca-a96b-d4dee4f0b22e";
-	
-	public static String SweatySwiggs = "5544aa30-b305-4362-b2c1-67349bb499d5";
-	public static String Drillgon = "41ebd03f-7a12-42f3-b037-0caa4d6f235b";
-	public static String Malpon = "0b399a4a-8545-45a1-be3d-ece70d7d48e9";
-	public static String Doctor17 = "e4ab1199-1c22-4f82-a516-c3238bc2d0d1";
-	public static String Doctor17PH = "4d0477d7-58da-41a9-a945-e93df8601c5a";
-	public static String ShimmeringBlaze = "061bc566-ec74-4307-9614-ac3a70d2ef38";
-	public static String FifeMiner = "37e5eb63-b9a2-4735-9007-1c77d703daa3";
-	public static String lag_add = "259785a0-20e9-4c63-9286-ac2f93ff528f";
-	public static String Pu_238 = "c95fdfd3-bea7-4255-a44b-d21bc3df95e3";
-
-	public static String Golem = "058b52a6-05b7-4d11-8cfa-2db665d9a521";
-	public static Set<String> contributors = Sets.newHashSet(new String[] {
-			"06ab7c03-55ce-43f8-9d3c-2850e3c652de", //mustang_rudolf
-			"5bf069bc-5b46-4179-aafe-35c0a07dee8b", //JMF781
-			});
-
-	//the old list that allowed superuser mode for the ZOMG
-	//currently unused
-	public static List<String> superuser = new ArrayList<String>();
-
-	// Drillgon200: Not like super users are used for anything, but they could
-	// in the future I guess.
-	public static void initSuperusers() {
-		superuser.add(HbMinecraft);
-		superuser.add(TacoRedneck);
-		superuser.add(LPkukin);
-		superuser.add(Dafnik);
-		superuser.add(a20);
-		superuser.add(rodolphito);
-		// Drillgon200: Pretty sure he did install NEI.
-		superuser.add(Ducxkskiziko);
-		superuser.add(Drillgon);
-		superuser.add(Malpon);
-	}
 
 	public static boolean checkForHeld(EntityPlayer player, Item item) {
 		return player.getHeldItemMainhand().getItem() == item || player.getHeldItemOffhand().getItem() == item;

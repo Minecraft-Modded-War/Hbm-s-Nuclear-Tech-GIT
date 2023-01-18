@@ -1,183 +1,26 @@
 package com.hbm.blocks;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import com.hbm.blocks.bomb.Balefire;
-import com.hbm.blocks.bomb.BlockCloudResidue;
-import com.hbm.blocks.bomb.BlockCrashedBomb;
-import com.hbm.blocks.bomb.BlockFireworks;
-import com.hbm.blocks.bomb.BlockSemtex;
-import com.hbm.blocks.bomb.BlockTaint;
-import com.hbm.blocks.bomb.BlockVolcano;
-import com.hbm.blocks.bomb.BombFlameWar;
-import com.hbm.blocks.bomb.BombFloat;
-import com.hbm.blocks.bomb.BombMulti;
-import com.hbm.blocks.bomb.BombThermo;
-import com.hbm.blocks.bomb.CheaterVirus;
-import com.hbm.blocks.bomb.CheaterVirusSeed;
-import com.hbm.blocks.bomb.CompactLauncher;
-import com.hbm.blocks.bomb.CrystalPulsar;
-import com.hbm.blocks.bomb.CrystalVirus;
-import com.hbm.blocks.bomb.DetCord;
-import com.hbm.blocks.bomb.DetMiner;
-import com.hbm.blocks.bomb.DigammaFlame;
-import com.hbm.blocks.bomb.DigammaMatter;
-import com.hbm.blocks.bomb.Landmine;
-import com.hbm.blocks.bomb.LaunchPad;
-import com.hbm.blocks.bomb.LaunchTable;
-import com.hbm.blocks.bomb.NukeBalefire;
-import com.hbm.blocks.bomb.NukeBoy;
-import com.hbm.blocks.bomb.NukeCustom;
-import com.hbm.blocks.bomb.NukeFleija;
-import com.hbm.blocks.bomb.NukeGadget;
-import com.hbm.blocks.bomb.NukeMan;
-import com.hbm.blocks.bomb.NukeMike;
-import com.hbm.blocks.bomb.NukeN2;
-import com.hbm.blocks.bomb.NukeN45;
-import com.hbm.blocks.bomb.NukePrototype;
-import com.hbm.blocks.bomb.NukeSolinium;
-import com.hbm.blocks.bomb.NukeTsar;
-import com.hbm.blocks.bomb.RailgunPlasma;
-import com.hbm.blocks.gas.BlockGasAsbestos;
-import com.hbm.blocks.gas.BlockGasCoal;
-import com.hbm.blocks.gas.BlockGasExplosive;
-import com.hbm.blocks.gas.BlockGasFlammable;
-import com.hbm.blocks.gas.BlockGasMonoxide;
-import com.hbm.blocks.gas.BlockGasRadon;
-import com.hbm.blocks.gas.BlockGasRadonDense;
-import com.hbm.blocks.gas.BlockGasRadonTomb;
-import com.hbm.blocks.generic.BMPowerBox;
-import com.hbm.blocks.generic.BarbedWire;
-import com.hbm.blocks.generic.BlockAbsorber;
-import com.hbm.blocks.generic.BlockAmmoCrate;
-import com.hbm.blocks.generic.BlockAshes;
-import com.hbm.blocks.generic.BlockBallsSpawner;
-import com.hbm.blocks.generic.BlockBeaconable;
-import com.hbm.blocks.generic.BlockBedrockOre;
-import com.hbm.blocks.generic.BlockCanCrate;
-import com.hbm.blocks.generic.BlockCap;
-import com.hbm.blocks.generic.BlockChain;
-import com.hbm.blocks.generic.BlockClorine;
-import com.hbm.blocks.generic.BlockClorineSeal;
-import com.hbm.blocks.generic.BlockCluster;
-import com.hbm.blocks.generic.BlockCoalBurning;
-import com.hbm.blocks.generic.BlockCoalOil;
-import com.hbm.blocks.generic.BlockControlPanel;
-import com.hbm.blocks.generic.BlockCrate;
-import com.hbm.blocks.generic.BlockDepth;
-import com.hbm.blocks.generic.BlockDepthOre;
-import com.hbm.blocks.generic.BlockDoorGeneric;
-import com.hbm.blocks.generic.BlockFallingRad;
-import com.hbm.blocks.generic.BlockFallout;
-import com.hbm.blocks.generic.BlockGeysir;
-import com.hbm.blocks.generic.BlockGlyph;
-import com.hbm.blocks.generic.BlockGoldSand;
-import com.hbm.blocks.generic.BlockGrate;
-import com.hbm.blocks.generic.BlockHazard;
+import com.hbm.blocks.bomb.*;
+import com.hbm.blocks.gas.*;
+import com.hbm.blocks.generic.*;
 import com.hbm.blocks.generic.BlockHazard.ExtDisplayEffect;
-import com.hbm.blocks.generic.BlockHazardFalling;
-import com.hbm.blocks.generic.BlockJungleCrate;
-import com.hbm.blocks.generic.BlockLithium;
-import com.hbm.blocks.generic.BlockMarker;
-import com.hbm.blocks.generic.BlockMetalFence;
-import com.hbm.blocks.generic.BlockModDoor;
-import com.hbm.blocks.generic.BlockMush;
-import com.hbm.blocks.generic.BlockMushHuge;
-import com.hbm.blocks.generic.BlockNTMDirt;
-import com.hbm.blocks.generic.BlockNTMGlass;
-import com.hbm.blocks.generic.BlockNTMLadder;
-import com.hbm.blocks.generic.BlockNetherCoal;
-import com.hbm.blocks.generic.BlockNoDrop;
-import com.hbm.blocks.generic.BlockNuclearWaste;
-import com.hbm.blocks.generic.BlockOre;
-import com.hbm.blocks.generic.BlockOutgas;
-import com.hbm.blocks.generic.BlockPinkLog;
-import com.hbm.blocks.generic.BlockGenericSlab;
-import com.hbm.blocks.generic.BlockGenericStairs;
-import com.hbm.blocks.generic.BlockPipe;
-import com.hbm.blocks.generic.BlockPlasma;
-import com.hbm.blocks.generic.BlockPorous;
-import com.hbm.blocks.generic.BlockRadResistant;
-import com.hbm.blocks.generic.BlockRailing;
-import com.hbm.blocks.generic.BlockRotatablePillar;
-import com.hbm.blocks.generic.BlockSmolder;
-import com.hbm.blocks.generic.BlockStorageCrate;
-import com.hbm.blocks.generic.BlockVent;
-import com.hbm.blocks.generic.BlockWriting;
-import com.hbm.blocks.generic.DecoBlock;
-import com.hbm.blocks.generic.DecoBlockAlt;
-import com.hbm.blocks.generic.DecoPoleSatelliteReceiver;
-import com.hbm.blocks.generic.DecoPoleTop;
-import com.hbm.blocks.generic.DecoSteelPoles;
-import com.hbm.blocks.generic.DecoTapeRecorder;
-import com.hbm.blocks.generic.Guide;
-import com.hbm.blocks.generic.RedBarrel;
-import com.hbm.blocks.generic.ReinforcedLamp;
-import com.hbm.blocks.generic.Spikes;
-import com.hbm.blocks.generic.TrappedBrick;
-import com.hbm.blocks.generic.WasteGrassTall;
-import com.hbm.blocks.generic.WasteEarth;
-import com.hbm.blocks.generic.WasteLog;
-import com.hbm.blocks.generic.YellowBarrel;
 import com.hbm.blocks.machine.*;
 import com.hbm.blocks.machine.pile.BlockGraphite;
 import com.hbm.blocks.machine.pile.BlockGraphiteFuel;
 import com.hbm.blocks.machine.pile.BlockGraphiteRod;
 import com.hbm.blocks.machine.pile.BlockGraphiteSource;
-import com.hbm.blocks.machine.rbmk.RBMKAbsorber;
-import com.hbm.blocks.machine.rbmk.RBMKBlank;
-import com.hbm.blocks.machine.rbmk.RBMKBoiler;
-import com.hbm.blocks.machine.rbmk.RBMKConsole;
-import com.hbm.blocks.machine.rbmk.RBMKControl;
-import com.hbm.blocks.machine.rbmk.RBMKControlAuto;
-import com.hbm.blocks.machine.rbmk.RBMKDebris;
-import com.hbm.blocks.machine.rbmk.RBMKDebrisBurning;
-import com.hbm.blocks.machine.rbmk.RBMKDebrisDigamma;
-import com.hbm.blocks.machine.rbmk.RBMKDebrisRadiating;
-import com.hbm.blocks.machine.rbmk.RBMKInlet;
-import com.hbm.blocks.machine.rbmk.RBMKModerator;
-import com.hbm.blocks.machine.rbmk.RBMKOutgasser;
-import com.hbm.blocks.machine.rbmk.RBMKOutlet;
-import com.hbm.blocks.machine.rbmk.RBMKReflector;
-import com.hbm.blocks.machine.rbmk.RBMKRod;
-import com.hbm.blocks.machine.rbmk.RBMKRodReaSim;
-import com.hbm.blocks.machine.rbmk.RBMKStorage;
-import com.hbm.blocks.machine.rbmk.RBMKCraneConsole;
-import com.hbm.blocks.network.BlockCable;
-import com.hbm.blocks.network.BlockConveyor;
-import com.hbm.blocks.network.BlockFluidDuct;
-import com.hbm.blocks.network.BlockFluidPipeMk2;
-import com.hbm.blocks.network.BlockFluidPipeSolid;
-import com.hbm.blocks.network.CableSwitch;
+import com.hbm.blocks.machine.rbmk.*;
+import com.hbm.blocks.network.*;
 import com.hbm.blocks.test.KeypadTest;
 import com.hbm.blocks.test.TestObjTester;
 import com.hbm.blocks.test.TestRender;
-import com.hbm.blocks.turret.TurretBrandon;
-import com.hbm.blocks.turret.TurretCIWS;
-import com.hbm.blocks.turret.TurretCheapo;
-import com.hbm.blocks.turret.TurretChekhov;
-import com.hbm.blocks.turret.TurretFlamer;
-import com.hbm.blocks.turret.TurretFriendly;
-import com.hbm.blocks.turret.TurretFritz;
-import com.hbm.blocks.turret.TurretHeavy;
-import com.hbm.blocks.turret.TurretHoward;
-import com.hbm.blocks.turret.TurretHowardDamaged;
-import com.hbm.blocks.turret.TurretJeremy;
-import com.hbm.blocks.turret.TurretLight;
-import com.hbm.blocks.turret.TurretMaxwell;
-import com.hbm.blocks.turret.TurretRichard;
-import com.hbm.blocks.turret.TurretRocket;
-import com.hbm.blocks.turret.TurretSpitfire;
-import com.hbm.blocks.turret.TurretTau;
-import com.hbm.blocks.turret.TurretTauon;
+import com.hbm.blocks.turret.*;
 import com.hbm.forgefluid.ModForgeFluids;
 import com.hbm.interfaces.Spaghetti;
 import com.hbm.items.special.ItemHazard;
 import com.hbm.lib.HBMSoundHandler;
 import com.hbm.main.MainRegistry;
 import com.hbm.tileentity.DoorDecl;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.MapColor;
@@ -190,12 +33,13 @@ import net.minecraft.util.SoundEvent;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ModBlocks {
 
 	//present gui id: 126
-	public static List<Block> ALL_BLOCKS = new ArrayList<Block>();
-	
-	//public static final Block fatduck = new BlockBase(Material.IRON, "fatduck");
+	public static List<Block> ALL_BLOCKS = new ArrayList<>();
 	
 	public static Material materialGas = new MaterialGas();
 	
@@ -1478,16 +1322,7 @@ public class ModBlocks {
 	public static final Block pink_stairs = new BlockGenericStairs(pink_planks.getDefaultState(), "pink_stairs").setSoundType(SoundType.WOOD).setCreativeTab(null);
 	
 	public static void preInit(){
-		for(Block block : ALL_BLOCKS){
+		for (Block block : ALL_BLOCKS)
 			ForgeRegistries.BLOCKS.register(block);
-		}
-	}
-	
-	public static void init(){
-		
-	}
-	
-	public static void postInit(){
-		
 	}
 }

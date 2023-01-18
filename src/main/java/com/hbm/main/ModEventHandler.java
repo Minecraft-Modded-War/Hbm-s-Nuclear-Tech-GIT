@@ -1,44 +1,19 @@
 package com.hbm.main;
 
-import java.lang.reflect.Field;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-import java.util.Random;
-
-import org.apache.commons.lang3.math.NumberUtils;
-import org.apache.logging.log4j.Level;
-
 import com.google.common.collect.Multimap;
 import com.hbm.blocks.ModBlocks;
 import com.hbm.capability.HbmCapability;
+import com.hbm.capability.HbmCapability.IHBMData;
 import com.hbm.capability.HbmLivingCapability;
 import com.hbm.capability.HbmLivingProps;
-import com.hbm.capability.HbmCapability.IHBMData;
-import com.hbm.config.GeneralConfig;
 import com.hbm.config.CompatibilityConfig;
+import com.hbm.config.GeneralConfig;
 import com.hbm.entity.logic.IChunkLoader;
-import com.hbm.entity.mob.EntityCyberCrab;
-import com.hbm.entity.mob.EntityDuck;
-import com.hbm.entity.mob.EntityNuclearCreeper;
-import com.hbm.entity.mob.EntityQuackos;
-import com.hbm.entity.mob.EntityTaintedCreeper;
-import com.hbm.entity.mob.EntityRADBeast;
+import com.hbm.entity.mob.*;
 import com.hbm.entity.projectile.EntityBurningFOEQ;
 import com.hbm.entity.projectile.EntityMeteor;
 import com.hbm.forgefluid.FFPipeNetwork;
-import com.hbm.handler.ArmorModHandler;
-import com.hbm.handler.ArmorUtil;
-import com.hbm.handler.BossSpawnHandler;
-import com.hbm.handler.EntityEffectHandler;
-import com.hbm.handler.JetpackHandler;
-import com.hbm.handler.MissileStruct;
-import com.hbm.handler.RadiationWorldHandler;
-import com.hbm.handler.WeightedRandomChestContentFrom1710;
+import com.hbm.handler.*;
 import com.hbm.handler.HbmKeybinds.EnumKeybind;
 import com.hbm.interfaces.IBomb;
 import com.hbm.inventory.AssemblerRecipes;
@@ -54,12 +29,7 @@ import com.hbm.lib.ForgeDirection;
 import com.hbm.lib.HBMSoundHandler;
 import com.hbm.lib.Library;
 import com.hbm.lib.ModDamageSource;
-import com.hbm.packet.AssemblerRecipeSyncPacket;
-import com.hbm.packet.AuxParticlePacketNT;
-import com.hbm.packet.KeybindPacket;
-import com.hbm.packet.PacketDispatcher;
-import com.hbm.packet.PlayerInformPacket;
-import com.hbm.packet.SurveyPacket;
+import com.hbm.packet.*;
 import com.hbm.particle.bullet_hit.EntityHitDataHandler;
 import com.hbm.render.amlfrom1710.Vec3;
 import com.hbm.saveddata.AuxSavedData;
@@ -68,7 +38,6 @@ import com.hbm.tileentity.machine.rbmk.RBMKDials;
 import com.hbm.util.EnchantmentUtil;
 import com.hbm.util.EntityDamageUtil;
 import com.hbm.world.generator.TimedGenerator;
-
 import net.minecraft.block.Block;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -76,13 +45,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.monster.EntityCaveSpider;
-import net.minecraft.entity.monster.EntityCreeper;
-import net.minecraft.entity.monster.EntitySkeleton;
-import net.minecraft.entity.monster.EntitySpider;
-import net.minecraft.entity.monster.EntityZombie;
-import net.minecraft.entity.monster.EntityBlaze;
-import net.minecraft.entity.monster.IMob;
+import net.minecraft.entity.monster.*;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityCow;
 import net.minecraft.entity.passive.EntityMooshroom;
@@ -101,22 +64,11 @@ import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.tileentity.TileEntitySign;
-import net.minecraft.util.EntityDamageSource;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.EnumParticleTypes;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvent;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
-import net.minecraft.world.storage.loot.LootContext;
-import net.minecraft.world.storage.loot.LootEntry;
-import net.minecraft.world.storage.loot.LootEntryItem;
-import net.minecraft.world.storage.loot.LootPool;
-import net.minecraft.world.storage.loot.LootTableList;
-import net.minecraft.world.storage.loot.RandomValueRange;
+import net.minecraft.world.storage.loot.*;
 import net.minecraft.world.storage.loot.conditions.LootCondition;
 import net.minecraft.world.storage.loot.conditions.RandomChanceWithLooting;
 import net.minecraft.world.storage.loot.functions.LootFunction;
@@ -125,16 +77,11 @@ import net.minecraftforge.event.AnvilUpdateEvent;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.LootTableLoadEvent;
 import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.event.ServerChatEvent;
 import net.minecraftforge.event.entity.EntityEvent.EnteringChunk;
 import net.minecraftforge.event.entity.item.ItemTossEvent;
-import net.minecraftforge.event.entity.living.LivingAttackEvent;
-import net.minecraftforge.event.entity.living.LivingDeathEvent;
+import net.minecraftforge.event.entity.living.*;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingJumpEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
-import net.minecraftforge.event.entity.living.LivingFallEvent;
-import net.minecraftforge.event.entity.living.LivingHurtEvent;
-import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import net.minecraftforge.event.entity.player.PlayerFlyableFallEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.BlockEvent;
@@ -151,6 +98,13 @@ import net.minecraftforge.fml.common.gameevent.TickEvent.WorldTickEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import net.minecraftforge.registries.DataSerializerEntry;
+import org.apache.logging.log4j.Level;
+
+import java.lang.reflect.Field;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.*;
+import java.util.Map.Entry;
 
 public class ModEventHandler {
 
@@ -428,82 +382,7 @@ public class ModEventHandler {
 
 		} catch(NoSuchAlgorithmException e) {
 		}
-
 		return "";
-	}
-
-	@SubscribeEvent
-	public void chatEvent(ServerChatEvent event) {
-
-		EntityPlayerMP player = event.getPlayer();
-		String message = event.getMessage();
-		//boolean conditions for the illiterate, edition 1
-		//bellow you can see the header of an if-block. inside the brackets, there is a boolean statement.
-		//that means nothing other than its value totaling either 'true' or 'false'
-		//examples: 'true' would just mean true
-		//'1 > 3' would equal false
-		//'i < 10' would equal true if 'i' is smaller than 10, if equal or greater, it will result in false
-
-		//let's start from the back:
-
-		//this part means that the message's first character has to equal a '!': -------------------------+
-		//                                                                                                |
-		//this is a logical AND operator: -------------------------------------------------------------+  |
-		//                                                                                             |  |
-		//this is a reference to a field in                                                            |  |
-		//Library.java containing a reference UUID: --------------------------------------+            |  |
-		//                                                                                |            |  |
-		//this will compare said UUID with                                                |            |  |
-		//the string representation of the                                                |            |  |
-		//current player's UUID: ----------+                                              |            |  |
-		//                                 |                                              |            |  |
-		//another AND operator: --------+  |                                              |            |  |
-		//                              |  |                                              |            |  |
-		//this is a reference to a      |  |                                              |            |  |
-		//boolean called                |  |                                              |            |  |
-		//'enableDebugMode' which is    |  |                                              |            |  |
-		//only set once by the mod's    |  |                                              |            |  |
-		//config and is disabled by     |  |                                              |            |  |
-		//default. "debug" is not a     |  |                                              |            |  |
-		//substring of the message, nor |  |                                              |            |  |
-		//something that can be toggled |  |                                              |            |  |
-		//in any other way except for   |  |                                              |            |  |
-		//the config file: |            |  |                                              |            |  |
-		//                 V            V  V                                              V            V  V
-		if(GeneralConfig.enableDebugMode && player.getUniqueID().toString().equals(Library.HbMinecraft) && message.startsWith("!")) {
-
-			String[] msg = message.split(" ");
-
-			String m = msg[0].substring(1, msg[0].length()).toLowerCase();
-
-			if("gv".equals(m)) {
-
-				int id = 0;
-				int size = 1;
-				int meta = 0;
-
-				if(msg.length > 1 && NumberUtils.isCreatable(msg[1])) {
-					id = (int) (double) NumberUtils.createDouble(msg[1]);
-				}
-
-				if(msg.length > 2 && NumberUtils.isCreatable(msg[2])) {
-					size = (int) (double) NumberUtils.createDouble(msg[2]);
-				}
-
-				if(msg.length > 3 && NumberUtils.isCreatable(msg[3])) {
-					meta = (int) (double) NumberUtils.createDouble(msg[3]);
-				}
-
-				Item item = Item.getItemById(id);
-
-				if(item != null && size > 0 && meta >= 0) {
-					player.inventory.addItemStackToInventory(new ItemStack(item, size, meta));
-				}
-			}
-
-			player.inventoryContainer.detectAndSendChanges();
-			event.setCanceled(true);
-		}
 	}
 
 	private int parseOInt(Object o){
@@ -946,27 +825,9 @@ public class ModEventHandler {
 			}
 			/// BETA HEALTH END ///
 		}
-		
 
-		if(player.world.isRemote && event.phase == Phase.START && !player.isInvisible() && !player.isSneaking()) {
-
-			if(player.getUniqueID().toString().equals(Library.HbMinecraft)) {
-
-				int i = player.ticksExisted * 3;
-
-				Vec3 vec = Vec3.createVectorHelper(3, 0, 0);
-				
-				vec.rotateAroundY((float) (i * Math.PI / 180D));
-				for(int k = 0; k < 5; k++) {
-
-					vec.rotateAroundY((float) (1F * Math.PI / 180D));
-					player.world.spawnParticle(EnumParticleTypes.TOWN_AURA, player.posX + vec.xCoord, player.posY + 1 + player.world.rand.nextDouble() * 0.05, player.posZ + vec.zCoord, 0.0, 0.0, 0.0);
-				}
-			}
-		}
-		if(event.phase == Phase.END){
+		if(event.phase == Phase.END)
 			JetpackHandler.postPlayerTick(event.player);
-		}
 	}
 
 	@SubscribeEvent
@@ -974,29 +835,18 @@ public class ModEventHandler {
 		HbmLivingProps.setRadiation(event.getEntityLiving(), 0);
 		if(event.getEntity().world.isRemote)
 			return;
+
 		if(GeneralConfig.enableCataclysm) {
 			EntityBurningFOEQ foeq = new EntityBurningFOEQ(event.getEntity().world);
 			foeq.setPositionAndRotation(event.getEntity().posX, 500, event.getEntity().posZ, 0.0F, 0.0F);
 			event.getEntity().world.spawnEntity(foeq);
 		}
+
 		if(event.getEntityLiving() instanceof EntityPlayer) {
 			if(ArmorUtil.checkArmor((EntityPlayer) event.getEntityLiving(), ModItems.euphemium_helmet, ModItems.euphemium_plate, ModItems.euphemium_legs, ModItems.euphemium_boots)) {
 				event.setCanceled(true);
 				event.getEntityLiving().setHealth(event.getEntityLiving().getMaxHealth());
 			}
-		}
-		if(event.getEntity().getUniqueID().toString().equals(Library.HbMinecraft)) {
-			event.getEntity().dropItem(ModItems.book_of_, 1);
-		}
-
-		if(event.getEntity().getUniqueID().toString().equals(Library.Malpon)) {
-			if(event.getSource() instanceof EntityDamageSource){
-				if(((EntityDamageSource)event.getSource()).getImmediateSource() instanceof EntityLivingBase){
-					EntityLivingBase attacker = (EntityLivingBase) ((EntityDamageSource)event.getSource()).getImmediateSource();
-					HbmLivingProps.incrementRadiation(attacker, 999.999F);
-				}
-			}
-			event.getEntity().dropItem(ModItems.pellet_rtg_balefire, 1);
 		}
 
 		if(event.getEntity() instanceof EntityTaintedCreeper && event.getSource() == ModDamageSource.boxcar) {

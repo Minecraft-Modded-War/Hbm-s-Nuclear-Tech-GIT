@@ -1,17 +1,8 @@
 package com.hbm.inventory;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map.Entry;
-
-import static com.hbm.inventory.OreDictManager.*;
-
 import com.hbm.blocks.ModBlocks;
 import com.hbm.inventory.RecipesCommon.ComparableStack;
 import com.hbm.items.ModItems;
-
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.ingredients.VanillaTypes;
 import mezz.jei.api.recipe.IRecipeWrapper;
@@ -19,6 +10,14 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map.Entry;
+
+import static com.hbm.inventory.OreDictManager.*;
 
 //This time we're doing this right
 //...right?
@@ -88,7 +87,6 @@ public class CrystallizerRecipes {
 	}
 
 	public static ItemStack getOutput(ItemStack stack) {
-
 		if(stack == null || stack.getItem() == null || stack.isEmpty())
 			return null;
 
@@ -111,13 +109,14 @@ public class CrystallizerRecipes {
 	public static List<IRecipeWrapper> getRecipes() {
 		if(jeiRecipes != null)
 			return jeiRecipes;
-		jeiRecipes = new ArrayList<IRecipeWrapper>();
 
+		jeiRecipes = new ArrayList<>();
 		for(Entry<Object, ItemStack> entry : CrystallizerRecipes.recipes.entrySet()) {
 
 			if(entry.getKey() instanceof String) {
 				List<ItemStack> ingredients = OreDictionary.getOres((String)entry.getKey());
 				jeiRecipes.add(new CrystallizerRecipe(ingredients, entry.getValue()));
+
 			} else {
 				jeiRecipes.add(new CrystallizerRecipe(((ComparableStack)entry.getKey()).toStack(), entry.getValue()));
 			}

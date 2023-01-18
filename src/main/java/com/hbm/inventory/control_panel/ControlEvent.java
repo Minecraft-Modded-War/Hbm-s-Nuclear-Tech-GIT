@@ -1,10 +1,10 @@
 package com.hbm.inventory.control_panel;
 
+import net.minecraft.nbt.NBTTagCompound;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
-
-import net.minecraft.nbt.NBTTagCompound;
 
 public class ControlEvent {
 
@@ -91,7 +91,10 @@ public class ControlEvent {
 		register(new ControlEvent("tick").setVar("time", 0));
 		register(new ControlEvent("door_open_state").setVar("state", 0));
 		register(new ControlEvent("door_toggle").setVar("passcode", 0));
-		register(new ControlEvent("turret_set_target").setVar("players", false).setVar("passive", false).setVar("hostile", true).setVar("machines", true));
+		register(new ControlEvent("turret_set_target").setVar("players", false)
+				.setVar("passive", false)
+				.setVar("hostile", true)
+				.setVar("machines", true));
 		register(new ControlEvent("turret_switch").setVar("isOn", true));
 		register(new ControlEvent("lever_toggle").setVar("isOn", false));
 		register(new ControlEvent("spinny_light_power").setVar("isOn", false));

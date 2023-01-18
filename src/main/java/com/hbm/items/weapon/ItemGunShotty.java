@@ -44,15 +44,14 @@ public class ItemGunShotty extends ItemGunBase {
 	public void startActionClient(ItemStack stack, World world, EntityPlayer player, boolean main, EnumHand hand) {
 		if(mainConfig.firingMode == GunConfiguration.FIRE_MANUAL && m1 && tryShoot(stack, world, player, main)){
 			long time = System.currentTimeMillis();
-			float mult = player.getUniqueID().toString().equals(Library.Dr_Nostalgia) ? 10 : 1;
 			NBTTagCompound anim = new NBTTagCompound();
 			anim.setLong("time", time);
 			anim.setInteger("id", 0);
-			anim.setFloat("mult", mult);
+			anim.setFloat("mult", 1);
 			if(stack.getTagCompound() == null)
 				stack.setTagCompound(new NBTTagCompound());
 			stack.getTagCompound().setTag("animation", anim);
-			PacketDispatcher.wrapper.sendToServer(new SetGunAnimPacket(time, 0, mult, player.getHeldItemMainhand() == stack ? EnumHand.MAIN_HAND : EnumHand.OFF_HAND));
+			PacketDispatcher.wrapper.sendToServer(new SetGunAnimPacket(time, 0, 1, player.getHeldItemMainhand() == stack ? EnumHand.MAIN_HAND : EnumHand.OFF_HAND));
 		}
 		super.startActionClient(stack, world, player, main, hand);
 	}
@@ -105,11 +104,6 @@ public class ItemGunShotty extends ItemGunBase {
 			if(toEnt < 16 || Library.isObstructed(world, playerPos.x, playerPos.y, playerPos.z, entPos.x, entPos.y, entPos.z))
 				setHookedEntity(player, stack, null);
 		}
-		
-		if(player.getUniqueID().toString().equals(Library.Dr_Nostalgia) && getDelay(stack) < this.mainConfig.rateOfFire * 0.9){
-			setDelay(stack, 0);
-		}
-		
 	}
 	
 	@Override

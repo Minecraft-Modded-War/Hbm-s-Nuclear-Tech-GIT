@@ -1,14 +1,8 @@
 package com.hbm.inventory;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map.Entry;
-
 import com.hbm.blocks.ModBlocks;
 import com.hbm.inventory.RecipesCommon.ComparableStack;
 import com.hbm.items.ModItems;
-
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.ingredients.VanillaTypes;
 import mezz.jei.api.recipe.IRecipeWrapper;
@@ -19,81 +13,85 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map.Entry;
+
 public class ShredderRecipes {
 
-	public static HashMap<ComparableStack, ItemStack> shredderRecipes = new HashMap<ComparableStack, ItemStack>();
+	public static HashMap<ComparableStack, ItemStack> shredderRecipes = new HashMap<>();
 	public static List<ShredderRecipe> jeiShredderRecipes = null;
 	
 	public static void registerShredder() {
-		
 		String[] names = OreDictionary.getOreNames();
-		
-		for(int i = 0; i < names.length; i++) {
-			
-			String name = names[i];
-			
+
+		for (String name : names) {
+
 			//if the dict contains invalid names, skip
-			if(name == null || name.isEmpty())
+			if (name == null || name.isEmpty())
 				continue;
-			
+
 			List<ItemStack> matches = OreDictionary.getOres(name);
-			
+
 			//if the name isn't assigned to an ore, also skip
-			if(matches == null || matches.isEmpty())
+			if (matches == null || matches.isEmpty())
 				continue;
 
-			if(name.length() > 5 && name.substring(0, 5).equals("ingot")) {
+			if (name.length() > 5 && name.substring(0, 5).equals("ingot")) {
 				ItemStack dust = getDustByName(name.substring(5));
-				
-				if(dust != null && dust.getItem() != ModItems.scrap) {
 
-					for(ItemStack stack : matches) {
+				if (dust.getItem() != ModItems.scrap) {
+
+					for (ItemStack stack : matches) {
 						shredderRecipes.put(new ComparableStack(stack), dust);
 					}
 				}
-			} else if(name.length() > 3 && name.substring(0, 3).equals("ore")) {
+
+			} else if (name.length() > 3 && name.substring(0, 3).equals("ore")) {
 				ItemStack dust = getDustByName(name.substring(3));
-				
-				if(dust != null && dust.getItem() != ModItems.scrap) {
-					
-					dust.setCount(2);;
 
-					for(ItemStack stack : matches) {
+				if (dust.getItem() != ModItems.scrap) {
+
+					dust.setCount(2);
+
+					for (ItemStack stack : matches) {
 						shredderRecipes.put(new ComparableStack(stack), dust);
 					}
 				}
-			} else if(name.length() > 5 && name.substring(0, 5).equals("block")) {
+
+			} else if (name.length() > 5 && name.substring(0, 5).equals("block")) {
 				ItemStack dust = getDustByName(name.substring(5));
-				
-				if(dust != null && dust.getItem() != ModItems.scrap) {
-					
-					dust.setCount(9);;
 
-					for(ItemStack stack : matches) {
+				if (dust.getItem() != ModItems.scrap) {
+
+					dust.setCount(9);
+
+					for (ItemStack stack : matches) {
 						shredderRecipes.put(new ComparableStack(stack), dust);
 					}
 				}
-			} else if(name.length() > 3 && name.substring(0, 3).equals("gem")) {
+			} else if (name.length() > 3 && name.substring(0, 3).equals("gem")) {
 				ItemStack dust = getDustByName(name.substring(3));
-				
-				if(dust != null && dust.getItem() != ModItems.scrap) {
 
-					for(ItemStack stack : matches) {
+				if (dust.getItem() != ModItems.scrap) {
+
+					for (ItemStack stack : matches)
 						shredderRecipes.put(new ComparableStack(stack), dust);
-					}
 				}
-			} else if(name.length() > 3 && name.substring(0, 4).equals("dust")) {
 
-				for(ItemStack stack : matches) {
-					if(stack != null && !stack.isEmpty() && Item.REGISTRY.getNameForObject(stack.getItem()) != null)
+			} else if (name.length() > 3 && name.substring(0, 4).equals("dust")) {
+
+				for (ItemStack stack : matches) {
+					if (stack != null && !stack.isEmpty() && Item.REGISTRY.getNameForObject(stack.getItem()) != null)
 						shredderRecipes.put(new ComparableStack(stack), new ItemStack(ModItems.dust));
 				}
+
 			}
 		}
 	}
 	
 	public static void registerOverrides() {
-
 		ShredderRecipes.setRecipe(ModItems.scrap, new ItemStack(ModItems.dust));
 		ShredderRecipes.setRecipe(ModItems.dust, new ItemStack(ModItems.dust));
 		ShredderRecipes.setRecipe(Blocks.GLOWSTONE, new ItemStack(Items.GLOWSTONE_DUST, 4));
@@ -278,36 +276,31 @@ public class ShredderRecipes {
 	}
 	
 	public static ItemStack getDustByName(String name) {
-		
 		List<ItemStack> matches = OreDictionary.getOres("dust" + name);
-		if(matches != null && !matches.isEmpty())
+		if (matches != null && !matches.isEmpty())
 			return matches.get(0).copy();
 		
 		return new ItemStack(ModItems.scrap);
 	}
 	
 	public static void setRecipe(Item in, ItemStack out) {
-		
 		shredderRecipes.put(new ComparableStack(in), out);
 	}
 	
 	public static void setRecipe(Block in, ItemStack out) {
-		
 		shredderRecipes.put(new ComparableStack(in), out);
 	}
 	
 	public static void setRecipe(ItemStack in, ItemStack out) {
-		
 		shredderRecipes.put(new ComparableStack(in), out);
 	}
 	
 	public static List<ShredderRecipe> getShredderRecipes() {
-		
 		if(jeiShredderRecipes == null){
-			jeiShredderRecipes = new ArrayList<ShredderRecipe>();
-			for(Entry<ComparableStack, ItemStack> e : shredderRecipes.entrySet()){
+			jeiShredderRecipes = new ArrayList<>();
+
+			for(Entry<ComparableStack, ItemStack> e : shredderRecipes.entrySet())
 				jeiShredderRecipes.add(new ShredderRecipe(e.getKey().toStack(), e.getValue()));
-			}
 		}
 		
 		return jeiShredderRecipes;
