@@ -1,10 +1,5 @@
 package com.hbm.inventory;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import static com.hbm.inventory.OreDictManager.*;
-import com.google.common.collect.Lists;
 import com.hbm.blocks.ModBlocks;
 import com.hbm.config.GeneralConfig;
 import com.hbm.forgefluid.ModForgeFluids;
@@ -14,7 +9,6 @@ import com.hbm.items.machine.ItemBattery;
 import com.hbm.items.machine.ItemChemistryTemplate;
 import com.hbm.items.special.ItemCell;
 import com.hbm.items.tool.ItemFluidCanister;
-
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -23,6 +17,11 @@ import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.oredict.OreDictionary;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static com.hbm.inventory.OreDictManager.*;
 
 //TODO: clean this shit up
 @Spaghetti("everything")
@@ -316,13 +315,6 @@ public class MachineRecipes {
 		if (mODE(item, new String[] {STEEL.ingot(), STEEL.dust()}) && mODE(item2, new String[] {TC99.nugget(), "tinyTc99"})
 				|| mODE(item, new String[] {TC99.nugget(), "tinyTc99"}) && mODE(item2, new String[] {STEEL.ingot(), STEEL.dust()})) {
 			return new ItemStack(ModItems.ingot_tcalloy, 1);
-		}
-		
-		if(GeneralConfig.enableBabyMode) {
-			if(mODE(item, new String[] { COAL.gem(), COAL.dust() }) && ItemFluidCanister.isEmptyCanister(item2)
-					|| ItemFluidCanister.isEmptyCanister(item) && mODE(item2, new String[] { COAL.gem(), COAL.dust() })) {
-				return ItemFluidCanister.getFullCanister(ModForgeFluids.oil);
-			}
 		}
 		
 		if (item.getItem() == Item.getItemFromBlock(ModBlocks.block_meteor) && mODE(item2, new String[] {CO.ingot(), CO.dust()})
@@ -668,12 +660,8 @@ public class MachineRecipes {
 			input[0] = new FluidStack(ModForgeFluids.cryogel, 8000);
 			break;
 		case DESH:
-			if(GeneralConfig.enableBabyMode) {
-				input[0] = new FluidStack(ModForgeFluids.lightoil, 200);
-        	} else {
-				input[0] = new FluidStack(ModForgeFluids.mercury, 200);
-				input[1] = new FluidStack(ModForgeFluids.lightoil, 200);
-        	}
+			input[0] = new FluidStack(ModForgeFluids.mercury, 200);
+			input[1] = new FluidStack(ModForgeFluids.lightoil, 200);
 			break;
 		case PEROXIDE:
 			input[0] = new FluidStack(FluidRegistry.WATER, 1000);

@@ -669,10 +669,7 @@ public class MainRegistry {
 		EntityRegistry.registerModEntity(new ResourceLocation(MODID, "entity_mask_man"), EntityMaskMan.class, "entity_mask_man", i++, MainRegistry.instance, 1000, 1, true, 0xAAAAAA, 0xAAAAAA);
 		EntityRegistry.registerModEntity(new ResourceLocation(MODID, "entity_balls_o_tron"), EntityBOTPrimeHead.class, "entity_balls_o_tron", i++, MainRegistry.instance, 1000, 1, true);
 		EntityRegistry.registerModEntity(new ResourceLocation(MODID, "entity_balls_o_tron_seg"), EntityBOTPrimeBody.class, "entity_balls_o_tron_seg", i++, MainRegistry.instance, 1000, 1, true);
-		EntityRegistry.registerModEntity(new ResourceLocation(MODID, "entity_fucc_a_ducc"), EntityDuck.class, "entity_fucc_a_ducc", i++, MainRegistry.instance, 1000, 1, true, 0xd0d0d0, 0xFFBF00);
 		EntityRegistry.registerModEntity(new ResourceLocation(MODID, "entity_vortex_beam"), EntityBeamVortex.class, "entity_vortex_beam", i++, MainRegistry.instance, 1000, 1, true);
-		EntityRegistry.registerModEntity(new ResourceLocation(MODID, "entity_elder_one"), EntityQuackos.class, "entity_elder_one", i++, MainRegistry.instance, 1000, 1, true, 0xd0d0d0, 0xFFBF00);
-		EntityRegistry.registerModEntity(new ResourceLocation(MODID, "entity_ntm_fbi"), EntityFBI.class, "entity_ntm_fbi", i++, MainRegistry.instance, 1000, 1, true, 0x008000, 0x404040);
 		EntityRegistry.registerModEntity(new ResourceLocation(MODID, "entity_ntm_radiation_blaze"), EntityRADBeast.class, "entity_ntm_radiation_blaze", i++, MainRegistry.instance, 1000, 1, true, 0x303030, 0x008000);
 		EntityRegistry.registerModEntity(new ResourceLocation(MODID, "entity_firework_ball"), EntityFireworks.class, "entity_firework_ball", i++, MainRegistry.instance, 1000, 1, true);
 		
@@ -708,7 +705,6 @@ public class MainRegistry {
 		PotionConfig.loadFromConfig(config);
 		ToolConfig.loadFromConfig(config);
 		WeaponConfig.loadFromConfig(config);
-		MobConfig.loadFromConfig(config);
 		config.save();
 		reloadCompatConfig();
 		WorldConfig.loadFromCompatibilityConfig();

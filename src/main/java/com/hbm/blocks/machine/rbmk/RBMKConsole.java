@@ -2,7 +2,6 @@ package com.hbm.blocks.machine.rbmk;
 
 import com.hbm.blocks.BlockDummyable;
 import com.hbm.blocks.ModBlocks;
-import com.hbm.handler.BossSpawnHandler;
 import com.hbm.handler.MultiblockHandlerXR;
 import com.hbm.items.ModItems;
 import com.hbm.items.tool.ItemGuideBook.BookType;
@@ -10,7 +9,6 @@ import com.hbm.lib.ForgeDirection;
 import com.hbm.main.MainRegistry;
 import com.hbm.render.amlfrom1710.Vec3;
 import com.hbm.tileentity.machine.rbmk.TileEntityRBMKConsole;
-
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
@@ -71,9 +69,6 @@ public class RBMKConsole extends BlockDummyable {
 	@Override
 	public boolean onBlockActivated(World world, BlockPos bpos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ){
 		if(!player.isSneaking()) {
-			
-			BossSpawnHandler.markFBI(player);
-			
 			int[] pos = this.findCore(world, bpos.getX(), bpos.getY(), bpos.getZ());
 
 			if(pos == null)
@@ -108,11 +103,9 @@ public class RBMKConsole extends BlockDummyable {
 				if(world.isRemote)
 					FMLNetworkHandler.openGui(player, MainRegistry.instance, ModBlocks.guiID_rbmk_console, world, pos[0], pos[1], pos[2]);
 			}
-			return true;
-			
-		} else {
-			return true;
+
 		}
+		return true;
 	}
 
 	@Override

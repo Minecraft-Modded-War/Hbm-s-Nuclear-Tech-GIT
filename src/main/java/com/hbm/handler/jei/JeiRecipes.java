@@ -1,41 +1,26 @@
 package com.hbm.handler.jei;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-
 import com.hbm.blocks.ModBlocks;
 import com.hbm.config.GeneralConfig;
 import com.hbm.forgefluid.ModForgeFluids;
-import com.hbm.inventory.AnvilRecipes;
+import com.hbm.inventory.*;
 import com.hbm.inventory.AnvilRecipes.AnvilConstructionRecipe;
 import com.hbm.inventory.AnvilRecipes.AnvilOutput;
 import com.hbm.inventory.AnvilRecipes.OverlayType;
-import com.hbm.inventory.AnvilSmithingRecipe;
-import com.hbm.inventory.AssemblerRecipes;
-import com.hbm.inventory.BreederRecipes;
 import com.hbm.inventory.BreederRecipes.BreederRecipe;
-import com.hbm.inventory.CyclotronRecipes;
-import com.hbm.inventory.FusionRecipes;
-import com.hbm.inventory.MachineRecipes;
 import com.hbm.inventory.MachineRecipes.GasCentOutput;
-import com.hbm.inventory.MagicRecipes;
 import com.hbm.inventory.MagicRecipes.MagicRecipe;
 import com.hbm.inventory.RecipesCommon.AStack;
 import com.hbm.items.ModItems;
 import com.hbm.items.machine.ItemAssemblyTemplate;
 import com.hbm.items.machine.ItemChemistryTemplate;
-import com.hbm.items.machine.ItemFluidIcon;
 import com.hbm.items.machine.ItemFELCrystal.EnumWavelengths;
+import com.hbm.items.machine.ItemFluidIcon;
 import com.hbm.items.tool.ItemFluidCanister;
 import com.hbm.lib.Library;
 import com.hbm.main.MainRegistry;
-import com.hbm.util.WeightedRandomObject;
 import com.hbm.util.I18nUtil;
-
+import com.hbm.util.WeightedRandomObject;
 import mezz.jei.api.gui.IDrawableStatic;
 import mezz.jei.api.ingredients.IIngredients;
 import mezz.jei.api.ingredients.VanillaTypes;
@@ -47,10 +32,13 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
-import net.minecraft.util.text.TextFormatting;
+
+import java.util.*;
+import java.util.Map.Entry;
 
 public class JeiRecipes {
 
@@ -697,18 +685,13 @@ public class JeiRecipes {
 					MachineRecipes.getFurnaceOutput(new ItemStack(ModItems.ingot_steel), new ItemStack(ModItems.ingot_cobalt)).copy());
 			recipes.put(new ItemStack[] { new ItemStack(ModItems.ingot_saturnite), new ItemStack(ModItems.powder_meteorite) },
 					MachineRecipes.getFurnaceOutput(new ItemStack(ModItems.ingot_saturnite), new ItemStack(ModItems.powder_meteorite)).copy());
-			if(GeneralConfig.enableBabyMode) {
-				recipes.put(new ItemStack[] { new ItemStack(ModItems.canister_generic), new ItemStack(Items.COAL) },
-						MachineRecipes.getFurnaceOutput(new ItemStack(ModItems.canister_generic), new ItemStack(Items.COAL)).copy());
-			}
 		} catch (Exception x) {
 			MainRegistry.logger.error("Unable to register alloy recipes for NEI!");
 			x.printStackTrace();
 		}
 		for(Map.Entry<ItemStack[], ItemStack> entry : recipes.entrySet()){
-			List<ItemStack> inputs = new ArrayList<ItemStack>(2);
-			for(ItemStack stack : entry.getKey())
-				inputs.add(stack);
+			List<ItemStack> inputs = new ArrayList<>(2);
+			Collections.addAll(inputs, entry.getKey());
 			alloyFurnaceRecipes.add(new AlloyFurnaceRecipe(inputs, entry.getValue()));
 		}
 		return alloyFurnaceRecipes;
@@ -733,7 +716,7 @@ public class JeiRecipes {
 	public static List<BoilerRecipe> getBoilerRecipes() {
 		if(boilerRecipes != null)
 			return boilerRecipes;
-		boilerRecipes = new ArrayList<BoilerRecipe>();
+		boilerRecipes = new ArrayList<>();
 		
 		for(Fluid f : FluidRegistry.getRegisteredFluids().values()){
 			Object[] outs = MachineRecipes.getBoilerOutput(f);
@@ -748,7 +731,7 @@ public class JeiRecipes {
 	public static List<ItemStack> getBatteries() {
 		if(batteries != null)
 			return batteries;
-		batteries = new ArrayList<ItemStack>();
+		batteries = new ArrayList<>();
 		batteries.add(new ItemStack(ModItems.battery_potato));
 		batteries.add(new ItemStack(ModItems.battery_potatos));
 		batteries.add(new ItemStack(ModItems.battery_su));
@@ -784,7 +767,7 @@ public class JeiRecipes {
 	public static List<CMBFurnaceRecipe> getCMBRecipes() {
 		if(cmbRecipes != null)
 			return cmbRecipes;
-		cmbRecipes = new ArrayList<CMBFurnaceRecipe>();
+		cmbRecipes = new ArrayList<>();
 		
 		cmbRecipes.add(new CMBFurnaceRecipe(Arrays.asList(new ItemStack(ModItems.ingot_advanced_alloy), new ItemStack(ModItems.ingot_magnetized_tungsten)), new ItemStack(ModItems.ingot_combine_steel, 4)));
 		cmbRecipes.add(new CMBFurnaceRecipe(Arrays.asList(new ItemStack(ModItems.powder_advanced_alloy), new ItemStack(ModItems.powder_magnetized_tungsten)), new ItemStack(ModItems.ingot_combine_steel, 4)));
@@ -795,7 +778,7 @@ public class JeiRecipes {
 	public static List<GasCentRecipe> getGasCentrifugeRecipes() {
 		if(gasCentRecipes != null)
 			return gasCentRecipes;
-		gasCentRecipes = new ArrayList<GasCentRecipe>();
+		gasCentRecipes = new ArrayList<>();
 		
 		for(Fluid f : FluidRegistry.getRegisteredFluids().values()){
 			List<GasCentOutput> outputs = MachineRecipes.getGasCentOutput(f);
@@ -809,7 +792,7 @@ public class JeiRecipes {
 				
 				ItemStack input = ItemFluidIcon.getStackWithQuantity(f, MachineRecipes.getFluidConsumedGasCent(f) * totalWeight);
 				
-				List<ItemStack> result = new ArrayList<ItemStack>(4);
+				List<ItemStack> result = new ArrayList<>(4);
 				
 				for(GasCentOutput o : outputs){
 					ItemStack stack = o.output.copy();
@@ -837,7 +820,7 @@ public class JeiRecipes {
 	public static List<ReactorRecipe> getReactorRecipes(){
 		if(reactorRecipes != null)
 			return reactorRecipes;
-		reactorRecipes = new ArrayList<ReactorRecipe>();
+		reactorRecipes = new ArrayList<>();
 		
 		for(Map.Entry<ItemStack, BreederRecipe> entry : BreederRecipes.getAllRecipes().entrySet()){
 			reactorRecipes.add(new ReactorRecipe(entry.getKey(), entry.getValue().output, entry.getValue().heat));
@@ -856,7 +839,7 @@ public class JeiRecipes {
 	public static List<RefineryRecipe> getRefineryRecipe() {
 		if(refineryRecipes != null)
 			return refineryRecipes;
-		refineryRecipes = new ArrayList<RefineryRecipe>(1);
+		refineryRecipes = new ArrayList<>(1);
         
         refineryRecipes.add(new RefineryRecipe(ItemFluidIcon.getStackWithQuantity(ModForgeFluids.hotoil, 1000), 
         		Arrays.asList(
@@ -874,7 +857,7 @@ public class JeiRecipes {
 		if(blades != null)
 			return blades;
 		
-		blades = new ArrayList<ItemStack>();
+		blades = new ArrayList<>();
 		blades.add(new ItemStack(ModItems.blades_advanced_alloy));
 		blades.add(new ItemStack(ModItems.blades_aluminum));
 		blades.add(new ItemStack(ModItems.blades_combine_steel));
@@ -889,7 +872,7 @@ public class JeiRecipes {
 	public static List<FluidRecipe> getFluidEquivalences(){
 		if(fluidEquivalences != null)
 			return fluidEquivalences;
-		fluidEquivalences = new ArrayList<FluidRecipe>();
+		fluidEquivalences = new ArrayList<>();
 		
 		for(Fluid f : FluidRegistry.getRegisteredFluids().values()){
 			fluidEquivalences.add(new FluidRecipe(new FluidStack(f, 1000), ItemFluidIcon.getStack(f)));

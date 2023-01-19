@@ -410,23 +410,12 @@ public class ModEventHandler {
 									event.world.spawnEntity(creep);
 							entity.setDead();
 							continue;
-						} else if(entity.getClass().equals(EntityDuck.class) && eRad >= 200) {
-
-			        		EntityQuackos quacc = new EntityQuackos(event.world);
-			        		quacc.setLocationAndAngles(entity.posX, entity.posY, entity.posZ, entity.rotationYaw, entity.rotationPitch);
-
-			        		if(!entity.isDead && !event.world.isRemote)
-				        		event.world.spawnEntity(quacc);
-
-			        		entity.setDead();
-							continue;
 						}
 
 						if(eRad < 200 || entity instanceof EntityNuclearCreeper ||
 								entity instanceof EntityMooshroom ||
 								entity instanceof EntityZombie ||
-								entity instanceof EntitySkeleton ||
-								entity instanceof EntityQuackos) {
+								entity instanceof EntitySkeleton) {
 							if (eRad > 2500000)
 								entRad.setRads(2500000);
 						}
@@ -492,7 +481,6 @@ public class ModEventHandler {
 
 		if(event.phase == Phase.START) {
 			RadiationWorldHandler.handleWorldDestruction(event.world);
-			BossSpawnHandler.rollTheDice(event.world);
 			TimedGenerator.automaton(event.world, 100);
 		}
 	}

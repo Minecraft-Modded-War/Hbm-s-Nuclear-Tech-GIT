@@ -1,24 +1,14 @@
 package com.hbm.tileentity.machine;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import com.hbm.blocks.ModBlocks;
-import com.hbm.config.MobConfig;
 import com.hbm.explosion.ExplosionNukeGeneric;
 import com.hbm.forgefluid.FFUtils;
 import com.hbm.forgefluid.ModForgeFluids;
 import com.hbm.interfaces.ITankPacketAcceptor;
 import com.hbm.items.ModItems;
 import com.hbm.items.machine.ItemFuelRod;
-import com.hbm.packet.AuxGaugePacket;
-import com.hbm.packet.FluidTankPacket;
-import com.hbm.packet.FluidTypePacketTest;
-import com.hbm.packet.LargeReactorPacket;
-import com.hbm.packet.PacketDispatcher;
+import com.hbm.packet.*;
 import com.hbm.saveddata.RadiationSavedData;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.entity.player.EntityPlayer;
@@ -28,16 +18,11 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
-import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockPos.MutableBlockPos;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
-import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidRegistry;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.fluids.FluidTank;
-import net.minecraftforge.fluids.FluidUtil;
+import net.minecraftforge.fluids.*;
 import net.minecraftforge.fluids.capability.CapabilityFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidTankProperties;
@@ -46,6 +31,10 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.IItemHandlerModifiable;
 import net.minecraftforge.items.ItemStackHandler;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class TileEntityMachineReactorLarge extends TileEntity implements ITickable, IFluidHandler, ITankPacketAcceptor {
 
@@ -827,13 +816,6 @@ public class TileEntityMachineReactorLarge extends TileEntity implements ITickab
 		}
 		
 		world.setBlockState(pos, ModBlocks.sellafield_core.getDefaultState());
-		if(MobConfig.enableElementals) {
-			List<EntityPlayer> players = world.getEntitiesWithinAABB(EntityPlayer.class, new AxisAlignedBB(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5).grow(100, 100, 100));
-
-			for(EntityPlayer player : players) {
-				player.getEntityData().getCompoundTag(EntityPlayer.PERSISTED_NBT_TAG).setBoolean("radMark", true);
-			}
-		}
 	}
 	
 	private void randomizeRadBlock(int x, int y, int z) {

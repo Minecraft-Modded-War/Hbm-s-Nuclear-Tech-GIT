@@ -1,20 +1,18 @@
 package com.hbm.util;
 
-import com.hbm.capability.HbmLivingCapability.EntityHbmProps;
 import com.hbm.capability.HbmLivingCapability;
+import com.hbm.capability.HbmLivingCapability.EntityHbmProps;
 import com.hbm.capability.HbmLivingProps;
 import com.hbm.config.CompatibilityConfig;
+import com.hbm.core.HbmPotion;
 import com.hbm.entity.mob.EntityNuclearCreeper;
-import com.hbm.entity.mob.EntityQuackos;
 import com.hbm.handler.ArmorUtil;
 import com.hbm.handler.HazmatRegistry;
 import com.hbm.interfaces.IRadiationImmune;
 import com.hbm.lib.Library;
 import com.hbm.lib.ModDamageSource;
-import com.hbm.util.ArmorRegistry.HazardClass;
-import com.hbm.core.HbmPotion;
 import com.hbm.saveddata.RadiationSavedData;
-
+import com.hbm.util.ArmorRegistry.HazardClass;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLivingBase;
@@ -277,7 +275,6 @@ public class ContaminationUtil {
 				e instanceof EntityMooshroom ||
 				e instanceof EntityZombie ||
 				e instanceof EntitySkeleton ||
-				e instanceof EntityQuackos ||
 				e instanceof EntityOcelot ||
 				e instanceof IRadiationImmune || checkConfigEntityImmunity(e);
 	}
@@ -308,7 +305,7 @@ public class ContaminationUtil {
 			if(!(e instanceof EntityLivingBase))
 				return;
 
-			if(e instanceof EntityQuackos || e instanceof EntityOcelot)
+			if(e instanceof EntityOcelot)
 				return;
 			
 			if(e instanceof EntityPlayer && ((EntityPlayer)e).capabilities.isCreativeMode)
