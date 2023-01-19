@@ -1,6 +1,5 @@
 package com.hbm.main;
 
-import com.google.common.collect.Multimap;
 import com.hbm.blocks.ModBlocks;
 import com.hbm.capability.HbmCapability;
 import com.hbm.capability.HbmCapability.IHBMData;
@@ -17,7 +16,6 @@ import com.hbm.handler.*;
 import com.hbm.handler.HbmKeybinds.EnumKeybind;
 import com.hbm.interfaces.IBomb;
 import com.hbm.inventory.AssemblerRecipes;
-import com.hbm.items.IEquipReceiver;
 import com.hbm.items.ModItems;
 import com.hbm.items.armor.ItemArmorMod;
 import com.hbm.items.armor.ItemModRevive;
@@ -41,7 +39,6 @@ import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.monster.*;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityCow;
@@ -59,7 +56,10 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.*;
+import net.minecraft.util.EntityDamageSource;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.storage.loot.*;
@@ -91,11 +91,9 @@ import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
 import net.minecraftforge.fml.common.gameevent.TickEvent.ServerTickEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.WorldTickEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
-import net.minecraftforge.fml.relauncher.ReflectionHelper;
 import net.minecraftforge.registries.DataSerializerEntry;
 import org.apache.logging.log4j.Level;
 
-import java.lang.reflect.Field;
 import java.util.*;
 import java.util.Map.Entry;
 
@@ -731,74 +729,9 @@ public class ModEventHandler {
 			}
 		}
 	}
-	
-	public static Field r_handInventory = null;
-	public static Field r_armorArray = null;
-	
-	@SuppressWarnings({ "unchecked", "deprecation" })
+
 	@SubscribeEvent
 	public void onLivingUpdate(LivingUpdateEvent event){
-		if(r_handInventory == null){
-			r_handInventory = ReflectionHelper.findField(EntityLivingBase.class, "handInventory", "field_184630_bs");
-			r_armorArray = ReflectionHelper.findField(EntityLivingBase.class, "armorArray", "field_184631_bt");
-		}
-		NonNullList<ItemStack> handInventory = null;
-		NonNullList<ItemStack> armorArray = null;
-		try {
-			handInventory = (NonNullList<ItemStack>) r_handInventory.get(event.getEntityLiving());
-			armorArray = (NonNullList<ItemStack>) r_armorArray.get(event.getEntityLiving());
-			
-			if(event.getEntityLiving() instanceof EntityPlayer && event.getEntityLiving().getHeldItemMainhand().getItem() instanceof IEquipReceiver && !ItemStack.areItemsEqual(handInventory.get(0), event.getEntityLiving().getHeldItemMainhand())) {
-				((IEquipReceiver)event.getEntityLiving().getHeldItemMainhand().getItem()).onEquip((EntityPlayer) event.getEntityLiving(), EnumHand.MAIN_HAND);
-			}
-			if(event.getEntityLiving() instanceof EntityPlayer && event.getEntityLiving().getHeldItemOffhand().getItem() instanceof IEquipReceiver && !ItemStack.areItemsEqual(handInventory.get(0), event.getEntityLiving().getHeldItemOffhand())) {
-				((IEquipReceiver)event.getEntityLiving().getHeldItemOffhand().getItem()).onEquip((EntityPlayer) event.getEntityLiving(), EnumHand.OFF_HAND);
-			}
-		} catch(Exception ignored) { }
-		
-		for(int i = 2; i < 6; i++) {
-			
-			ItemStack prev = armorArray != null ? armorArray.get(i-2) : null;
-			ItemStack armor = event.getEntityLiving().getItemStackFromSlot(EntityEquipmentSlot.values()[i]);
-			
-			boolean reapply = armorArray != null && !ItemStack.areItemStacksEqual(prev, armor);
-			
-			if(reapply) {
-				
-				if(prev != null && ArmorModHandler.hasMods(prev)) {
-					
-					for(ItemStack mod : ArmorModHandler.pryMods(prev)) {
-						
-						if(mod != null && mod.getItem() instanceof ItemArmorMod) {
-							
-							Multimap<String, AttributeModifier> map = ((ItemArmorMod)mod.getItem()).getModifiers(EntityEquipmentSlot.values()[i], prev);
-							
-							if(map != null)
-								event.getEntityLiving().getAttributeMap().removeAttributeModifiers(map);
-						}
-					}
-				}
-			}
-			
-			if(armor != null && ArmorModHandler.hasMods(armor)) {
-				
-				for(ItemStack mod : ArmorModHandler.pryMods(armor)) {
-					
-					if(mod != null && mod.getItem() instanceof ItemArmorMod) {
-						((ItemArmorMod)mod.getItem()).modUpdate(event.getEntityLiving(), armor);
-						
-						if(reapply) {
-							
-							Multimap<String, AttributeModifier> map = ((ItemArmorMod)mod.getItem()).getModifiers(EntityEquipmentSlot.values()[i], armor);
-							
-							if(map != null)
-								event.getEntityLiving().getAttributeMap().applyAttributeModifiers(map);
-						}
-					}
-				}
-			}
-		}
-		
 		EntityEffectHandler.onUpdate(event.getEntityLiving());
 	}
 
@@ -838,7 +771,6 @@ public class ModEventHandler {
 			PacketDispatcher.sendTo(new AssemblerRecipeSyncPacket(AssemblerRecipes.recipeList, AssemblerRecipes.hidden), playerMP);
 			JetpackHandler.playerLoggedIn(e);
 			IHBMData props = HbmCapability.getData(e.player);
-
 			PacketDispatcher.sendTo(new KeybindPacket(EnumKeybind.TOGGLE_HEAD, props.getEnableHUD()), playerMP);
 			PacketDispatcher.sendTo(new KeybindPacket(EnumKeybind.TOGGLE_JETPACK, props.getEnableBackpack()), playerMP);
 		}
@@ -862,10 +794,8 @@ public class ModEventHandler {
 			event.setOutput(event.getLeft().copy());
 
 			Map<Enchantment, Integer> mapright = EnchantmentHelper.getEnchantments(event.getRight());
-			Iterator<Entry<Enchantment, Integer>> itr = mapright.entrySet().iterator();
 
-			while (itr.hasNext()) {
-				Entry<Enchantment, Integer> entry = itr.next();
+			for (Entry<Enchantment, Integer> entry : mapright.entrySet()) {
 				Enchantment e = entry.getKey();
 				int j = entry.getValue();
 

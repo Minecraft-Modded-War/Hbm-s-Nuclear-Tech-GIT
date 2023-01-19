@@ -1,4 +1,4 @@
-package com.hbm.potion;
+package com.hbm.core;
 
 import com.hbm.blocks.ModBlocks;
 import com.hbm.blocks.bomb.BlockTaint;
@@ -59,27 +59,6 @@ public class HbmPotion extends Potion {
 	}
 
 	public static HbmPotion registerPotion(boolean isBad, int color, String name, int x, int y) {
-
-	/*	if (id >= Potion.potionTypes.length) {
-
-			Potion[] newArray = new Potion[Math.max(256, id)];
-			System.arraycopy(Potion.potionTypes, 0, newArray, 0, Potion.potionTypes.length);
-			
-			Field field = ReflectionHelper.findField(Potion.class, new String[] { "field_76425_a", "potionTypes" });
-			field.setAccessible(true);
-			
-			try {
-				
-				Field modfield = Field.class.getDeclaredField("modifiers");
-				modfield.setAccessible(true);
-				modfield.setInt(field, field.getModifiers() & 0xFFFFFFEF);
-				field.set(null, newArray);
-				
-			} catch (Exception e) {
-				
-			}
-		}*/
-		
 		HbmPotion effect = new HbmPotion(isBad, color, name, x, y);
 		ForgeRegistries.POTIONS.register(effect);
 		

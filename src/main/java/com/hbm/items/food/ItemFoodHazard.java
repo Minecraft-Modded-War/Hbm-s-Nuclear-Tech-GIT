@@ -9,7 +9,7 @@ import com.hbm.config.BombConfig;
 import com.hbm.entity.logic.EntityNukeExplosionMK4;
 import com.hbm.explosion.ExplosionParticle;
 import com.hbm.lib.ModDamageSource;
-import com.hbm.potion.HbmPotion;
+import com.hbm.core.HbmPotion;
 
 import net.minecraft.init.MobEffects;
 import net.minecraft.potion.PotionEffect;

@@ -7,7 +7,7 @@ import com.hbm.entity.effect.EntityNukeCloudSmall;
 import com.hbm.entity.logic.EntityBalefire;
 import com.hbm.interfaces.IItemHazard;
 import com.hbm.modules.ItemHazardModule;
-import com.hbm.potion.HbmPotion;
+import com.hbm.core.HbmPotion;
 
 import net.minecraft.init.MobEffects;
 import net.minecraft.potion.PotionEffect;

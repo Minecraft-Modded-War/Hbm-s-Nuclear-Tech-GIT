@@ -3,7 +3,7 @@ package com.hbm.entity.projectile;
 import java.util.List;
 
 import com.hbm.items.ModItems;
-import com.hbm.potion.HbmPotion;
+import com.hbm.core.HbmPotion;
 import com.hbm.render.amlfrom1710.Vec3;
 import com.hbm.tileentity.machine.rbmk.RBMKDials;
 

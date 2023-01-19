@@ -3,7 +3,7 @@ package com.hbm.blocks.bomb;
 import java.util.Random;
 
 import com.hbm.blocks.ModBlocks;
-import com.hbm.potion.HbmPotion;
+import com.hbm.core.HbmPotion;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFire;

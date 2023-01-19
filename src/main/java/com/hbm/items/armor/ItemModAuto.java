@@ -5,7 +5,7 @@ import java.util.List;
 import com.hbm.capability.HbmLivingProps;
 import com.hbm.handler.ArmorModHandler;
 import com.hbm.lib.HBMSoundHandler;
-import com.hbm.potion.HbmPotion;
+import com.hbm.core.HbmPotion;
 
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;

@@ -1,7 +1,7 @@
 package com.hbm.config;
 
 import com.hbm.items.ModItems;
-import com.hbm.potion.HbmPotion;
+import com.hbm.core.HbmPotion;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.Item;

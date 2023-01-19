@@ -12,7 +12,7 @@ import com.hbm.interfaces.IRadiationImmune;
 import com.hbm.lib.Library;
 import com.hbm.lib.ModDamageSource;
 import com.hbm.util.ArmorRegistry.HazardClass;
-import com.hbm.potion.HbmPotion;
+import com.hbm.core.HbmPotion;
 import com.hbm.saveddata.RadiationSavedData;
 
 import net.minecraft.entity.Entity;

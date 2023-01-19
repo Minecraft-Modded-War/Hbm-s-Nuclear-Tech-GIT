@@ -1,9 +1,5 @@
 package com.hbm.world;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-
 import com.hbm.blocks.ModBlocks;
 import com.hbm.blocks.bomb.BlockTaint;
 import com.hbm.config.BombConfig;
@@ -12,19 +8,20 @@ import com.hbm.entity.logic.EntityNukeExplosionMK3;
 import com.hbm.explosion.ExplosionLarge;
 import com.hbm.explosion.ExplosionParticle;
 import com.hbm.explosion.ExplosionParticleB;
-import com.hbm.items.ModItems;
 import com.hbm.lib.ModDamageSource;
 import com.hbm.main.MainRegistry;
-
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockPos.MutableBlockPos;
 import net.minecraft.world.World;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 public class Meteorite {
 	
@@ -148,10 +145,6 @@ public class Meteorite {
 			case 12:
 				//Star Blaster
 				world.createExplosion(null, x + 0.5, y + 0.5, z + 0.5, 10F, true);
-				ItemStack stack = new ItemStack(ModItems.gun_b92);
-				stack.setStackDisplayName("§9Star Blaster§r");
-				EntityItem blaster = new EntityItem(world, x + 0.5, y + 0.5, z + 0.5, stack);
-				world.spawnEntity(blaster);
 				return;
 			}
 		

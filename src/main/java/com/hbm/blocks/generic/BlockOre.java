@@ -1,14 +1,10 @@
 package com.hbm.blocks.generic;
 
-import java.util.List;
-import java.util.Random;
-
 import com.hbm.blocks.ModBlocks;
+import com.hbm.core.HbmPotion;
 import com.hbm.items.ModItems;
 import com.hbm.main.MainRegistry;
-import com.hbm.potion.HbmPotion;
 import com.hbm.saveddata.RadiationSavedData;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -29,6 +25,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.List;
+import java.util.Random;
 
 public class BlockOre extends Block {
 	
@@ -148,7 +147,6 @@ public class BlockOre extends Block {
 			case 32: return ModItems.gun_mirv_ammo;
 			case 33: return ModItems.gun_defabricator_ammo;
 			case 34: return ModItems.gun_osipr_ammo2;
-			case 35: return ModItems.glitch;
 			case 36: return ModItems.nugget_radspice;
 			}
 		}

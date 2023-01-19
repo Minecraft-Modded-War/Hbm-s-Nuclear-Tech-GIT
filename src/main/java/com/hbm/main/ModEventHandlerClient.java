@@ -8,7 +8,6 @@ import com.hbm.capability.HbmLivingCapability.EntityHbmPropsProvider;
 import com.hbm.config.GeneralConfig;
 import com.hbm.entity.mob.EntityHunterChopper;
 import com.hbm.entity.projectile.EntityChopperMine;
-import com.hbm.entity.siege.SiegeTier;
 import com.hbm.flashlight.Flashlight;
 import com.hbm.forgefluid.SpecialContainerFillLists.EnumCanister;
 import com.hbm.forgefluid.SpecialContainerFillLists.EnumCell;
@@ -30,7 +29,6 @@ import com.hbm.items.machine.ItemChemistryTemplate.EnumChemistryTemplate;
 import com.hbm.items.special.ItemHot;
 import com.hbm.items.special.ItemWasteLong;
 import com.hbm.items.special.ItemWasteShort;
-import com.hbm.items.special.weapon.GunB92;
 import com.hbm.items.tool.ItemFluidCanister;
 import com.hbm.items.tool.ItemGuideBook;
 import com.hbm.items.weapon.*;
@@ -215,7 +213,6 @@ public class ModEventHandlerClient {
 		if(item == Items.AIR)
 			return;
 
-		//Drillgon200: I hate myself for making this
 		if(item == ModItems.chemistry_icon) {
 			for(int i = 0; i < EnumChemistryTemplate.values().length; i++) {
 				ModelLoader.setCustomModelResourceLocation(item, i, new ModelResourceLocation(MainRegistry.MODID + ":chem_icon_" + EnumChemistryTemplate.getEnum(i).getName().toLowerCase(), "inventory"));
@@ -233,8 +230,6 @@ public class ModEventHandlerClient {
 			ModelLoader.setCustomModelResourceLocation(item, 1, new ModelResourceLocation(MainRegistry.MODID + ":hs-elements", "inventory"));
 			ModelLoader.setCustomModelResourceLocation(item, 2, new ModelResourceLocation(MainRegistry.MODID + ":hs-arsenic", "inventory"));
 			ModelLoader.setCustomModelResourceLocation(item, 3, new ModelResourceLocation(MainRegistry.MODID + ":hs-vault", "inventory"));
-		} else if(item == ModItems.polaroid || item == ModItems.glitch) {
-			ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(item.getRegistryName() + "_" + MainRegistry.polaroidID, "inventory"));
 		} else if(item == Item.getItemFromBlock(ModBlocks.brick_jungle_glyph)){
 			for(int i = 0; i < 16; i ++)
 				ModelLoader.setCustomModelResourceLocation(item, i, new ModelResourceLocation(item.getRegistryName().toString() + i, "inventory"));
@@ -263,10 +258,6 @@ public class ModEventHandlerClient {
 		} else if(item instanceof ItemWasteShort){
 			for(int i = 0; i < ItemWasteShort.WasteClass.values().length; i ++){
 				ModelLoader.setCustomModelResourceLocation(item, i, new ModelResourceLocation(item.getRegistryName(), "inventory"));
-			}
-		} else if(item == ModItems.coin_siege){
-			for(int i = 0; i < SiegeTier.getLength(); i ++){
-				ModelLoader.setCustomModelResourceLocation(item, i, new ModelResourceLocation(MainRegistry.MODID + ":coin_siege_" + SiegeTier.tiers[i].name, "inventory"));
 			}
 		} else if(item == Item.getItemFromBlock(ModBlocks.volcano_core)){
 			for(int i = 0; i < 4; i ++){
@@ -313,13 +304,6 @@ public class ModEventHandlerClient {
 			IBakedModel model = (IBakedModel) object;
 			AssemblyTemplateRender.INSTANCE.itemModel = model;
 			evt.getModelRegistry().putObject(ItemAssemblyTemplate.location, new AssemblyTemplateBakedModel());
-		}
-
-		Object object3 = evt.getModelRegistry().getObject(GunB92.b92Model);
-		if(object instanceof IBakedModel) {
-			IBakedModel model = (IBakedModel) object3;
-			ItemRenderGunAnim.INSTANCE.b92ItemModel = model;
-			evt.getModelRegistry().putObject(GunB92.b92Model, new B92BakedModel());
 		}
 		Object object4 = evt.getModelRegistry().getObject(ItemFluidTank.fluidTankModel);
 		if(object4 instanceof IBakedModel) {
@@ -372,7 +356,6 @@ public class ModEventHandlerClient {
 		swapModelsNoGui(ModItems.gun_revolver_red, reg);
 		swapModelsNoGui(ModItems.gun_lever_action, reg);
 		swapModelsNoGui(ModItems.gun_spark, reg);
-		swapModelsNoGui(ModItems.gun_b93, reg);
 		swapModelsNoGui(ModItems.gun_rpg, reg);
 		swapModelsNoGui(ModItems.gun_karl, reg);
 		swapModelsNoGui(ModItems.gun_panzerschreck, reg);

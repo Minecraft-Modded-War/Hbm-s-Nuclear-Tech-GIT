@@ -7,7 +7,7 @@ import com.hbm.entity.projectile.EntityRubble;
 import com.hbm.items.ModItems;
 import com.hbm.lib.HBMSoundHandler;
 import com.hbm.main.MainRegistry;
-import com.hbm.potion.HbmPotion;
+import com.hbm.core.HbmPotion;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;

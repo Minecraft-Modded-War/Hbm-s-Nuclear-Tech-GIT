@@ -1,9 +1,5 @@
 package com.hbm.handler;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-
 import com.hbm.capability.HbmLivingCapability.EntityHbmProps;
 import com.hbm.capability.HbmLivingCapability.IEntityHbmProps;
 import com.hbm.capability.HbmLivingProps;
@@ -21,7 +17,6 @@ import com.hbm.saveddata.RadiationSavedData;
 import com.hbm.util.ContaminationUtil;
 import com.hbm.util.ContaminationUtil.ContaminationType;
 import com.hbm.util.ContaminationUtil.HazardType;
-
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -32,7 +27,6 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.MobEffects;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
@@ -40,22 +34,22 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
 public class EntityEffectHandler {
 	public static void onUpdate(EntityLivingBase entity) {
-		
 		if(!entity.world.isRemote) {
-			
 			if(entity.ticksExisted % 20 == 0) {
 				HbmLivingProps.setRadBuf(entity, HbmLivingProps.getRadEnv(entity));
 				HbmLivingProps.setRadEnv(entity, 0);
 			}
-			
-			if(entity instanceof EntityPlayerMP) {
-				NBTTagCompound data = new NBTTagCompound();
-				IEntityHbmProps props = HbmLivingProps.getData(entity);
-				props.saveNBTData(data);
-				PacketDispatcher.wrapper.sendTo(new ExtPropPacket(data), (EntityPlayerMP) entity);
-			}
+
+			NBTTagCompound data = new NBTTagCompound();
+			IEntityHbmProps props = HbmLivingProps.getData(entity);
+			props.saveNBTData(data);
+			PacketDispatcher.wrapper.sendTo(new ExtPropPacket(data), (EntityPlayerMP) entity);
 		}
 		
 		handleContamination(entity);
@@ -86,7 +80,6 @@ public class EntityEffectHandler {
 	}
 	
 	private static void handleRadiation(EntityLivingBase entity) {
-		
 		if(ContaminationUtil.isRadImmune(entity))
 			return;
 		

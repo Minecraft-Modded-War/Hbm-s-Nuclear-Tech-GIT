@@ -21,7 +21,6 @@ import com.hbm.items.machine.*;
 import com.hbm.items.machine.ItemFELCrystal.EnumWavelengths;
 import com.hbm.items.machine.ItemRBMKRod.EnumBurnFunc;
 import com.hbm.items.special.*;
-import com.hbm.items.special.weapon.GunB92;
 import com.hbm.items.tool.*;
 import com.hbm.items.tool.ItemToolAbility.EnumToolType;
 import com.hbm.items.weapon.*;
@@ -31,7 +30,7 @@ import com.hbm.items.weapon.ItemMissile.Rarity;
 import com.hbm.items.weapon.ItemMissile.WarheadType;
 import com.hbm.lib.HBMSoundHandler;
 import com.hbm.main.MainRegistry;
-import com.hbm.potion.HbmPotion;
+import com.hbm.core.HbmPotion;
 import com.hbm.tileentity.machine.rbmk.IRBMKFluxReceiver.NType;
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
@@ -594,23 +593,6 @@ public class ModItems {
 	public static final Item rpa_legs = new ArmorRPA(MainRegistry.aMatRPA, -1, EntityEquipmentSlot.LEGS, MainRegistry.MODID + ":textures/armor/starmetal_2.png", 50000000, 100000, 20000, 500, "RPA_legs").cloneStats((ArmorFSB) rpa_helmet);
 	public static final Item rpa_boots = new ArmorRPA(MainRegistry.aMatRPA, -1, EntityEquipmentSlot.FEET, MainRegistry.MODID + ":textures/armor/starmetal_1.png", 50000000, 100000, 20000, 500, "RPA_boots").cloneStats((ArmorFSB) rpa_helmet);
 
-	public static final Item fau_helmet = new ArmorDigamma(MainRegistry.aMatFau, -1, EntityEquipmentSlot.HEAD, MainRegistry.MODID + ":textures/armor/starmetal_1.png", 100000000, 100000, 25000, 1000, "fau_helmet").setMod(0.25F).setCap(4.0F).setThreshold(2.0F)
-			.addEffect(new PotionEffect(MobEffects.JUMP_BOOST, 20, 1))
-			.setBlastProtection(0.05F)
-			.setMod(0.05F)
-			.setHasGeigerSound(true)
-			.enableThermalSight(true)
-			.setHasHardLanding(true)
-			.setStep(HBMSoundHandler.metalStep)
-			.setJump(HBMSoundHandler.ironJump)
-			.setFall(HBMSoundHandler.ironLand)
-			.addResistance("fall", 0F)
-			.addResistance("monoxide", 0F)
-			.setFireproof(true);
-	public static final Item fau_plate = new ArmorDigamma(MainRegistry.aMatFau, -1, EntityEquipmentSlot.CHEST, MainRegistry.MODID + ":textures/armor/starmetal_1.png", 100000000, 100000, 25000, 1000, "fau_plate").cloneStats((ArmorFSB) fau_helmet);
-	public static final Item fau_legs = new ArmorDigamma(MainRegistry.aMatFau, -1, EntityEquipmentSlot.LEGS, MainRegistry.MODID + ":textures/armor/starmetal_2.png", 100000000, 100000, 25000, 1000, "fau_legs").cloneStats((ArmorFSB) fau_helmet);
-	public static final Item fau_boots = new ArmorDigamma(MainRegistry.aMatFau, -1, EntityEquipmentSlot.FEET, MainRegistry.MODID + ":textures/armor/starmetal_1.png", 100000000, 100000, 25000, 1000, "fau_boots").cloneStats((ArmorFSB) fau_helmet);
-	
 	public static final Item dns_helmet = new ArmorDNT(MainRegistry.aMatDNS, -1, EntityEquipmentSlot.HEAD, MainRegistry.MODID + ":textures/armor/starmetal_1.png", 1000000000, 1000000, 100000, 10000, "dns_helmet")
 			.addEffect(new PotionEffect(MobEffects.STRENGTH, 20, 9))
 			.addEffect(new PotionEffect(MobEffects.HASTE, 20, 7))
@@ -677,10 +659,6 @@ public class ModItems {
 	public static final Item multitool_mega = new ItemMultitoolPassive("multitool_mega").setCreativeTab(null);
 	public static final Item multitool_joule = new ItemMultitoolPassive("multitool_joule").setCreativeTab(null);
 	public static final Item multitool_decon = new ItemMultitoolPassive("multitool_decon").setCreativeTab(null);
-	
-	//Guns
-	public static final Item gun_b92 = new GunB92("gun_b92").setCreativeTab(MainRegistry.weaponTab);
-	public static final Item gun_b93 = new GunB93("gun_b93").setCreativeTab(MainRegistry.weaponTab);
 	
 	public static final Item gun_revolver_iron = new ItemGunBase(Gun357MagnumFactory.getRevolverIronConfig(), "gun_revolver_iron").setMaxDamage(100).setCreativeTab(MainRegistry.weaponTab);
 	public static final Item gun_revolver = new ItemGunBase(Gun357MagnumFactory.getRevolverConfig(), "gun_revolver").setCreativeTab(MainRegistry.weaponTab);
@@ -1516,7 +1494,6 @@ public class ModItems {
 	public static final Item coin_radiation = new ItemCustomLore("coin_radiation").setRarity(EnumRarity.UNCOMMON).setCreativeTab(MainRegistry.consumableTab);
 	public static final Item coin_worm = new ItemCustomLore("coin_worm").setRarity(EnumRarity.UNCOMMON).setCreativeTab(MainRegistry.consumableTab);
 	public static final Item coin_ufo = new ItemCustomLore("coin_ufo").setRarity(EnumRarity.UNCOMMON).setCreativeTab(MainRegistry.consumableTab);
-	public static final Item coin_siege = new ItemSiegeCoin("coin_siege").setCreativeTab(MainRegistry.consumableTab);
 	public static final Item pudding = new ItemLemon(6, 15, false, "pudding").setCreativeTab(MainRegistry.consumableTab);
 	
 	public static final Item can_empty = new ItemBase("can_empty").setCreativeTab(MainRegistry.consumableTab);
@@ -2149,8 +2126,7 @@ public class ModItems {
 	public static final Item ammo_50ae_ap = new ItemAmmo("ammo_50ae_ap").setCreativeTab(MainRegistry.weaponTab);
 	public static final Item ammo_50ae_du = new ItemAmmo("ammo_50ae_du").setCreativeTab(MainRegistry.weaponTab);
 	public static final Item ammo_50ae_star = new ItemAmmo("ammo_50ae_star").setCreativeTab(MainRegistry.weaponTab);
-	
-	public static final Item gun_b92_ammo = new GunB92Cell("gun_b92_ammo").setMaxStackSize(1).setCreativeTab(MainRegistry.weaponTab);
+
 	public static final Item gun_fatman_ammo = new ItemBase("gun_fatman_ammo").setCreativeTab(MainRegistry.weaponTab);
 	public static final Item gun_mirv_ammo = new ItemBase("gun_mirv_ammo").setCreativeTab(MainRegistry.weaponTab);
 	public static final Item gun_bf_ammo = new ItemBase("gun_bf_ammo").setCreativeTab(null);
@@ -3017,7 +2993,6 @@ public class ModItems {
 	public static final Item flame_politics = new ItemCustomLore("flame_politics").setCreativeTab(MainRegistry.partsTab);
 	public static final Item flame_opinion = new ItemCustomLore("flame_opinion").setCreativeTab(MainRegistry.partsTab);
 	public static final Item polaroid = new ItemPolaroid("polaroid").setMaxStackSize(1).setCreativeTab(MainRegistry.consumableTab);
-	public static final Item glitch = new ItemGlitch("glitch").setMaxStackSize(1).setCreativeTab(MainRegistry.consumableTab);
 	public static final Item burnt_bark = new ItemCustomLore("burnt_bark").setCreativeTab(null);
 	public static final Item letter = new ItemStarterKit("letter").setCreativeTab(MainRegistry.consumableTab);
 	public static final Item book_secret = new ItemCustomLore("book_secret").setCreativeTab(MainRegistry.polaroidID == 11 ? MainRegistry.consumableTab : null);

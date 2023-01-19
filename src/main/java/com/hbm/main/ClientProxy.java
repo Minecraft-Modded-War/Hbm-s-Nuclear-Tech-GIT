@@ -1734,7 +1734,6 @@ public class ClientProxy extends ServerProxy {
 		
 		ModItems.redstone_sword.setTileEntityItemStackRenderer(ItemRedstoneSwordRender.INSTANCE);
 		ModItems.assembly_template.setTileEntityItemStackRenderer(AssemblyTemplateRender.INSTANCE);
-		ModItems.gun_b92.setTileEntityItemStackRenderer(ItemRenderGunAnim.INSTANCE);
 		ModItems.fluid_tank_full.setTileEntityItemStackRenderer(FluidTankRender.INSTANCE);
 		ModItems.fluid_barrel_full.setTileEntityItemStackRenderer(FluidBarrelRender.INSTANCE);
 		ModItems.canister_generic.setTileEntityItemStackRenderer(FluidCanisterRender.INSTANCE);
@@ -1755,7 +1754,6 @@ public class ClientProxy extends ServerProxy {
 		ModItems.gun_revolver_silver.setTileEntityItemStackRenderer(new ItemRenderOverkill());
 		ModItems.gun_lever_action.setTileEntityItemStackRenderer(new ItemRenderGunAnim2());
 		ModItems.gun_spark.setTileEntityItemStackRenderer(new ItemRenderOverkill());
-		ModItems.gun_b93.setTileEntityItemStackRenderer(new RenderGunB93());
 		ModItems.gun_rpg.setTileEntityItemStackRenderer(new ItemRenderRpg());
 		ModItems.gun_karl.setTileEntityItemStackRenderer(new ItemRenderRpg());
 		ModItems.gun_panzerschreck.setTileEntityItemStackRenderer(new ItemRenderRpg());

@@ -1,11 +1,8 @@
 package com.hbm.items.special;
 
-import java.util.List;
-import java.util.Random;
-
-import com.hbm.capability.HbmCapability;
 import com.hbm.capability.HbmLivingProps;
 import com.hbm.config.VersatileConfig;
+import com.hbm.core.HbmPotion;
 import com.hbm.forgefluid.ModForgeFluids;
 import com.hbm.items.ModItems;
 import com.hbm.items.armor.JetpackBase;
@@ -13,8 +10,6 @@ import com.hbm.items.weapon.ItemGunBase;
 import com.hbm.lib.HBMSoundHandler;
 import com.hbm.lib.ModDamageSource;
 import com.hbm.main.MainRegistry;
-import com.hbm.potion.HbmPotion;
-
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -32,6 +27,9 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.List;
+import java.util.Random;
 
 public class ItemSyringe extends Item {
 

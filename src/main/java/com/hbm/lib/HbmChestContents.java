@@ -1,7 +1,5 @@
 package com.hbm.lib;
 
-import java.util.Random;
-
 import com.hbm.blocks.ModBlocks;
 import com.hbm.forgefluid.ModForgeFluids;
 import com.hbm.handler.WeightedRandomChestContentFrom1710;
@@ -11,7 +9,6 @@ import com.hbm.items.special.ItemCell;
 import com.hbm.items.tool.ItemBombCaller;
 import com.hbm.items.tool.ItemBombCaller.EnumCallerType;
 import com.hbm.items.tool.ItemFluidCanister;
-
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 
@@ -297,7 +294,6 @@ public class HbmChestContents {
 			new WeightedRandomChestContentFrom1710(ModItems.gun_mirv, 0, 1, 1, 1),
 			new WeightedRandomChestContentFrom1710(ModItems.gun_fatman, 0, 1, 1, 1),
 			new WeightedRandomChestContentFrom1710(ModItems.gun_proto, 0, 1, 1, 1),
-			new WeightedRandomChestContentFrom1710(ModItems.gun_b92, 0, 1, 1, 1),
 			new WeightedRandomChestContentFrom1710(ModItems.ingot_combine_steel, 0, 16, 28, 1),
 			new WeightedRandomChestContentFrom1710(ModItems.nugget_schrabidium, 0, 8, 18, 1),
 			new WeightedRandomChestContentFrom1710(ModItems.man_core, 0, 1, 1, 1),

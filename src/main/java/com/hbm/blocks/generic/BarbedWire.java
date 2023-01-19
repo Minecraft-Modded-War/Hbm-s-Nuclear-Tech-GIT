@@ -3,7 +3,7 @@ package com.hbm.blocks.generic;
 import com.hbm.blocks.ModBlocks;
 import com.hbm.handler.ArmorUtil;
 import com.hbm.lib.ModDamageSource;
-import com.hbm.potion.HbmPotion;
+import com.hbm.core.HbmPotion;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockHorizontal;

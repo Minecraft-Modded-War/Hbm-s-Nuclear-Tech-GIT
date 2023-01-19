@@ -7,7 +7,7 @@ import com.hbm.handler.BulletConfiguration;
 import com.hbm.handler.GunConfiguration;
 import com.hbm.items.ModItems;
 import com.hbm.lib.HBMSoundHandler;
-import com.hbm.potion.HbmPotion;
+import com.hbm.core.HbmPotion;
 import com.hbm.render.misc.RenderScreenOverlay.Crosshair;
 
 import net.minecraft.potion.PotionEffect;

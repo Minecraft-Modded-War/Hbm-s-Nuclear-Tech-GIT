@@ -8,7 +8,7 @@ import com.hbm.capability.HbmLivingProps;
 import com.hbm.config.VersatileConfig;
 import com.hbm.items.ModItems;
 import com.hbm.lib.ModDamageSource;
-import com.hbm.potion.HbmPotion;
+import com.hbm.core.HbmPotion;
 
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;

@@ -2,7 +2,7 @@ package com.hbm.handler;
 
 import com.hbm.items.ModItems;
 import com.hbm.items.armor.ItemModCladding;
-import com.hbm.potion.HbmPotion;
+import com.hbm.core.HbmPotion;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -154,11 +154,6 @@ public class HazmatRegistry {
 		HazmatRegistry.registerHazmat(ModItems.hev_plate, hev * chest);
 		HazmatRegistry.registerHazmat(ModItems.hev_legs, hev * legs);
 		HazmatRegistry.registerHazmat(ModItems.hev_boots, hev * boots);
-		
-		HazmatRegistry.registerHazmat(ModItems.fau_helmet, fau * helmet);
-		HazmatRegistry.registerHazmat(ModItems.fau_plate, fau * chest);
-		HazmatRegistry.registerHazmat(ModItems.fau_legs, fau * legs);
-		HazmatRegistry.registerHazmat(ModItems.fau_boots, fau * boots);
 
 		HazmatRegistry.registerHazmat(ModItems.dns_helmet, dns * helmet);
 		HazmatRegistry.registerHazmat(ModItems.dns_plate, dns * chest);

@@ -10,7 +10,7 @@ import com.hbm.capability.HbmLivingProps.ContaminationEffect;
 import com.hbm.interfaces.IItemHazard;
 import com.hbm.items.ModItems;
 import com.hbm.modules.ItemHazardModule;
-import com.hbm.potion.HbmPotion;
+import com.hbm.core.HbmPotion;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
