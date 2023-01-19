@@ -1,20 +1,14 @@
 package com.hbm.items.armor;
 
-import java.util.List;
-import java.util.UUID;
-
 import com.hbm.handler.ArmorModHandler;
 import com.hbm.lib.HBMSoundHandler;
-import com.hbm.main.AdvancementManager;
 import com.hbm.packet.AuxParticlePacketNT;
 import com.hbm.packet.PacketDispatcher;
-
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.IAttributeInstance;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -22,6 +16,9 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
+
+import java.util.List;
+import java.util.UUID;
 
 public class ItemModKnife extends ItemArmorMod {
 	
@@ -80,8 +77,6 @@ public class ItemModKnife extends ItemArmorMod {
 					} else {
 						data.setInteger("time", 0);
 						data.setInteger("maxTime", 0);
-						
-						AdvancementManager.grantAchievement((EntityPlayer)entity, AdvancementManager.achSomeWounds);
 					}
 					PacketDispatcher.wrapper.sendTo(new AuxParticlePacketNT(data, 0, 0, 0), (EntityPlayerMP)entity);
 				}

@@ -1,21 +1,5 @@
 package com.hbm.main;
 
-import java.nio.FloatBuffer;
-import java.nio.IntBuffer;
-import java.util.ArrayDeque;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map.Entry;
-import java.util.Set;
-
-import org.lwjgl.input.Keyboard;
-import org.lwjgl.input.Mouse;
-import org.lwjgl.opengl.Display;
-import org.lwjgl.opengl.GL11;
-import org.lwjgl.opengl.GL20;
-import org.lwjgl.util.glu.Project;
-
 import com.google.common.collect.Queues;
 import com.hbm.blocks.ModBlocks;
 import com.hbm.blocks.generic.TrappedBrick.Trap;
@@ -29,18 +13,8 @@ import com.hbm.flashlight.Flashlight;
 import com.hbm.forgefluid.SpecialContainerFillLists.EnumCanister;
 import com.hbm.forgefluid.SpecialContainerFillLists.EnumCell;
 import com.hbm.forgefluid.SpecialContainerFillLists.EnumGasCanister;
-import com.hbm.handler.ArmorModHandler;
-import com.hbm.handler.HazmatRegistry;
-import com.hbm.handler.HbmShaderManager;
-import com.hbm.handler.HbmShaderManager2;
-import com.hbm.handler.JetpackHandler;
-import com.hbm.interfaces.IConstantRenderer;
-import com.hbm.interfaces.ICustomSelectionBox;
-import com.hbm.interfaces.IHasCustomModel;
-import com.hbm.interfaces.IHoldableWeapon;
-import com.hbm.interfaces.IItemHUD;
-import com.hbm.interfaces.IPostRender;
-import com.hbm.interfaces.Spaghetti;
+import com.hbm.handler.*;
+import com.hbm.interfaces.*;
 import com.hbm.inventory.AssemblerRecipes;
 import com.hbm.inventory.RecipesCommon.ComparableStack;
 import com.hbm.inventory.RecipesCommon.NbtComparableStack;
@@ -50,24 +24,16 @@ import com.hbm.items.armor.ItemArmorMod;
 import com.hbm.items.armor.JetpackBase;
 import com.hbm.items.gear.ArmorFSB;
 import com.hbm.items.gear.RedstoneSword;
-import com.hbm.items.machine.ItemAssemblyTemplate;
+import com.hbm.items.machine.*;
 import com.hbm.items.machine.ItemCassette.TrackType;
-import com.hbm.items.machine.ItemChemistryTemplate;
 import com.hbm.items.machine.ItemChemistryTemplate.EnumChemistryTemplate;
-import com.hbm.items.machine.ItemFluidTank;
-import com.hbm.items.machine.ItemForgeFluidIdentifier;
-import com.hbm.items.machine.ItemRBMKPellet;
 import com.hbm.items.special.ItemHot;
 import com.hbm.items.special.ItemWasteLong;
 import com.hbm.items.special.ItemWasteShort;
 import com.hbm.items.special.weapon.GunB92;
 import com.hbm.items.tool.ItemFluidCanister;
 import com.hbm.items.tool.ItemGuideBook;
-import com.hbm.items.weapon.ItemCrucible;
-import com.hbm.items.weapon.ItemGunBase;
-import com.hbm.items.weapon.ItemGunEgon;
-import com.hbm.items.weapon.ItemGunShotty;
-import com.hbm.items.weapon.ItemSwordCutter;
+import com.hbm.items.weapon.*;
 import com.hbm.lib.HBMSoundHandler;
 import com.hbm.lib.Library;
 import com.hbm.lib.RecoilHandler;
@@ -87,32 +53,9 @@ import com.hbm.render.anim.HbmAnimations;
 import com.hbm.render.anim.HbmAnimations.Animation;
 import com.hbm.render.anim.HbmAnimations.BlenderAnimation;
 import com.hbm.render.entity.DSmokeRenderer;
-import com.hbm.render.item.AssemblyTemplateBakedModel;
-import com.hbm.render.item.AssemblyTemplateRender;
-import com.hbm.render.item.BakedModelCustom;
-import com.hbm.render.item.BakedModelNoGui;
-import com.hbm.render.item.ChemTemplateBakedModel;
-import com.hbm.render.item.ChemTemplateRender;
-import com.hbm.render.item.FFIdentifierModel;
-import com.hbm.render.item.FFIdentifierRender;
-import com.hbm.render.item.FluidBarrelBakedModel;
-import com.hbm.render.item.FluidBarrelRender;
-import com.hbm.render.item.FluidCanisterBakedModel;
-import com.hbm.render.item.FluidCanisterRender;
-import com.hbm.render.item.FluidTankBakedModel;
-import com.hbm.render.item.FluidTankRender;
-import com.hbm.render.item.ItemRenderBase;
-import com.hbm.render.item.ItemRenderLibrary;
-import com.hbm.render.item.TEISRBase;
-import com.hbm.render.item.weapon.B92BakedModel;
-import com.hbm.render.item.weapon.GunRevolverBakedModel;
-import com.hbm.render.item.weapon.GunRevolverRender;
-import com.hbm.render.item.weapon.ItemRedstoneSwordRender;
-import com.hbm.render.item.weapon.ItemRenderGunAnim;
-import com.hbm.render.item.weapon.ItemRenderGunEgon;
-import com.hbm.render.item.weapon.ItemRenderRedstoneSword;
+import com.hbm.render.item.*;
+import com.hbm.render.item.weapon.*;
 import com.hbm.render.misc.BeamPronter;
-import com.hbm.render.misc.RenderAccessoryUtility;
 import com.hbm.render.misc.RenderScreenOverlay;
 import com.hbm.render.misc.SoyuzPronter;
 import com.hbm.render.modelrenderer.EgonBackpackRenderer;
@@ -121,20 +64,14 @@ import com.hbm.render.tileentity.RenderSoyuzMultiblock;
 import com.hbm.render.tileentity.RenderStructureMarker;
 import com.hbm.render.util.RenderOverhead;
 import com.hbm.render.world.RenderNTMSkybox;
-import com.hbm.sound.GunEgonSoundHandler;
-import com.hbm.sound.MovingSoundChopper;
-import com.hbm.sound.MovingSoundChopperMine;
-import com.hbm.sound.MovingSoundCrashing;
-import com.hbm.sound.MovingSoundPlayerLoop;
+import com.hbm.sound.*;
 import com.hbm.sound.MovingSoundPlayerLoop.EnumHbmSound;
-import com.hbm.sound.MovingSoundXVL1456;
 import com.hbm.tileentity.bomb.TileEntityNukeCustom;
 import com.hbm.tileentity.bomb.TileEntityNukeCustom.CustomNukeEntry;
 import com.hbm.tileentity.bomb.TileEntityNukeCustom.EnumEntryType;
 import com.hbm.tileentity.machine.rbmk.TileEntityRBMKBase;
 import com.hbm.util.BobMathUtil;
 import com.hbm.util.I18nUtil;
-
 import glmath.glm.vec._2.Vec2;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -186,23 +123,8 @@ import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldProviderSurface;
 import net.minecraftforge.client.IRenderHandler;
-import net.minecraftforge.client.event.ColorHandlerEvent;
-import net.minecraftforge.client.event.DrawBlockHighlightEvent;
-import net.minecraftforge.client.event.EntityViewRenderEvent;
-import net.minecraftforge.client.event.FOVUpdateEvent;
-import net.minecraftforge.client.event.InputUpdateEvent;
-import net.minecraftforge.client.event.ModelBakeEvent;
-import net.minecraftforge.client.event.ModelRegistryEvent;
-import net.minecraftforge.client.event.MouseEvent;
-import net.minecraftforge.client.event.RenderGameOverlayEvent;
+import net.minecraftforge.client.event.*;
 import net.minecraftforge.client.event.RenderGameOverlayEvent.ElementType;
-import net.minecraftforge.client.event.RenderHandEvent;
-import net.minecraftforge.client.event.RenderItemInFrameEvent;
-import net.minecraftforge.client.event.RenderLivingEvent;
-import net.minecraftforge.client.event.RenderPlayerEvent;
-import net.minecraftforge.client.event.RenderSpecificHandEvent;
-import net.minecraftforge.client.event.RenderWorldLastEvent;
-import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.client.event.sound.PlaySoundEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
@@ -214,6 +136,17 @@ import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
 import net.minecraftforge.fml.common.gameevent.TickEvent.RenderTickEvent;
 import net.minecraftforge.fml.common.network.FMLNetworkEvent.ClientDisconnectionFromServerEvent;
 import net.minecraftforge.fml.relauncher.Side;
+import org.lwjgl.input.Keyboard;
+import org.lwjgl.input.Mouse;
+import org.lwjgl.opengl.Display;
+import org.lwjgl.opengl.GL11;
+import org.lwjgl.opengl.GL20;
+import org.lwjgl.util.glu.Project;
+
+import java.nio.FloatBuffer;
+import java.nio.IntBuffer;
+import java.util.*;
+import java.util.Map.Entry;
 
 public class ModEventHandlerClient {
 
@@ -1682,12 +1615,9 @@ public class ModEventHandlerClient {
 		if(player.getHeldItemMainhand().getItem() == ModItems.gun_egon){
 			EgonBackpackRenderer.showBackpack = true;
 		}
-		
-		ResourceLocation cloak = RenderAccessoryUtility.getCloakFromPlayer(player);
+
 		// GL11.glRotated(180, 1, 0, 0);
 		NetworkPlayerInfo info = Minecraft.getMinecraft().getConnection().getPlayerInfo(player.getUniqueID());
-		if(cloak != null)
-			RenderAccessoryUtility.loadCape(info, cloak);
 	}
 
 	@SubscribeEvent
@@ -1696,9 +1626,9 @@ public class ModEventHandlerClient {
 		//ForgeRegistries.ENTITIES.getKey(value);
 		//EntityMaskMan ent;
 		//EntityRegistry.getEntry(ent.getClass());
-		if(specialDeathEffectEntities.contains(event.getEntity())){
+		if (specialDeathEffectEntities.contains(event.getEntity()))
 			event.setCanceled(true);
-		}
+
 		if(event.getEntity() instanceof AbstractClientPlayer && event.getRenderer().getMainModel() instanceof ModelBiped){
 			AbstractClientPlayer player = (AbstractClientPlayer) event.getEntity();
 

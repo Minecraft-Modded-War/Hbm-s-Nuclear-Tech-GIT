@@ -4,10 +4,7 @@ import com.hbm.entity.particle.EntityGasFlameFX;
 import com.hbm.explosion.ExplosionLarge;
 import com.hbm.items.ModItems;
 import com.hbm.items.machine.ItemSatChip;
-import com.hbm.main.AdvancementManager;
 import com.hbm.saveddata.satellites.Satellite;
-
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.datasync.DataParameter;
@@ -114,16 +111,8 @@ public class EntityCarrier extends EntityThrowable {
 	private void deployPayload() {
 		if(payload != null) {
 			
-			if(payload.getItem() == ModItems.flame_pony) {
+			if(payload.getItem() == ModItems.flame_pony)
 				ExplosionLarge.spawnTracers(world, posX, posY, posZ, 25);
-				for(EntityPlayer p : world.playerEntities)
-					AdvancementManager.grantAchievement(p, AdvancementManager.achSpace);
-			}
-			
-			if(payload.getItem() == ModItems.sat_foeq) {
-				for(EntityPlayer p : world.playerEntities)
-					AdvancementManager.grantAchievement(p, AdvancementManager.achFOEQ);
-			}
 			
 			if(payload.getItem() instanceof ItemSatChip) {
 				

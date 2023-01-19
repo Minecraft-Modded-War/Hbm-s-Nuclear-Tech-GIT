@@ -1,16 +1,11 @@
 package com.hbm.packet;
 
-import com.hbm.blocks.ModBlocks;
 import com.hbm.inventory.AnvilRecipes;
 import com.hbm.inventory.AnvilRecipes.AnvilConstructionRecipe;
 import com.hbm.inventory.container.ContainerAnvil;
-import com.hbm.main.AdvancementManager;
-import com.hbm.main.MainRegistry;
 import com.hbm.util.InventoryUtil;
-
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
@@ -66,14 +61,8 @@ public class AnvilCraftPacket implements IMessage {
 					if(InventoryUtil.doesPlayerHaveAStacks(p, recipe.input, true)) {
 						InventoryUtil.giveChanceStacksToPlayer(p, recipe.output);
 
-						if(recipe.output.get(0).stack.getItem() == Item.getItemFromBlock(ModBlocks.machine_difurnace_off))
-							AdvancementManager.grantAchievement(p, AdvancementManager.bobMetalworks);
-						if(recipe.output.get(0).stack.getItem() == Item.getItemFromBlock(ModBlocks.machine_assembler))
-							AdvancementManager.grantAchievement(p, AdvancementManager.bobAssembly);
-						
-					} else {
+					} else
 						break;
-					}
 				}
 				
 				p.inventoryContainer.detectAndSendChanges();

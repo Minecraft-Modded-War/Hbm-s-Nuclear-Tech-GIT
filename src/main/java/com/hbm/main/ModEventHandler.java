@@ -27,11 +27,9 @@ import com.hbm.items.special.ItemHot;
 import com.hbm.items.weapon.ItemGunBase;
 import com.hbm.lib.ForgeDirection;
 import com.hbm.lib.HBMSoundHandler;
-import com.hbm.lib.Library;
 import com.hbm.lib.ModDamageSource;
 import com.hbm.packet.*;
 import com.hbm.particle.bullet_hit.EntityHitDataHandler;
-import com.hbm.render.amlfrom1710.Vec3;
 import com.hbm.saveddata.AuxSavedData;
 import com.hbm.saveddata.RadiationSavedData;
 import com.hbm.tileentity.machine.rbmk.RBMKDials;
@@ -44,7 +42,6 @@ import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.*;
 import net.minecraft.entity.passive.EntityAnimal;
 import net.minecraft.entity.passive.EntityCow;
@@ -57,16 +54,13 @@ import net.minecraft.init.Items;
 import net.minecraft.init.MobEffects;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.potion.PotionEffect;
-import net.minecraft.tileentity.TileEntitySign;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 import net.minecraft.world.storage.loot.*;
 import net.minecraft.world.storage.loot.conditions.LootCondition;
@@ -79,17 +73,18 @@ import net.minecraftforge.event.LootTableLoadEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.event.entity.EntityEvent.EnteringChunk;
 import net.minecraftforge.event.entity.item.ItemTossEvent;
-import net.minecraftforge.event.entity.living.*;
+import net.minecraftforge.event.entity.living.LivingAttackEvent;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingJumpEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
+import net.minecraftforge.event.entity.living.LivingHurtEvent;
+import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import net.minecraftforge.event.entity.player.PlayerFlyableFallEvent;
-import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent;
-import net.minecraftforge.fml.common.gameevent.PlayerEvent.ItemCraftedEvent;
 import net.minecraftforge.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.Phase;
@@ -101,8 +96,6 @@ import net.minecraftforge.registries.DataSerializerEntry;
 import org.apache.logging.log4j.Level;
 
 import java.lang.reflect.Field;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.*;
 import java.util.Map.Entry;
 
@@ -271,120 +264,6 @@ public class ModEventHandler {
 		}
 	}
 
-	@SubscribeEvent
-	public void itemCrafted(ItemCraftedEvent e) {
-		EntityPlayer player = e.player;
-		Item item = e.crafting.getItem();
-
-		/*if (item == ModItems.gun_mp40) {
-			e.player.addStat(MainRegistry.achFreytag, 1);
-		}
-		if (item == ModItems.piston_selenium || item == ModItems.gun_b92) {
-			e.player.addStat(MainRegistry.achSelenium, 1);
-		}
-		if (item == ModItems.battery_potatos) {
-			e.player.addStat(MainRegistry.achPotato, 1);
-		}
-		if (item == ModItems.gun_revolver_pip) {
-			e.player.addStat(MainRegistry.achC44, 1);
-		}*/
-		if(item == Item.getItemFromBlock(ModBlocks.machine_difurnace_off)) {
-			AdvancementManager.grantAchievement(player, AdvancementManager.bobMetalworks);
-		}
-		if(item == Item.getItemFromBlock(ModBlocks.machine_assembler) && AdvancementManager.hasAdvancement(player, AdvancementManager.bobMetalworks)) {
-			AdvancementManager.grantAchievement(player, AdvancementManager.bobAssembly);
-		}
-		if(item == Item.getItemFromBlock(ModBlocks.brick_concrete) && AdvancementManager.hasAdvancement(player, AdvancementManager.bobAssembly)) {
-			AdvancementManager.grantAchievement(player, AdvancementManager.bobChemistry);
-		}
-		if(item == Item.getItemFromBlock(ModBlocks.machine_boiler_electric_off) && AdvancementManager.hasAdvancement(player, AdvancementManager.bobChemistry)) {
-			AdvancementManager.grantAchievement(player, AdvancementManager.bobOil);
-		}
-		if(item == ModItems.ingot_uranium_fuel && AdvancementManager.hasAdvancement(player, AdvancementManager.bobOil)) {
-			AdvancementManager.grantAchievement(player, AdvancementManager.bobNuclear);
-		}
-	}
-
-	private static final String hash = "41eb77f138ce350932e33b6b26b233df9aad0c0c80c6a49cb9a54ddd8fae3f83";
-
-
-	@SubscribeEvent
-	public void onClickSign(PlayerInteractEvent event) {
-
-		BlockPos pos = event.getPos();
-		World world = event.getWorld();
-
-		if(!world.isRemote && world.getBlockState(pos).getBlock() == Blocks.STANDING_SIGN) {
-
-			TileEntitySign sign = (TileEntitySign) world.getTileEntity(pos);
-
-			String result = smoosh(sign.signText[0].getUnformattedText(), sign.signText[1].getUnformattedText(), sign.signText[2].getUnformattedText(), sign.signText[3].getUnformattedText());
-			//System.out.println(result);
-
-			if(result.equals(hash)){
-				world.destroyBlock(pos, false);
-				EntityItem entityitem = new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(ModItems.bobmazon_hidden));
-				entityitem.setPickupDelay(10);
-				world.spawnEntity(entityitem);
-			}
-		}
-
-	}
-
-	private String smoosh(String s1, String s2, String s3, String s4) {
-
-		Random rand = new Random();
-		String s = "";
-
-		byte[] b1 = s1.getBytes();
-		byte[] b2 = s2.getBytes();
-		byte[] b3 = s3.getBytes();
-		byte[] b4 = s4.getBytes();
-
-		if(b1.length == 0 || b2.length == 0 || b3.length == 0 || b4.length == 0)
-			return "";
-
-		s += s1;
-		rand.setSeed(b1[0]);
-		s += rand.nextInt(0xffffff);
-
-		s += s2;
-		rand.setSeed(rand.nextInt(0xffffff) + b2[0]);
-		rand.setSeed(b2[0]);
-		s += rand.nextInt(0xffffff);
-
-		s += s3;
-		rand.setSeed(rand.nextInt(0xffffff) + b3[0]);
-		rand.setSeed(b3[0]);
-		s += rand.nextInt(0xffffff);
-
-		s += s4;
-		rand.setSeed(rand.nextInt(0xffffff) + b4[0]);
-		rand.setSeed(b4[0]);
-		s += rand.nextInt(0xffffff);
-
-		//System.out.println(s);
-
-		return getHash(s);
-	}
-
-	private String getHash(String inp) {
-
-		try {
-			MessageDigest sha256 = MessageDigest.getInstance("SHA-256");
-			byte[] bytes = sha256.digest(inp.getBytes());
-			String str = "";
-
-			for(int b : bytes)
-				str = str + Integer.toString((b & 0xFF) + 256, 16).substring(1);
-
-			return str;
-
-		} catch(NoSuchAlgorithmException e) {
-		}
-		return "";
-	}
-
 	private int parseOInt(Object o){
 		if(o == null)
 			return 0;
@@ -399,13 +278,14 @@ public class ModEventHandler {
 				FFPipeNetwork net = itr.next();
 				if(net.getNetworkWorld() != event.world)
 					continue;
+
 				if(net != null)
 					net.updateTick();
+
 				if(net.getPipes().isEmpty()) {
 					net.destroySoft();
 					itr.remove();
 				}
-
 			}
 		}
 
@@ -445,8 +325,9 @@ public class ModEventHandler {
 				}
 			}
 		}
-		
-		if(event.world != null && !event.world.isRemote && event.world.getTotalWorldTime() % 40 == 37){
+
+		// TODO: Make this a config instead of gamerule.
+		if (event.world != null && !event.world.isRemote && event.world.getTotalWorldTime() % 40 == 37) {
 			//Drillgon200: Retarded hack because I'm not convinced game rules are client sync'd
 			PacketDispatcher.wrapper.sendToAll(new SurveyPacket(RBMKDials.getColumnHeight(event.world)));
 		}
@@ -469,17 +350,17 @@ public class ModEventHandler {
 					data.updateSystem();
 				}
 
-				List<Object> oList = new ArrayList<Object>();
+				List<Object> oList = new ArrayList<>();
 				oList.addAll(event.world.loadedEntityList);
 
 				for(Object e : oList) {
 					if(e instanceof EntityLivingBase) {
-						HbmLivingCapability.IEntityHbmProps entRad = null;
-						if(((EntityLivingBase) e).hasCapability(HbmLivingCapability.EntityHbmPropsProvider.ENT_HBM_PROPS_CAP, null)) {
-							entRad = ((EntityLivingBase) e).getCapability(HbmLivingCapability.EntityHbmPropsProvider.ENT_HBM_PROPS_CAP, null);
-						} else {
+						HbmLivingCapability.IEntityHbmProps entRad;
+						if(!((EntityLivingBase) e).hasCapability(HbmLivingCapability.EntityHbmPropsProvider.ENT_HBM_PROPS_CAP, null))
 							continue;
-						}
+
+						entRad = ((EntityLivingBase) e).getCapability(HbmLivingCapability.EntityHbmPropsProvider.ENT_HBM_PROPS_CAP, null);
+
 						// effect for radiation
 						EntityLivingBase entity = (EntityLivingBase) e;
 						
@@ -547,10 +428,10 @@ public class ModEventHandler {
 								entity instanceof EntityMooshroom ||
 								entity instanceof EntityZombie ||
 								entity instanceof EntitySkeleton ||
-								entity instanceof EntityQuackos)
-
-						if(eRad > 2500000)
-							entRad.setRads(2500000);
+								entity instanceof EntityQuackos) {
+							if (eRad > 2500000)
+								entRad.setRads(2500000);
+						}
 
 						if(eRad >= 1000) {
 							entity.attackEntityFrom(ModDamageSource.radiation, 1000F);
@@ -560,9 +441,7 @@ public class ModEventHandler {
 					        	entity.setHealth(0);
 					        	entity.onDeath(ModDamageSource.radiation);
 							}
-							
-							if(entity instanceof EntityPlayerMP)
-								AdvancementManager.grantAchievement((EntityPlayerMP) entity, AdvancementManager.achRadDeath);
+
 						} else if(eRad >= 800) {
 							if(event.world.rand.nextInt(300) == 0)
 								entity.addPotionEffect(new PotionEffect(MobEffects.NAUSEA, 5 * 30, 0));
@@ -606,9 +485,6 @@ public class ModEventHandler {
 								entity.addPotionEffect(new PotionEffect(MobEffects.WEAKNESS, 5 * 20, 0));
 							if(event.world.rand.nextInt(700) == 0)
 								entity.addPotionEffect(new PotionEffect(MobEffects.HUNGER, 3 * 20, 2));
-
-							if(entity instanceof EntityPlayerMP)
-								AdvancementManager.grantAchievement((EntityPlayerMP) entity, AdvancementManager.achRadPoison);
 						}
 
 					}
@@ -627,9 +503,10 @@ public class ModEventHandler {
 	public void serverTick(ServerTickEvent e){
 		if(e.phase == Phase.START){
 			JetpackHandler.serverTick();
-		} else {
-			EntityHitDataHandler.updateSystem();
+			return;
 		}
+
+		EntityHitDataHandler.updateSystem();
 	}
 	
 	// Drillgon200: So 1.12.2's going to ignore ISpecialArmor if the damage is
@@ -695,135 +572,16 @@ public class ModEventHandler {
 	}
 
 	@SubscribeEvent
-	public void onEntityFall(LivingFallEvent event) {
-		if(event.getEntityLiving() instanceof EntityPlayer)
-			ArmorFSB.handleFall((EntityPlayer) event.getEntityLiving());
-	}
-
-	@SubscribeEvent
 	public void onPlayerTick(TickEvent.PlayerTickEvent event) {
 		EntityPlayer player = event.player;
 		ArmorFSB.handleTick(event);
 
 		if(!player.world.isRemote && event.phase == TickEvent.Phase.START) {
-			/*NBTTagCompound perDat = player.getEntityData().getCompoundTag(EntityPlayer.PERSISTED_NBT_TAG);
-			int lightning = perDat.getInteger("lightningCharge");
-			if(lightning > 0){
-				lightning ++;
-				if(lightning == 60){
-					RayTraceResult r = Library.rayTraceIncludeEntities(player, 100, 1);
-					if(r != null && r.typeOfHit != Type.MISS){
-						NBTTagCompound tag = new NBTTagCompound();
-						tag.setString("type", "lightning");
-						tag.setString("mode", "beam");
-						tag.setDouble("hitX", r.hitVec.x);
-						tag.setDouble("hitY", r.hitVec.y);
-						tag.setDouble("hitZ", r.hitVec.z);
-						Vec3d normal = new Vec3d(r.sideHit.getFrontOffsetX(), r.sideHit.getFrontOffsetY(), r.sideHit.getFrontOffsetZ());
-						tag.setDouble("normX", normal.x);
-						tag.setDouble("normY", normal.y);
-						tag.setDouble("normZ", normal.z);
-						if(r.typeOfHit == Type.ENTITY){
-							r.entityHit.attackEntityFrom(ModDamageSource.electricity, 20);
-							if(r.entityHit instanceof EntityLiving && ((EntityLiving)r.entityHit).getHealth() <= 0){
-								r.entityHit.setDead();
-								PacketDispatcher.wrapper.sendToAllTracking(new PacketSpecialDeath(r.entityHit, 2, (float)player.getLookVec().x, (float)player.getLookVec().y, (float)player.getLookVec().z), new TargetPoint(player.world.provider.getDimension(), r.entityHit.posX, r.entityHit.posY, r.entityHit.posZ, 0));
-							}
-							tag.setInteger("hitType", 1);
-						} else if(r.typeOfHit == Type.BLOCK){
-							tag.setInteger("hitType", 0);
-						}
-						
-						Vec3d direction = player.getLookVec().scale(0.75);
-						switch(r.sideHit.getAxis()){
-						case X:
-							direction = new Vec3d(-direction.x, direction.y, direction.z);
-							break;
-						case Y:
-							direction = new Vec3d(direction.x, -direction.y, direction.z);
-							break;
-						case Z:
-							direction = new Vec3d(direction.x, direction.y, -direction.z);
-							break;
-						}
-						
-						NBTTagCompound tag2 = new NBTTagCompound();
-						tag2.setString("type", "spark");
-						tag2.setString("mode", "coneBurst");
-						tag2.setDouble("posX", r.hitVec.x);
-						tag2.setDouble("posY", r.hitVec.y);
-						tag2.setDouble("posZ", r.hitVec.z);
-						tag2.setDouble("dirX", direction.x);
-						tag2.setDouble("dirY", direction.y);
-						tag2.setDouble("dirZ", direction.z);
-						tag2.setFloat("r", 0.4F);
-						tag2.setFloat("g", 0.8F);
-						tag2.setFloat("b", 0.9F);
-						tag2.setFloat("a", 2F);
-						tag2.setInteger("lifetime", 5);
-						tag2.setInteger("randLifetime", 20);
-						tag2.setFloat("width", 0.04F);
-						tag2.setFloat("length", 0.7F);
-						tag2.setFloat("randLength", 1.5F);
-						tag2.setFloat("gravity", 0.1F);
-						tag2.setFloat("angle", 80F);
-						tag2.setInteger("count", 60+player.world.rand.nextInt(20));
-						tag2.setFloat("randomVelocity", 0.4F);
-						PacketDispatcher.wrapper.sendToAllTracking(new AuxParticlePacketNT(tag2, r.hitVec.x, r.hitVec.y, r.hitVec.z), new TargetPoint(player.world.provider.getDimension(), player.posX, player.posY, player.posZ, 0));
-						
-						Vec3d ssgChainPos = new Vec3d(-0.18, -0.1, 0.35);
-						ssgChainPos = ssgChainPos.rotatePitch((float) Math.toRadians(-player.rotationPitch));
-						ssgChainPos = ssgChainPos.rotateYaw((float) Math.toRadians(-player.rotationYaw));
-
-						ssgChainPos = ssgChainPos.addVector(player.posX, player.posY + player.getEyeHeight(), player.posZ);
-						PacketDispatcher.wrapper.sendToAllTracking(new AuxParticlePacketNT(tag, ssgChainPos.x, ssgChainPos.y, ssgChainPos.z), new TargetPoint(player.world.provider.getDimension(), player.posX, player.posY, player.posZ, 0));
-					} else {
-						NBTTagCompound tag = new NBTTagCompound();
-						tag.setString("type", "lightning");
-						tag.setString("mode", "beam");
-						Vec3d hit = player.getPositionEyes(1).add(player.getLookVec().scale(100));
-						tag.setDouble("hitX", hit.x);
-						tag.setDouble("hitY", hit.y);
-						tag.setDouble("hitZ", hit.z);
-						tag.setInteger("hitType", -1);
-						
-						Vec3d ssgChainPos = new Vec3d(-0.18, -0.1, 0.35);
-						ssgChainPos = ssgChainPos.rotatePitch((float) Math.toRadians(-player.rotationPitch));
-						ssgChainPos = ssgChainPos.rotateYaw((float) Math.toRadians(-player.rotationYaw));
-						ssgChainPos = ssgChainPos.addVector(player.posX, player.posY + player.getEyeHeight(), player.posZ);
-						
-						PacketDispatcher.wrapper.sendToAllTracking(new AuxParticlePacketNT(tag, ssgChainPos.x, ssgChainPos.y, ssgChainPos.z), new TargetPoint(player.world.provider.getDimension(), player.posX, player.posY, player.posZ, 0));
-					}
-				}
-				if(lightning == 84){
-					lightning = 0;
-				}
-			}
-			perDat.setInteger("lightningCharge", lightning);*/
-
-			/// GHOST FIX START ///
-
 			if(!Float.isFinite(player.getHealth()) || !Float.isFinite(player.getAbsorptionAmount())) {
-				player.sendMessage(new TextComponentString("Your health has been restored!"));
 				player.world.playSound(null, player.posX, player.posY, player.posZ, HBMSoundHandler.syringeUse, SoundCategory.PLAYERS, 1.0F, 1.0F);
 				player.setHealth(player.getMaxHealth());
 				player.setAbsorptionAmount(0);
 			}
-
-			/// GHOST FIX END ///
-			
-			/// BETA HEALTH START ///
-			if(Library.hasInventoryItem(player.inventory, ModItems.beta)) {
-				if(player.getFoodStats().getFoodLevel() < 10) {
-					player.getFoodStats().setFoodLevel(10);
-				}
-
-				if(player.getFoodStats().getFoodLevel() > 10) {
-					player.heal(player.getFoodStats().getFoodLevel() - 10);
-					player.getFoodStats().setFoodLevel(10);
-				}
-			}
-			/// BETA HEALTH END ///
 		}
 
 		if(event.phase == Phase.END)
@@ -846,13 +604,6 @@ public class ModEventHandler {
 			if(ArmorUtil.checkArmor((EntityPlayer) event.getEntityLiving(), ModItems.euphemium_helmet, ModItems.euphemium_plate, ModItems.euphemium_legs, ModItems.euphemium_boots)) {
 				event.setCanceled(true);
 				event.getEntityLiving().setHealth(event.getEntityLiving().getMaxHealth());
-			}
-		}
-
-		if(event.getEntity() instanceof EntityTaintedCreeper && event.getSource() == ModDamageSource.boxcar) {
-
-			for(EntityPlayer player : event.getEntity().getEntityWorld().getEntitiesWithinAABB(EntityPlayer.class, event.getEntity().getEntityBoundingBox().grow(50, 50, 50))) {
-				AdvancementManager.grantAchievement(player, AdvancementManager.bobHidden);
 			}
 		}
 		
@@ -1003,7 +754,7 @@ public class ModEventHandler {
 			if(event.getEntityLiving() instanceof EntityPlayer && event.getEntityLiving().getHeldItemOffhand().getItem() instanceof IEquipReceiver && !ItemStack.areItemsEqual(handInventory.get(0), event.getEntityLiving().getHeldItemOffhand())) {
 				((IEquipReceiver)event.getEntityLiving().getHeldItemOffhand().getItem()).onEquip((EntityPlayer) event.getEntityLiving(), EnumHand.OFF_HAND);
 			}
-		} catch(Exception e) { }
+		} catch(Exception ignored) { }
 		
 		for(int i = 2; i < 6; i++) {
 			
@@ -1061,24 +812,10 @@ public class ModEventHandler {
 	
 	@SubscribeEvent
 	public void blockBreak(BlockEvent.BreakEvent event){
-		/*PacketDispatcher.wrapper.sendToAll(new PacketCreatePhysTree(e.getPos().up()));
-		Set<BlockPos> blocks = new HashSet<>();
-		BlockPos pos = e.getPos().up();
-		int recurse = PacketCreatePhysTree.recurseFloodFill(pos, 0, blocks);
-		if(recurse > 0){
-			for(BlockPos b : blocks){
-				e.getWorld().setBlockToAir(b);
-			}
-		}*/
-		if(!(event.getPlayer() instanceof EntityPlayerMP))
+		if (!(event.getPlayer() instanceof EntityPlayerMP))
 			return;
 
 		Block block = event.getState().getBlock();
-		
-		if(block == ModBlocks.stone_gneiss && !AdvancementManager.hasAdvancement(event.getPlayer(), AdvancementManager.achStratum)) {
-			AdvancementManager.grantAchievement(event.getPlayer(), AdvancementManager.achStratum);
-			event.setExpToDrop(500);
-		}
 		
 		if(block == Blocks.COAL_ORE || block == Blocks.COAL_BLOCK || block == ModBlocks.ore_lignite) {
 			
@@ -1104,11 +841,6 @@ public class ModEventHandler {
 
 			PacketDispatcher.sendTo(new KeybindPacket(EnumKeybind.TOGGLE_HEAD, props.getEnableHUD()), playerMP);
 			PacketDispatcher.sendTo(new KeybindPacket(EnumKeybind.TOGGLE_JETPACK, props.getEnableBackpack()), playerMP);
-
-
-			
-			if(e.player instanceof EntityPlayerMP && !e.player.getEntityData().getCompoundTag(EntityPlayer.PERSISTED_NBT_TAG).getBoolean("hasDucked"))
-        		PacketDispatcher.sendTo(new PlayerInformPacket("Press O to Duck!"), (EntityPlayerMP)e.player);
 		}
 	}
 	
@@ -1125,111 +857,95 @@ public class ModEventHandler {
 	@SubscribeEvent
 	public void anvilUpdateEvent(AnvilUpdateEvent event) {
 
-		if(event.getLeft().getItem() instanceof ItemGunBase && event.getRight().getItem() == Items.ENCHANTED_BOOK) {
+		if (event.getLeft().getItem() instanceof ItemGunBase && event.getRight().getItem() == Items.ENCHANTED_BOOK) {
 
 			event.setOutput(event.getLeft().copy());
 
-            Map<Enchantment, Integer> mapright = EnchantmentHelper.getEnchantments(event.getRight());
-            Iterator<Entry<Enchantment, Integer>> itr = mapright.entrySet().iterator();
+			Map<Enchantment, Integer> mapright = EnchantmentHelper.getEnchantments(event.getRight());
+			Iterator<Entry<Enchantment, Integer>> itr = mapright.entrySet().iterator();
 
-            while(itr.hasNext()) {
-            	Entry<Enchantment, Integer> entry = itr.next();
-            	Enchantment e = entry.getKey();
-            	int j = entry.getValue();
+			while (itr.hasNext()) {
+				Entry<Enchantment, Integer> entry = itr.next();
+				Enchantment e = entry.getKey();
+				int j = entry.getValue();
 
-            	EnchantmentUtil.removeEnchantment(event.getOutput(), e);
-            	EnchantmentUtil.addEnchantment(event.getOutput(), e, j);
-            }
+				EnchantmentUtil.removeEnchantment(event.getOutput(), e);
+				EnchantmentUtil.addEnchantment(event.getOutput(), e, j);
+			}
 
-            event.setCost(10);
+			event.setCost(10);
 		}
-		if(event.getLeft().getItem() == ModItems.ingot_meteorite && event.getRight().getItem() == ModItems.ingot_meteorite &&
+		if (event.getLeft().getItem() == ModItems.ingot_meteorite && event.getRight().getItem() == ModItems.ingot_meteorite &&
 				event.getLeft().getCount() == 1 && event.getRight().getCount() == 1) {
 
 			double h1 = ItemHot.getHeat(event.getLeft());
 			double h2 = ItemHot.getHeat(event.getRight());
 
-			if(h1 >= 0.5 && h2 >= 0.5) {
+			if (h1 >= 0.5 && h2 >= 0.5) {
 
 				ItemStack out = new ItemStack(ModItems.ingot_meteorite_forged);
 				ItemHot.heatUp(out, (h1 + h2) / 2D);
 				event.setOutput(out);
-	            event.setCost(10);
+				event.setCost(10);
 			}
 		}
 
-		if(event.getLeft().getItem() == ModItems.ingot_meteorite_forged && event.getRight().getItem() == ModItems.ingot_meteorite_forged &&
+		if (event.getLeft().getItem() == ModItems.ingot_meteorite_forged && event.getRight().getItem() == ModItems.ingot_meteorite_forged &&
 				event.getLeft().getCount() == 1 && event.getRight().getCount() == 1) {
 
 			double h1 = ItemHot.getHeat(event.getLeft());
 			double h2 = ItemHot.getHeat(event.getRight());
 
-			if(h1 >= 0.5 && h2 >= 0.5) {
+			if (h1 >= 0.5 && h2 >= 0.5) {
 
 				ItemStack out = new ItemStack(ModItems.blade_meteorite);
 				ItemHot.heatUp(out, (h1 + h2) / 2D);
 				event.setOutput(out);
-	            event.setCost(30);
+				event.setCost(30);
 			}
 		}
 
-		if(event.getLeft().getItem() == ModItems.meteorite_sword_seared && event.getRight().getItem() == ModItems.ingot_meteorite_forged &&
+		if (event.getLeft().getItem() == ModItems.meteorite_sword_seared && event.getRight().getItem() == ModItems.ingot_meteorite_forged &&
 				event.getLeft().getCount() == 1 && event.getRight().getCount() == 1) {
 
 			double h2 = ItemHot.getHeat(event.getRight());
 
-			if(h2 >= 0.5) {
+			if (h2 >= 0.5) {
 
 				ItemStack out = new ItemStack(ModItems.meteorite_sword_reforged);
 				event.setOutput(out);
-	            event.setCost(50);
+				event.setCost(50);
 			}
 		}
-		
-		if(event.getLeft().getItem() == ModItems.ingot_steel_dusted && event.getRight().getItem() == ModItems.ingot_steel_dusted &&
-				event.getLeft().getCount() ==  event.getRight().getCount()) {
+
+		if (event.getLeft().getItem() == ModItems.ingot_steel_dusted && event.getRight().getItem() == ModItems.ingot_steel_dusted &&
+				event.getLeft().getCount() == event.getRight().getCount()) {
 
 			double h1 = ItemHot.getHeat(event.getLeft());
 			double h2 = ItemHot.getHeat(event.getRight());
-			
-			if(h2 >= 0.5) {
+
+			if (h2 >= 0.5) {
 
 				int i1 = event.getLeft().getItemDamage();
 				int i2 = event.getRight().getItemDamage();
-				
+
 				int i3 = Math.min(i1, i2) + 1;
-				
+
 				boolean done = i3 >= 10;
-				
+
 				ItemStack out;
-				if(done){
+				if (done) {
 					out = new ItemStack(ModItems.ingot_chainsteel, event.getLeft().getCount(), 0);
 				} else {
 					out = new ItemStack(ModItems.ingot_steel_dusted, event.getLeft().getCount(), i3);
 				}
-	            
+
 				ItemHot.heatUp(out, done ? 1D : (h1 + h2) / 2D);
 				event.setOutput(out);
 				event.setCost(event.getLeft().getCount());
 			}
 		}
 	}
-	
-	@SubscribeEvent
-	public void onPlayerRespawn(PlayerEvent.PlayerRespawnEvent event) {
-
-		EntityPlayer player = event.player;
-
-		if(player.getDisplayName().getUnformattedText().equals("Dr_Nostalgia") && !player.world.isRemote) {
-
-			if(!Library.hasInventoryItem(player.inventory, ModItems.hat))
-				player.inventory.addItemStackToInventory(new ItemStack(ModItems.hat));
-			
-			if(!Library.hasInventoryItem(player.inventory, ModItems.beta))
-				player.inventory.addItemStackToInventory(new ItemStack(ModItems.beta));
-		}
-	}
-
 	
 	@SubscribeEvent
 	public void craftingRegister(RegistryEvent.Register<IRecipe> e){
@@ -1242,26 +958,9 @@ public class ModEventHandler {
 		System.out.println("Memory usage after: " + mem);
 	}
 
-	// TODO should probably use these.
-
-	@SubscribeEvent
-	public void onItemRegister(RegistryEvent.Register<Item> evt) {
-	}
-
-	@SubscribeEvent
-	public void onBlockRegister(RegistryEvent.Register<Block> evt) {
-	}
-
 	@SubscribeEvent
 	public void onRecipeRegister(RegistryEvent.Register<IRecipe> evt) {
 		IRecipe[] recipes = new IRecipe[12];
 		IRecipe recipe = null;
-		doesArrayContain(recipes, recipe);
 	}
-
-	public static boolean doesArrayContain(Object[] array, Object objectCheck){
-		System.out.println("On Recipe Register");
-		return false;
-	}
-	
 }

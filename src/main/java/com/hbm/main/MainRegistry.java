@@ -5,8 +5,6 @@ import com.hbm.blocks.generic.BlockCrate;
 import com.hbm.blocks.generic.EntityGrenadeTau;
 import com.hbm.capability.HbmCapability;
 import com.hbm.capability.HbmLivingCapability;
-import com.hbm.command.CommandHbm;
-import com.hbm.command.CommandRadiation;
 import com.hbm.config.*;
 import com.hbm.creativetabs.*;
 import com.hbm.entity.effect.*;
@@ -774,12 +772,6 @@ public class MainRegistry {
 	@EventHandler
 	public void serverStarting(FMLServerStartingEvent evt) {
 		RBMKDials.createDials(evt.getServer().getEntityWorld());
-		evt.registerServerCommand(new CommandRadiation());
-		evt.registerServerCommand(new CommandHbm());
-		AdvancementManager.init(evt.getServer());
-		//MUST be initialized AFTER achievements!!
-		BobmazonOfferFactory.reset();
-		BobmazonOfferFactory.init();
 	}
 
 	private void registerReactorFuels(){

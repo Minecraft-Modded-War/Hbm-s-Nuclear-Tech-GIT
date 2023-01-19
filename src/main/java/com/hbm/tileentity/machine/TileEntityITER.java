@@ -1,7 +1,5 @@
 package com.hbm.tileentity.machine;
 
-import java.util.List;
-
 import com.hbm.blocks.ModBlocks;
 import com.hbm.blocks.machine.MachineITER;
 import com.hbm.forgefluid.FFUtils;
@@ -15,15 +13,12 @@ import com.hbm.items.ModItems;
 import com.hbm.items.special.ItemFusionShield;
 import com.hbm.lib.HBMSoundHandler;
 import com.hbm.lib.Library;
-import com.hbm.main.AdvancementManager;
 import com.hbm.packet.FluidTankPacket;
 import com.hbm.packet.FluidTypePacketTest;
 import com.hbm.packet.PacketDispatcher;
 import com.hbm.render.amlfrom1710.Vec3;
-import com.hbm.tileentity.TileEntityMachineBase;
 import com.hbm.saveddata.RadiationSavedData;
-
-import net.minecraft.entity.player.EntityPlayer;
+import com.hbm.tileentity.TileEntityMachineBase;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
@@ -360,15 +355,7 @@ public class TileEntityITER extends TileEntityMachineBase implements ITickable, 
 		}
 
 		world.setBlockState(new BlockPos(pos.getX(), pos.getY() - 2, pos.getZ()), ModBlocks.struct_iter_core.getDefaultState());
-		
 		MachineITER.drop = true;
-		
-		List<EntityPlayer> players = world.getEntitiesWithinAABB(EntityPlayer.class,
-				new AxisAlignedBB(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5).grow(50, 10, 50));
-
-		for(EntityPlayer player : players) {
-			AdvancementManager.grantAchievement(player, AdvancementManager.achMeltdown);
-		}
 	}
 
 	@Override

@@ -1,10 +1,7 @@
 package com.hbm.entity.mob.botprime;
 
-import java.util.List;
-
 import com.hbm.entity.mob.EntityAINearestAttackableTargetNT;
 import com.hbm.items.ModItems;
-import com.hbm.main.AdvancementManager;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -20,6 +17,8 @@ import net.minecraft.world.BossInfo;
 import net.minecraft.world.BossInfoServer;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
+
+import java.util.List;
 
 public class EntityBOTPrimeHead extends EntityBOTPrimeBase {
 
@@ -148,7 +147,6 @@ public class EntityBOTPrimeHead extends EntityBOTPrimeBase {
 		List<EntityPlayer> players = world.getEntitiesWithinAABB(EntityPlayer.class, this.getEntityBoundingBox().grow(200, 200, 200));
 
 		for(EntityPlayer player : players) {
-			AdvancementManager.grantAchievement(player, AdvancementManager.bossWorm);
 			player.inventory.addItemStackToInventory(new ItemStack(ModItems.coin_worm));
 		}
 	}

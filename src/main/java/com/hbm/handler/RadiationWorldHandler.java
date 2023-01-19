@@ -1,31 +1,27 @@
 package com.hbm.handler;
 
-import java.util.Collection;
-import java.util.Map.Entry;
-
 import com.hbm.blocks.ModBlocks;
 import com.hbm.config.GeneralConfig;
 import com.hbm.config.RadiationConfig;
 import com.hbm.handler.RadiationSystemNT.RadPocket;
 import com.hbm.saveddata.RadiationSaveStructure;
 import com.hbm.saveddata.RadiationSavedData;
-
-import net.minecraft.init.Blocks;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.BlockLeaves;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraft.world.gen.ChunkProviderServer;
 
+import java.util.Collection;
+import java.util.Map.Entry;
+
 public class RadiationWorldHandler {
 
 	public static void handleWorldDestruction(World world) {
-		//TODO fix this up for new radiation system
-		if(!(world instanceof WorldServer))
-			return;
-		if(!RadiationConfig.worldRadEffects || !GeneralConfig.enableRads)
+		if(!(world instanceof WorldServer) || !RadiationConfig.worldRadEffects || !GeneralConfig.enableRads)
 			return;
 		
 		int count = 50;//MainRegistry.worldRad;

@@ -1,28 +1,25 @@
 package com.hbm.entity.effect;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.hbm.explosion.ExplosionNT;
 import com.hbm.explosion.ExplosionNT.ExAttrib;
 import com.hbm.lib.HBMSoundHandler;
-import com.hbm.main.AdvancementManager;
 import com.hbm.main.MainRegistry;
 import com.hbm.render.amlfrom1710.Vec3;
 import com.hbm.util.ContaminationUtil;
 import com.hbm.util.ContaminationUtil.ContaminationType;
 import com.hbm.util.ContaminationUtil.HazardType;
-
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class EntitySpear extends Entity {
 	
@@ -69,11 +66,6 @@ public class EntitySpear extends Entity {
 				.addAttrib(ExAttrib.NODROP)
 				.addAttrib(ExAttrib.NOSOUND)
 				.addAttrib(at).explode();
-				
-				for(EntityPlayer player : world.playerEntities) {
-					ContaminationUtil.contaminate(player, HazardType.DIGAMMA, ContaminationType.DIGAMMA, 0.05F);
-					AdvancementManager.grantAchievement(player, AdvancementManager.digammaKauaiMoho);
-				}
 			}
 			
 			if(world.isRemote) {

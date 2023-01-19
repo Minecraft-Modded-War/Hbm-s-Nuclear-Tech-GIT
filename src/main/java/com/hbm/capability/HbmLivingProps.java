@@ -1,24 +1,21 @@
 package com.hbm.capability;
 
-import java.util.List;
-import java.util.UUID;
-
 import com.hbm.capability.HbmLivingCapability.EntityHbmProps;
 import com.hbm.capability.HbmLivingCapability.IEntityHbmProps;
 import com.hbm.lib.ModDamageSource;
-import com.hbm.main.AdvancementManager;
 import com.hbm.packet.AuxParticlePacketNT;
 import com.hbm.packet.PacketDispatcher;
-
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.entity.ai.attributes.IAttributeInstance;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.fml.common.network.NetworkRegistry.TargetPoint;
+
+import java.util.List;
+import java.util.UUID;
 
 public class HbmLivingProps {
 
@@ -103,18 +100,6 @@ public class HbmLivingProps {
 			data.setInteger("block", Block.getIdFromBlock(Blocks.SOUL_SAND));
 			data.setInteger("entity", entity.getEntityId());
 			PacketDispatcher.wrapper.sendToAllAround(new AuxParticlePacketNT(data, 0, 0, 0), new TargetPoint(entity.dimension, entity.posX, entity.posY, entity.posZ, 50));
-		}
-
-		if(entity instanceof EntityPlayer) {
-
-			float di = getData(entity).getDigamma();
-
-			if(di > 0F)
-				AdvancementManager.grantAchievement(((EntityPlayer)entity), AdvancementManager.digammaSee);
-			if(di >= 2F)
-				AdvancementManager.grantAchievement(((EntityPlayer)entity), AdvancementManager.digammaFeel);
-			if(di >= 10F)
-				AdvancementManager.grantAchievement(((EntityPlayer)entity), AdvancementManager.digammaKnow);
 		}
 	}
 

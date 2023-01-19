@@ -1,7 +1,6 @@
 package com.hbm.saveddata.satellites;
 
 import com.hbm.entity.projectile.EntityTom;
-import com.hbm.main.AdvancementManager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.text.TextComponentTranslation;
@@ -20,8 +19,6 @@ public class SatelliteHorizons extends Satellite {
 
 	public void onOrbit(World world, double x, double y, double z) {
 
-		for(EntityPlayer p : world.playerEntities)
-			AdvancementManager.grantAchievement(p, AdvancementManager.horizonsStart);
 	}
 	
 	public void writeToNBT(NBTTagCompound nbt) {
@@ -45,13 +42,9 @@ public class SatelliteHorizons extends Satellite {
 		provider.provideChunk(x >> 4, z >> 4);
 		
 		world.spawnEntity(tom);
-
-		for(EntityPlayer p : world.playerEntities)
-			AdvancementManager.grantAchievement(p, AdvancementManager.horizonsEnd);
 		
 		//not necessary but JUST to make sure
-		if(!world.isRemote) {
+		if(!world.isRemote)
 			FMLCommonHandler.instance().getMinecraftServerInstance().sendMessage(new TextComponentTranslation(TextFormatting.RED + "Horizons has been activated."));
-		}
 	}
 }

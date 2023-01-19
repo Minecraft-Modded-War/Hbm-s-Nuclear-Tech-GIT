@@ -3,6 +3,8 @@ package com.hbm.render;
 import net.minecraft.client.renderer.GLAllocation;
 import org.lwjgl.opengl.GL11;
 
+import java.nio.ByteBuffer;
+
 public class Vbo {
 
 	//Pos, tex, normal, color

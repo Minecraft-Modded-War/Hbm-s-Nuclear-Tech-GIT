@@ -1,18 +1,13 @@
 package com.hbm.entity.mob;
 
-import java.util.List;
-
 import com.hbm.interfaces.IRadiationImmune;
 import com.hbm.items.ModItems;
 import com.hbm.lib.HBMSoundHandler;
 import com.hbm.lib.ModDamageSource;
-import com.hbm.main.AdvancementManager;
 import com.hbm.saveddata.RadiationSavedData;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.monster.EntityMob;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
@@ -60,13 +55,6 @@ public class EntityRADBeast extends EntityMob implements IRadiationImmune {
     @Override
     public void onDeath(DamageSource cause) {
     	super.onDeath(cause);
-    	if(this.getMaxHealth() > 150) {
-	        List<EntityPlayer> players = world.getEntitiesWithinAABB(EntityPlayer.class, this.getEntityBoundingBox().grow(50, 50, 50));
-
-	        for(EntityPlayer player : players) {
-	        	AdvancementManager.grantAchievement(player, AdvancementManager.achMeltdown);
-	        }
-        }
     }
     
     @Override
