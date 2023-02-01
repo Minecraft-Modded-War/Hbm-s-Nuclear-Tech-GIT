@@ -30,12 +30,12 @@ public class TileEntityLockableBase extends TileEntity {
 	}
 
 	public void lock() {
-		
-		if(lock == 0) {
+		if(lock == 0)
 			MainRegistry.logger.error("A block has been set to locked state before setting pins, this should not happen and may cause errors! " + this.toString());
-		}
-		if(isLocked == false)
+
+		if(!isLocked)
 			markDirty();
+
 		isLocked = true;
 	}
 	
@@ -52,6 +52,7 @@ public class TileEntityLockableBase extends TileEntity {
 	public void setMod(double mod) {
 		if(lockMod != mod)
 			markDirty();
+
 		lockMod = mod;
 	}
 	
@@ -76,28 +77,28 @@ public class TileEntityLockableBase extends TileEntity {
 	}
 	
 	public boolean canAccess(EntityPlayer player) {
-		
 		if(player == null) { //!isLocked || 
 			return false;
-		} else {
-			ItemStack stack = player.getHeldItemMainhand();
-			
-			if(stack.getItem() instanceof ItemKeyPin && ItemKeyPin.getPins(stack) == this.lock) {
-	        	world.playSound(null, player.posX, player.posY, player.posZ, HBMSoundHandler.lockOpen, SoundCategory.BLOCKS, 1.0F, 1.0F);
-				return true;
-			}
-			
-			if(stack.getItem() == ModItems.key_red) {
-	        	world.playSound(null, player.posX, player.posY, player.posZ, HBMSoundHandler.lockOpen, SoundCategory.BLOCKS, 1.0F, 1.0F);
-				return true;
-			}
-			
-			return tryPick(player);
 		}
+
+		if (!isLocked)
+			return true;
+
+		ItemStack stack = player.getHeldItemMainhand();
+		if(stack.getItem() instanceof ItemKeyPin && ItemKeyPin.getPins(stack) == this.lock) {
+			world.playSound(null, player.posX, player.posY, player.posZ, HBMSoundHandler.lockOpen, SoundCategory.BLOCKS, 1.0F, 1.0F);
+			return true;
+		}
+
+		if(stack.getItem() == ModItems.key_red) {
+			world.playSound(null, player.posX, player.posY, player.posZ, HBMSoundHandler.lockOpen, SoundCategory.BLOCKS, 1.0F, 1.0F);
+			return true;
+		}
+
+		return tryPick(player);
 	}
 	
 	public boolean tryPick(EntityPlayer player) {
-
 		boolean canPick = false;
 		ItemStack stack = player.getHeldItemMainhand();
 		double chanceOfSuccess = this.lockMod * 100;

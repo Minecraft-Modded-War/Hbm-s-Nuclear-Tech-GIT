@@ -225,31 +225,31 @@ public class VaultDoor extends BlockContainer implements IBomb, IMultiBlock, IRa
 	
 	@Override
 	public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-		if(world.isRemote)
-		{
+		if(world.isRemote) {
 			return true;
+
 		} else if(player.getHeldItem(hand).getItem() instanceof ItemLock || player.getHeldItem(hand).getItem() == ModItems.key_kit) {
 			return false;
 			
 		} if(!player.isSneaking()) {
-			
 			TileEntityVaultDoor entity = (TileEntityVaultDoor) world.getTileEntity(pos);
 			if(entity != null) {
 				if(entity.canAccess(player)){
 					entity.tryToggle();
 					return true;
-				}	
+				}
 			}
+
 			return false;
+
 		} else {
-			
 			TileEntityVaultDoor entity = (TileEntityVaultDoor) world.getTileEntity(pos);
-			if(entity != null)
-			{
+			if (entity != null) {
 				entity.type++;
-				if(entity.type >= TileEntityVaultDoor.maxTypes)
+				if (entity.type >= TileEntityVaultDoor.maxTypes)
 					entity.type = 0;
 			}
+
 			return false;
 		}
 	}

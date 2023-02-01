@@ -194,9 +194,9 @@ public class TileEntityVaultDoor extends TileEntityLockableBase implements ITick
 	}
 	
 	public void tryToggle() {
-
 		if(canOpen())
 			open();
+
 		else if(canClose())
 			close();
 	}

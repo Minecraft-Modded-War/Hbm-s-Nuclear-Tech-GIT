@@ -720,12 +720,12 @@ public class ModEventHandler {
 
 	@SubscribeEvent
 	public void onLivingUpdate(LivingUpdateEvent event){
-		EntityEffectHandler.onUpdate(event.getEntityLiving());
+		if(event.getEntityLiving() instanceof EntityPlayer)
+			EntityEffectHandler.onUpdate(event.getEntityLiving());
 	}
 
 	@SubscribeEvent
 	public void onEntityJump(LivingJumpEvent event) {
-
 		if(event.getEntityLiving() instanceof EntityPlayer)
 			ArmorFSB.handleJump((EntityPlayer) event.getEntityLiving());
 	}
