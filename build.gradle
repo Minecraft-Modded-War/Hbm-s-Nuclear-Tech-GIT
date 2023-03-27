@@ -15,7 +15,7 @@ buildscript {
   }
     }
     dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:3.+'
+        classpath 'net.minecraftforge.gradle:ForgeGradle:5.+'
     }
 }
         
